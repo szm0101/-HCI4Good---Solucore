@@ -1,0 +1,32 @@
+.footer{
+    padding: 35px 0 25px 300px;
+
+    [class*="container-"] {
+      padding: 0;
+    }
+}
+
+div > h4 {
+    color: lightblue;
+    font-weight: bold;
+    padding: 4px 0 3px 40px;
+
+}
+
+div > a {
+    color: lightblue;
+}
+
+.list-uns{
+    color: grey;
+    font-style: italic;
+    list-style: none;
+}
+
+.copyright{
+    color: lightblue;
+    font-style: italic;
+    font-weight: bold;
+    margin-top: 145px;
+    margin-right: 45px;
+}
