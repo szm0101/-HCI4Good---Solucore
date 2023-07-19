@@ -13,8 +13,8 @@ function Navbar() {
                 </div>
                 <ul className="navbar-links">
                     <li><a onClick={() =>
-                                                {navigate('/Buildings')}
-                        }>Buildings</a></li>
+                    {navigate('/Buildings')}
+                    }>Buildings</a></li>
                     <li><a href="#">Link 2</a></li>
                     <li><a href="#">Link 3</a></li>
                 </ul>
