@@ -1,25 +1,27 @@
 .sidebar {
-    position: fixed;
-    top: 0;
+    position: absolute;
+    top: 150px;
     bottom: 0;
     left: 0;
     width: 200px;
     background-color: #333;
-  }
-  
-  .sidebar ul {
+    overflow-y: hidden;
+}
+
+.sidebar ul {
     list-style: none;
     padding: 0;
-    margin: 0;
-  }
-  
-  .sidebar li a {
+    width: 20px;
+    margin-left: 0;
+}
+
+.sidebar li a {
     display: block;
     color: #fff;
     padding: 20px;
     text-decoration: none;
-  }
-  
-  .sidebar li a:hover {
+}
+
+.sidebar li a:hover {
     background-color: #444;
-  }
+}
