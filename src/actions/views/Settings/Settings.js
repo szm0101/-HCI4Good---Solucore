@@ -1,214 +1,71 @@
 //need install react-select for the import the "Select" component from the 'react-select' library.
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Select from 'react-select';
-
+import './Settings.css';
 
 //Create the filter use for choose Buildings and Devices
+const buildings = [
+    {value: '1', label: 'Building 1'},
+    {value: '2', label: 'Building 2'},
+    {value: '3', label: 'Building 3'},
+    {value: '4', label: 'Building 4'},
+    {value: '5', label: 'Building 5'},
+    {value: '6', label: 'Building 6'},
+];
+
+const devices = [
+    {value: '1', label: 'Device 1'},
+    {value: '2', label: 'Device 2'},
+    {value: '3', label: 'Device 3'},
+    {value: '4', label: 'Device 4'},
+    {value: '5', label: 'Device 5'},
+    {value: '6', label: 'Device 6'},
+];
+
+//Create the Critical Hours and table show the Elevator Day time work information(like dummy code Time 1 and Time 2)
 function Settings() {
-    const buildings = [
-        { value: 'building1', label: 'Building 1' },
-        { value: 'building2', label: 'Building 2' },
-        { value: 'building3', label: 'Building 3' },
-        { value: 'building4', label: 'Building 4' },
-        { value: 'building5', label: 'Building 5' },
-        { value: 'building6', label: 'Building 6' },
-    ];
-    const devices = [
-        { value: 'device1', label: 'Elevator-A' },
-        { value: 'device2', label: 'Elevator-B' },
-        { value: 'device3', label: 'Elevator-C' },
-        { value: 'device4', label: 'Elevator-D' },
-        { value: 'device5', label: 'Elevator-E' },
-        { value: 'device6', label: 'Elevator-F' },
-    ];
-
-    //Create the Critical Hours and table show the Elevator Day time work information(like dummy code Time 1 and Time 2)
-    const initialBuildingData = {
-        building1: {
-            devices: {
-                device1: [{ day: 'Day 1', openingTime: 'Time 1', closingTime: 'Time 2' }],
-            },
-        },
-    };
     //Use basic Hooks (useState) from react ref "https://legacy.reactjs.org/docs/hooks-reference.html#usestate"
-    const [currentSettings, setSettings] = useState({
-        'mysettings.general.name': null,
-        'mysettings.general.device': null,
-    });
-    //Initial the Critical Hours value when the Building or Elevator changed
-    const settingsChanged = (selectedOption, actionMeta) => {
-        setSettings({ ...currentSettings, [actionMeta.name]: selectedOption });
-        setShowTable(false);
-        setTableRows([]);
-        setShowModel(false);
-    };
-
+    const [currentSettings, setCurrentSettings] = useState({ 'mysettings.general.name': '', 'mysettings.general.device': '' });
     const [showTable, setShowTable] = useState(false);
-    const [showModel, setShowModel] = useState(false);
-
-    // State variable to store the table rows for the selected building and device
     const [tableRows, setTableRows] = useState([]);
+    const [showModel, setShowModel] = useState(false);
+    const [editRowIndex, setEditRowIndex] = useState(-1);
+    const [openingTime, setOpeningTime] = useState("");
+    const [closingTime, setClosingTime] = useState("");
 
+    // Update the time value(Opening/Closing time) when click the edited button
+    function onModelClose(save) {
+        if (save) {
+            // Update the opening and closing times in the tableRows state
+            setTableRows(tableRows.map((row, index) => index === editRowIndex ? { ...row, openingTime, closingTime } : row));
+        }
+        setShowModel(false);
+    }
+    //Initial the Critical Hours value when the Building or Elevator changed
+    function settingsChanged(newSettings) {
+        setCurrentSettings(newSettings);
+    }
+    // State variable to store the table rows for the selected building and device
+    function addRow() {
+        setTableRows([...tableRows, {day: `Day ${tableRows.length + 1}`, openingTime: '', closingTime: ''}]);
+    }
     // State variable to store the index of the row being edited
-    const [editRowIndex, setEditRowIndex] = useState(null);
-
-    const onEditClicked = (index) => {
+    function onEditClicked(index) {
         setEditRowIndex(index);
         setShowModel(true);
-    };
+    }
 
-    const onModelClose = () => {
-        // Update the time value(Opening/Closing time) when click the edited button
-        if (editRowIndex !== null) {
-            const updatedTableRows = [...tableRows];
-            updatedTableRows[editRowIndex] = {
-                ...updatedTableRows[editRowIndex],
-                openingTime: document.getElementById('openingTimeInput').value,
-                closingTime: document.getElementById('closingTimeInput').value,
-            };
-            setTableRows(updatedTableRows);
-            setEditRowIndex(null);
-        }
-        setShowModel(false);
-    };
+    function handleDeviceChange(selectedOption, buildingValue) {
+    }
 
-    const addRow = () => {
-        //Create the new row and order the row based on the Day value :Day+1 (1.to..n)
-        const sortedRows = [...tableRows].sort((a, b) => a.day.localeCompare(b.day));
-        let newDayNumber = 1;
-        if (sortedRows.length > 0) {
-            const lastDayNumber = parseInt(sortedRows[sortedRows.length - 1].day.replace('Day ', ''), 10);
-            newDayNumber = lastDayNumber + 1;
-        }
-
-        const newRow = {
-            day: `Day ${newDayNumber}`,
-            openingTime: '',
-            closingTime: '',
-        };
-        setTableRows([...sortedRows, newRow]);
-    };
-
-    const handleDeviceChange = (selectedOption) => {
-        setSettings({ ...currentSettings, 'mysettings.general.device': selectedOption });
-        // Set the table rows for the selected building and device
-        const buildingData = initialBuildingData[currentSettings['mysettings.general.name'].value];
-        const deviceData = buildingData?.devices[selectedOption.value] || [];
-        setTableRows(deviceData);
-        // Show the table when the device from filter is selected
-        setShowTable(true);
-        // Hide the model when a different device is selected
-        setShowModel(false);
-    };
-    /** Use React "Style" in JavaScript to define properties and values from .css (Inline Styles)
-     ref: "https://legacy.reactjs.org/docs/dom-elements.html#style" **/
-
-    const tableStyle = {
-        border: '1px solid black',
-        borderCollapse: 'collapse',
-        width: '100%',
-        textAlign: 'left',
-    };
-
-    const cellStyle = {
-        border: '1px solid black',
-        padding: '8px',
-    };
-
-    const containerStyle = {
-        marginLeft: '200px',
-        padding: '20px',
-    };
-
-    const headerStyle = {
-        marginBottom: '20px',
-        fontSize: '24px',
-        fontWeight: 'bold',
-    };
-
-    const formGroupStyle = {
-        display: 'flex',
-        justifyContent: 'space-between',
-        marginBottom: '10px',
-        alignItems: 'center',
-    };
-
-    const labelStyle = {
-        fontWeight: 'bold',
-        marginRight: '10px',
-    };
-
-    const buttonsContainerStyle = {
-        marginBottom: '20px',
-        display: 'flex',
-        justifyContent: 'space-between',
-    };
-
-    const buttonStyle = {
-        padding: '10px 16px',
-        fontSize: '16px',
-        fontWeight: 'bold',
-        backgroundColor: '#007bff',
-        color: '#fff',
-        border: 'none',
-        borderRadius: '4px',
-        cursor: 'pointer',
-    };
-
-    const tableContainerStyle = {
-        width: '100%',
-        marginBottom: '20px',
-    };
-
-    const tableHeaderCellStyle = {
-        ...cellStyle,
-        backgroundColor: '#f0f0f0',
-    };
-
-    const modelStyle = {
-        position: 'fixed',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        backgroundColor: '#fff',
-        padding: '50px',
-        zIndex: '1000',
-    };
-
-    const overlayStyle = {
-        position: 'fixed',
-        top: '0',
-        left: '0',
-        right: '0',
-        bottom: '0',
-        backgroundColor: 'rgba(0, 0, 0, .7)',
-        zIndex: '1000',
-    };
-
-    const modelContainerStyle = {
-        modelStyle,
-        padding: '20px',
-    };
-
-    const modelHeaderStyle = {
-        marginBottom: '10px',
-        fontSize: '18px',
-        fontWeight: 'bold',
-    };
-
-    const modelRowStyle = {
-        marginBottom: '10px',
-    };
-
-    //Implement the Table UI, Building and Device filter UI
     return (
-        <div style={containerStyle}>
-            <h2 style={headerStyle}>Settings</h2>
-            <div style={formGroupStyle}>
+        <div className="container">
+            <h2 className="header">Settings</h2>
+            <div className="form-group">
 
                 {/*building selector/filter, user can choose one from a list*/}
-                <fieldset className="form-group" style={{ flex: '1', marginRight: '10px' }}>
-                    <label style={labelStyle} htmlFor="general.name">
+                <fieldset className="form-group">
+                    <label className="label" htmlFor="general.name">
                         Building:
                     </label>
                     <Select
@@ -221,8 +78,8 @@ function Settings() {
                 </fieldset>
 
                 {/*device filter, user can choose one from a list*/}
-                <fieldset className="form-group" style={{ flex: '1' }}>
-                    <label style={labelStyle} htmlFor="general.device">
+                <fieldset className="form-group">
+                    <label className="label" htmlFor="general.device">
                         Device:
                     </label>
                     <Select
@@ -238,38 +95,38 @@ function Settings() {
             </div>
 
             {/*button to show the result matching the filter*/}
-            <div style={buttonsContainerStyle}>
-                <button style={buttonStyle} onClick={() => setShowTable(!showTable)}>
+            <div className="buttons-container">
+                <button className="button" onClick={() => setShowTable(!showTable)}>
                     Critical Hours
                 </button>
-                <button style={buttonStyle} onClick={addRow}>
+                <button className="button" onClick={addRow}>
                     Add Day
                 </button>
             </div>
 
             {/*showing table elements, like Day,Edit, Opening time and Closing time */}
             {showTable && (
-                <div style={tableContainerStyle}>
-                    <table style={{ tableStyle, width: '100%' }}>
+                <div className="table-container">
+                    <table className="table">
 
                         <thead>
                         <tr>
-                            <th style={{ cellStyle, tableHeaderCellStyle }}>Day</th>
-                            <th style={{ cellStyle, tableHeaderCellStyle }}>Opening time</th>
-                            <th style={{ cellStyle, tableHeaderCellStyle }}>Closing time</th>
-                            <th style={{ cellStyle, tableHeaderCellStyle }}>Edit</th>
+                            <th className="cell table-header-cell">Day</th>
+                            <th className="cell table-header-cell">Opening time</th>
+                            <th className="cell table-header-cell">Closing time</th>
+                            <th className="cell table-header-cell">Edit</th>
                         </tr>
                         </thead>
                         {/*showing the output/data of day, openingTime and closingTime*/}
                         <tbody>
                         {tableRows.map((row, index) => (
                             <tr key={index}>
-                                <td style={cellStyle}>{row.day}</td>
-                                <td style={cellStyle}>{row.openingTime}</td>
-                                <td style={cellStyle}>{row.closingTime}</td>
-                                <td style={cellStyle}>
+                                <td className="cell">{row.day}</td>
+                                <td className="cell">{row.openingTime}</td>
+                                <td className="cell">{row.closingTime}</td>
+                                <td className="cell">
                                     {/*the Edit button used to input the Opening/Closing time for a Day*/}
-                                    <button onClick={() => onEditClicked(index)} style={buttonStyle}>
+                                    <button onClick={() => onEditClicked(index)} className="button">
                                         Edit
                                     </button>
                                 </td>
@@ -283,30 +140,32 @@ function Settings() {
 
             {/*Show the Time model when click the Edit button */}
             {showModel && (
-                <div style={overlayStyle}>
-                    <div style={modelContainerStyle}>
-                        <h2 style={modelHeaderStyle}>EDIT CRITICAL HOURS</h2>
+                <div className="overlay">
+                    <div className="model-container">
+                        <h2 className="model-header">EDIT CRITICAL HOURS</h2>
 
-                        <div style={modelRowStyle}>
+                        <div className="model-row">
                             <label>Opening Time:</label>
                             {/*Opening time input Selector*/}
                             <input type="time" id="openingTimeInput"
-                                   defaultValue={tableRows[editRowIndex]?.openingTime} />
+                                   defaultValue={tableRows[editRowIndex]?.openingTime}
+                                   onChange={e => setOpeningTime(e.target.value)} />
                         </div>
-                        <div style={modelRowStyle}>
+                        <div className="model-row">
                             <label>Closing Time:</label>
                             {/*Closing time input Selector*/}
                             <input type="time" id="closingTimeInput"
-                                   defaultValue={tableRows[editRowIndex]?.closingTime} />
+                                   defaultValue={tableRows[editRowIndex]?.closingTime}
+                                   onChange={e => setClosingTime(e.target.value)} />
                         </div>
 
-                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <div className="buttons-container">
                             {/*submit button*/}
-                            <button onClick={onModelClose} style={buttonStyle}>
+                            <button onClick={() => onModelClose(true)} className="button">
                                 Save
                             </button>
                             {/*cancel button*/}
-                            <button onClick={onModelClose} style={buttonStyle}>
+                            <button onClick={() => onModelClose(false)} className="button">
                                 Cancel
                             </button>
                         </div>
