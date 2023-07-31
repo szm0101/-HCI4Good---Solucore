@@ -78,7 +78,7 @@ function Settings() {
                 </fieldset>
 
                 {/*device filter, user can choose one from a list*/}
-                <fieldset className="form-group">
+                <fieldset className="form-group1">
                     <label className="label" htmlFor="general.device">
                         Device:
                     </label>
@@ -99,7 +99,7 @@ function Settings() {
                 <button className="button" onClick={() => setShowTable(!showTable)}>
                     Critical Hours
                 </button>
-                <button className="button" onClick={addRow}>
+                <button className="button1" onClick={addRow}>
                     Add Day
                 </button>
             </div>
@@ -126,7 +126,7 @@ function Settings() {
                                 <td className="cell">{row.closingTime}</td>
                                 <td className="cell">
                                     {/*the Edit button used to input the Opening/Closing time for a Day*/}
-                                    <button onClick={() => onEditClicked(index)} className="button">
+                                    <button onClick={() => onEditClicked(index)} className="button2">
                                         Edit
                                     </button>
                                 </td>
