@@ -1,9 +1,12 @@
 import logo from './actions/assets/logo.svg';
 import './App.css';
 import Navbar from './actions/components/navbar/Navbar';
+import Footer from './actions/components/Footer/Footer';
 import './actions/components/navbar/Navbar.css';
+import './actions/components/Footer/Footer.css';
 import {BrowserRouter, Routes, Route, useNavigate} from "react-router-dom";
 import Buildings from "./actions/views/Buildings/Buildings";
+
 
 
 
@@ -33,6 +36,7 @@ function App() {
 
                     <Route path="/Buildings" element={<Buildings/>}/>
                 </Routes>
+                <Footer />
             </BrowserRouter>
 
         </div>
