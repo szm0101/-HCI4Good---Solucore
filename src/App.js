@@ -6,6 +6,9 @@ import './actions/components/navbar/Navbar.css';
 import './actions/components/Footer/Footer.css';
 import {BrowserRouter, Routes, Route, useNavigate} from "react-router-dom";
 import Buildings from "./actions/views/Buildings/Buildings";
+import Settings from "./actions/views/Settings/Settings";
+import Sidebar from "./actions/components/Sidebar/Sidebar";
+
 
 
 
@@ -15,6 +18,7 @@ function App() {
         <div className="App">
             <BrowserRouter>
                 <Navbar />
+                <Sidebar />
 
                 <Routes>
                     <Route path="/" element={
@@ -35,7 +39,9 @@ function App() {
                     } />
 
                     <Route path="/Buildings" element={<Buildings/>}/>
-                </Routes>
+                    <Route path="/Settings" element={<Settings/>}/>
+                    </Routes>
+
                 <Footer />
             </BrowserRouter>
 
