@@ -1,16 +1,14 @@
 nav {
     background-color: #333;
-    color: #fff;
+    color: white;
 }
 
 .navbar-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    padding: 15px;
 }
-
-
 
 .navbar-links {
     list-style-type: none;
@@ -20,21 +18,30 @@ nav {
 }
 
 .navbar-links li {
-    margin-left: 10px;
+    margin-left: 5px;
+    margin-top: 5px;
+    margin-right: 10px;
 }
 
 .navbar-links li:first-child {
-    margin-left: 0;
+    margin-left: 0px;
 }
 
 .navbar-links li a {
-    color: #fff;
+    color: white;
     text-decoration: none;
-    padding: 10px;
+    padding: 15px;
 }
 
 .navbar-links li a:hover {
-    background-color: #555;
+    color: cadetblue;
+}
+
+.navbar-container svg {
+    margin-left: 20px;
+    width: 25px;
+    height: 30px;
+    cursor: pointer;
 }
 
 /* Responsive styles */
@@ -57,3 +64,5 @@ nav {
         margin-bottom: 5px;
     }
 }
+
+

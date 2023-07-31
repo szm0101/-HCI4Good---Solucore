@@ -1,6 +1,6 @@
 import React from 'react';
-import logo from '../../assets/logo.svg';
 import {useNavigate} from "react-router-dom";
+import logo from '../../assets/logo.svg';
 
 
 function Navbar() {
@@ -8,20 +8,14 @@ function Navbar() {
     return (
         <nav>
             <div className="navbar-container">
-                <div className="logo" style={{ width: "200px" }}>
-                    <img src={logo} alt="Logo" />
-                </div>
+                <h1>SOLUTRAK</h1>
                 <ul className="navbar-links">
-                    <li><a onClick={() =>
-                    {navigate('/Buildings')}
-                    }>Buildings</a></li>
-                    <li><a href="#">Link 2</a></li>
-                    <li><a href="#">Link 3</a></li>
+                    <li><a onClick={() => {navigate('/')}}>HOME</a></li>
+                    <li><a onClick={() => {navigate('/Buildings')}}>BUILDINGS</a></li>
                 </ul>
             </div>
         </nav>
     );
 }
-
 
 export default Navbar;
