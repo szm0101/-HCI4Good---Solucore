@@ -8,7 +8,7 @@ function Footer() {
     <div className="footer">
         <div className="container">
             <div className="row">
-                <div className="col">
+                <div className="col-1">
                     <h4>Quick Links</h4>
                     <ul className="list-uns" >
                         <li><a href="http://www.solucore.com/en-caabout_us">About Us</a></li>
@@ -18,7 +18,7 @@ function Footer() {
                     </ul>
                 </div>
 
-                <div className="col">
+                <div className="col-2">
                     <h4>Support</h4>
                         <ul className="list-uns">
                             <li><a href="http://www.solucore.com/contact_us">Contact Us</a></li>
@@ -27,9 +27,9 @@ function Footer() {
                         </ul>
                 </div>
 
-                <div className="col">
+                <div className="col-3">
                     <h4>Address</h4>
-                    <ul className="list-uns">
+                    <ul className="list-uns-address">
                         <li>Purdy's Wharf Tower 1</li>
                         <li>1959 Upper Water St Suite 1301</li>
                         <li>Halifax, NS B3J 3N2</li>
@@ -37,7 +37,7 @@ function Footer() {
                     </ul>
                 </div>
 
-                <div className="col">
+                <div className="col-4">
                     <h4>Socials</h4>
                     <ul className="list-uns">
                         <li><a href="https://instagram.com/solucore?igshid=MzRlODBiNWFlZA==">Instagram</a></li>
@@ -54,7 +54,6 @@ function Footer() {
                        </div>
                     </Container>
                 </footer>
-
             </div>
         </div>
     </div>
@@ -62,6 +61,5 @@ function Footer() {
 }
 
 export default Footer;
-
 
 
