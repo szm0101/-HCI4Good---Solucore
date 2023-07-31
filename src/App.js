@@ -9,6 +9,7 @@ import Buildings from "./actions/views/Buildings/Buildings";
 import Settings from "./actions/views/Settings/Settings";
 import Reporting from "./actions/views/Reporting/Reporting";
 import Sidebar from "./actions/components/Sidebar/Sidebar";
+import Map from "./actions/views/Map/Map"
 
 
 
@@ -40,7 +41,7 @@ function App() {
                             </a>
                         </header>
                     } />
-
+                    <Route path = "/Map" element={<Map/>}/>
                     <Route path="/Buildings" element={<Buildings/>}/>
                     <Route path="/Settings" element={<Settings/>}/>
                     </Routes>
