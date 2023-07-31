@@ -30,6 +30,7 @@ const mapStyles = {
     };
     render() {
         return (
+            <div style={{ position: 'fixed', top: '0px', left: '0px', right: '0px', bottom: '0px', zIndex: -10 }}>
             <Map
               google={this.props.google}
               zoom={14}
@@ -66,6 +67,7 @@ const mapStyles = {
                 </div>
               </InfoWindow>
             </Map>
+            </div>
           );
       }
     }
