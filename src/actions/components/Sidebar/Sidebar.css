@@ -6,6 +6,7 @@
     width: 200px;
     background-color: #333;
     overflow-y: hidden;
+    z-index: 10000;
 }
 
 .sidebar ul {
