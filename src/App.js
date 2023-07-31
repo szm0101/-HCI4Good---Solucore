@@ -7,7 +7,10 @@ import './actions/components/Footer/Footer.css';
 import {BrowserRouter, Routes, Route, useNavigate} from "react-router-dom";
 import Buildings from "./actions/views/Buildings/Buildings";
 import Settings from "./actions/views/Settings/Settings";
+import Reporting from "./actions/views/Reporting/Reporting";
 import Sidebar from "./actions/components/Sidebar/Sidebar";
+
+
 
 
 
