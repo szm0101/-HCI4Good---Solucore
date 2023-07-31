@@ -11,9 +11,9 @@
 
 .sidebar ul {
     list-style: none;
-    padding: 0;
+    padding: 40px;
     width: 20px;
-    margin-left: 0;
+    margin-left: 0px;
 }
 
 .sidebar li a {
@@ -24,5 +24,5 @@
 }
 
 .sidebar li a:hover {
-    background-color: #444;
+    background-color: #333;
 }
