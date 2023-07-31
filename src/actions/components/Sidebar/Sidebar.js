@@ -7,7 +7,7 @@ function Sidebar() {
     <div class="sidebar">
       <ul>
         <li><a href="http://solutrak.solucore.com/#/dashboard">Home</a></li>
-        <li><a href="http://solutrak.solucore.com/#/buildings">Building</a></li>
+          <li><Link to="/buildings">Buildings</Link></li>
           <li><Link to="/settings">Settings</Link></li>
       </ul>
     </div>
