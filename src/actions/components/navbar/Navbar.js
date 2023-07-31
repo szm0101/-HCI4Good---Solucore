@@ -1,6 +1,6 @@
 import React from 'react';
 import {useNavigate} from "react-router-dom";
-import logo from '../../assets/logo.svg';
+import Logo from '../../assets/Solucore_Icon.png';
 
 
 function Navbar() {
@@ -8,10 +8,12 @@ function Navbar() {
     return (
         <nav>
             <div className="navbar-container">
-                <h1>SOLUTRAK</h1>
+                <img src={Logo} alt="logo" width={105} height={85}/>
+                {/*put png here ^*/}
                 <ul className="navbar-links">
                     <li><a onClick={() => {navigate('/')}}>HOME</a></li>
                     <li><a onClick={() => {navigate('/Buildings')}}>BUILDINGS</a></li>
+                    {/*<li><a onClick={() => {navigate('/')}}>PROFILE</a></li>*/}
                 </ul>
             </div>
         </nav>
@@ -19,3 +21,4 @@ function Navbar() {
 }
 
 export default Navbar;
+

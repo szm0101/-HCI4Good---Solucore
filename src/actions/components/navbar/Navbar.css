@@ -3,6 +3,10 @@ nav {
     color: white;
 }
 
+img{
+    padding-left: 20px;
+}
+
 .navbar-container {
     display: flex;
     justify-content: space-between;
@@ -64,5 +68,6 @@ nav {
         margin-bottom: 5px;
     }
 }
+
 
 
