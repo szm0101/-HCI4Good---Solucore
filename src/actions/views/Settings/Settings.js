@@ -1,4 +1,4 @@
-//need install react-select for the import the "Select" component from the 'react-select' library.
+//need install react-select --force for the import the "Select" component from the 'react-select' library.
 import React, { useState } from 'react';
 import Select from 'react-select';
 import './Settings.css';
