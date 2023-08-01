@@ -1,20 +1,13 @@
-import logo from './actions/assets/logo.svg';
 import './App.css';
 import Navbar from './actions/components/navbar/Navbar';
-import Footer from './actions/components/Footer/Footer';
 import './actions/components/navbar/Navbar.css';
-import './actions/components/Footer/Footer.css';
-import {BrowserRouter, Routes, Route, useNavigate} from "react-router-dom";
+import Sidebar from "./actions/components/Sidebar/Sidebar";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+import Dashboard from "./actions/views/Dashboard/Dashboard";
+import Alerts from "./actions/views/Alerts/Alerts";
 import Buildings from "./actions/views/Buildings/Buildings";
 import Settings from "./actions/views/Settings/Settings";
 import Reporting from "./actions/views/Reporting/Reporting";
-import Sidebar from "./actions/components/Sidebar/Sidebar";
-import Map from "./actions/views/Map/Map"
-
-
-
-
-
 
 
 function App() {
@@ -25,28 +18,13 @@ function App() {
                 <Sidebar />
 
                 <Routes>
-                    <Route path="/" element={
-                        <header className="App-header">
-                            <img src={logo} className="App-logo" alt="logo" />
-                            <p>
-                                Edit <code>src/App.js</code> and save to reload.
-                            </p>
-                            <a
-                                className="App-link"
-                                href="https://reactjs.org"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                Learn React
-                            </a>
-                        </header>
-                    } />
-                    <Route path = "/Map" element={<Map/>}/>
+                    <Route path="/" element={<Dashboard/>}/>
+                    <Route path="/Alerts" element={<Alerts/>}/>
                     <Route path="/Buildings" element={<Buildings/>}/>
                     <Route path="/Settings" element={<Settings/>}/>
-                    </Routes>
+                    <Route path="/Report" element={<Reporting/>}/>
+                </Routes>
 
-                <Footer />
             </BrowserRouter>
 
         </div>
