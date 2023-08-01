@@ -6,9 +6,11 @@ function Sidebar() {
   return(
     <div class="sidebar">
       <ul>
-          <li><Link to="/Map">Home</Link></li>
+          <li><Link to="/">Home</Link></li>
           <li><Link to="/buildings">Buildings</Link></li>
+          <li><Link to="/Alerts">Alerts</Link></li>
           <li><Link to="/settings">Settings</Link></li>
+          <li><Link to="/Report">Report</Link></li>
       </ul>
     </div>
   );
