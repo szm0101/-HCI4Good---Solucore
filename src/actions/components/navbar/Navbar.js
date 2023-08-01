@@ -9,11 +9,12 @@ function Navbar() {
         <nav>
             <div className="navbar-container">
                 <img src={Logo} alt="logo" width={105} height={85}/>
-                {/*put png here ^*/}
                 <ul className="navbar-links">
                     <li><a onClick={() => {navigate('/')}}>HOME</a></li>
                     <li><a onClick={() => {navigate('/Buildings')}}>BUILDINGS</a></li>
-                    {/*<li><a onClick={() => {navigate('/')}}>PROFILE</a></li>*/}
+                    <li><a onClick={() => {navigate('/Alerts')}}>ALERTS</a></li>
+                    <li><a onClick={() => {navigate('/Settings')}}>SETTINGS</a></li>
+                    <li><a onClick={() => {navigate('/Report')}}>REPORT</a></li>
                 </ul>
             </div>
         </nav>
