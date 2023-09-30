@@ -1,28 +1,36 @@
 .sidebar {
-    position: absolute;
-    top: 115px;
-    height: calc(100vh - 100px);
+    position: fixed;
+    top: 11.5vh;
+    height: 100vh;
     left: 0;
-    width: 200px;
-    background-color: #333;
+    width: 96px;
+    background-color: #2f3242;
     overflow-y: hidden;
     z-index: 10000;
 }
 
 .sidebar ul {
     list-style: none;
-    padding: 40px;
-    width: 20px;
-    margin-left: 0px;
+    padding-top: 40px;
+    padding-left: 0;
+    width: auto;
 }
 
 .sidebar li a {
     display: block;
     color: #fff;
-    padding: 20px;
+    padding-bottom: 60px;
     text-decoration: none;
 }
 
-.sidebar li a:hover {
-    background-color: #333;
+.sidebar img:hover {
+    opacity: 100%;
+}
+
+.sidebar img{
+    padding-left: 0;
+    width: auto;
+    height: 37px;
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(153deg) brightness(102%) contrast(104%);
+    opacity: 50%;
 }

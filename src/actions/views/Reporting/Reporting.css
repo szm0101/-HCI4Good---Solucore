@@ -1,11 +1,10 @@
 /*CSS styling for form input elements*/
 .settings-title {
-    margin-top: 35px;
-    margin-left: 210px; 
+    margin-top: 15vh;
 }
 .settings-form {
     padding: 20px;
-    margin-left: 210px; 
+    margin-left: 10vh; 
   }
 
   .settings-form .form-group {
