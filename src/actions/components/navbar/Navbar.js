@@ -11,11 +11,7 @@ function Navbar() {
             <div className="navbar-container">
                 <img src={Logo} alt="logo" className='solutrak-logo'/>
                 <ul className="navbar-links">
-                    <li><a onClick={() => {navigate('/')}}>HOME</a></li>
-                    <li><a onClick={() => {navigate('/Buildings')}}>BUILDINGS</a></li>
                     <li><a onClick={() => {navigate('/Alerts')}}><img src={NotificationIcon} alt='Notification icon' className='notif-icon'/></a></li>
-                    <li><a onClick={() => {navigate('/Settings')}}>SETTINGS</a></li>
-                    <li><a onClick={() => {navigate('/Report')}}>REPORT</a></li>
                 </ul>
             </div>
         </nav>
