@@ -19,8 +19,6 @@ function Sidebar() {
           <li><Link to="/"><img src={HomeIcon} alt='Home Icon' onClick={() => toggleOpacity('Home')} className={activeIcon === 'Home' ? 'active' : null} /></Link></li>
           <li><Link to="/buildings"><img src={BuildingIcon} alt='Building Icon' onClick={() => toggleOpacity('Building')} className={activeIcon === 'Building' ? 'active' : null} /></Link></li>
           <li><Link to="/settings"><img src={SettingIcon} alt='Settings Icon' onClick={() => toggleOpacity('Settings')} className={activeIcon === 'Settings' ? 'active' : null} /></Link></li>
-          <li><Link to="/Alerts">Alerts</Link></li>
-          <li><Link to="/Report">Report</Link></li>
       </ul>
     </div>
   );
