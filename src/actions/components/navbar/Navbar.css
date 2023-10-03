@@ -41,21 +41,15 @@ img{
     padding: 15px;
 }
 
-.navbar-links li a:hover {
-    color: cadetblue;
-}
-
-.navbar-container svg {
-    margin-left: 20px;
-    width: 25px;
-    height: 30px;
-    cursor: pointer;
-}
-
 img.notif-icon{
     width: auto;
     height: 37px;
     filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(153deg) brightness(102%) contrast(104%);
+
+}
+img.notif-icon:hover{
+    opacity: 50%;
+    cursor: pointer;
 }
 
 img.solutrak-logo{
