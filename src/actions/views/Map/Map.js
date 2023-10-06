@@ -1,36 +1,211 @@
 import React, { Component } from 'react';
-import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
-
-// const mapStyles = {
-//   width: '100%',
-//   height: '100%',
-// };
+import { Map, GoogleApiWrapper } from 'google-maps-react';
 
 const darkMapStyles = [
   {
-    elementType: 'geometry',
-    stylers: [
+    "elementType": "geometry",
+    "stylers": [
       {
-        color: '#242f3e', // Background color
-      },
-    ],
+        "color": "#2e2e2e"
+      }
+    ]
   },
   {
-    elementType: 'labels.text.stroke',
-    stylers: [
+    "elementType": "labels.icon",
+    "stylers": [
       {
-        color: '#242f3e', // Text stroke color
-      },
-    ],
+        "visibility": "off"
+      }
+    ]
   },
   {
-    elementType: 'labels.text.fill',
-    stylers: [
+    "elementType": "labels.text.fill",
+    "stylers": [
       {
-        color: '#746855', // Text color
-      },
-    ],
+        "color": "#757575"
+      }
+    ]
   },
+  {
+    "elementType": "labels.text.stroke",
+    "stylers": [
+      {
+        "color": "#212121"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#757575"
+      },
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.country",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#9e9e9e"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.land_parcel",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.locality",
+    "stylers": [
+      {
+        "color": "#bdbdbd"
+      },
+      {
+        "saturation": 5
+      },
+      {
+        "visibility": "simplified"
+      },
+      {
+        "weight": 8
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.province",
+    "stylers": [
+      {
+        "color": "#bdbdbd"
+      },
+      {
+        "visibility": "on"
+      }
+    ]
+  },
+  {
+    "featureType": "road",
+    "elementType": "geometry.fill",
+    "stylers": [
+      {
+        "color": "#121212"
+      }
+    ]
+  },
+  {
+    "featureType": "road",
+    "elementType": "labels.icon",
+    "stylers": [
+      {
+        "visibility": "simplified"
+      },
+      {
+        "weight": 8
+      },
+      {
+        "color": "#121212"
+      }
+    ]
+  },
+  {
+    "featureType": "road",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#454647"
+      }
+    ]
+  },
+  {
+    "featureType": "road.arterial",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#171717"
+      }
+    ]
+  },
+  {
+    "featureType": "road.highway",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#000000"
+      }
+    ]
+  },
+  {
+    "featureType": "road.highway.controlled_access",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#080808"
+      }
+    ]
+  },
+  {
+    "featureType": "road.local",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#080808"
+      }
+    ]
+  },
+  {
+    "featureType": "transit",
+    "stylers": [
+      {
+        "visibility": "on",
+      },
+      {
+        "color": "#171717" // Set the trsnsit color to black
+      }
+    ]
+  },
+  {
+    "featureType": "transit",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#000000"
+      }
+    ]
+  },
+  {
+    "featureType": "water",
+    "stylers": [
+      {
+        "color": "#252525"
+      }
+    ]
+  },
+  {
+    "featureType": "water",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#1f1f20"
+      }
+    ]
+  },
+  {
+    "featureType": "water",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#252525"
+      }
+    ]
+  }
 ];
 
 export class MapContainer extends Component {
@@ -68,30 +243,6 @@ export class MapContainer extends Component {
             }
           }
         >
-          <Marker
-            position={{ lat: 41.8780, lng: -87.6298 }}
-            onClick={this.onMarkerClick}
-            name={'Building 1'}
-          />
-          <Marker
-            position={{ lat: 41.8730, lng: -87.6200 }}
-            onClick={this.onMarkerClick}
-            name={'Building 2'}
-          />
-          <Marker
-            position={{ lat: 41.8670, lng: -87.6470 }}
-            onClick={this.onMarkerClick}
-            name={'Building 3'}
-          />
-          <InfoWindow
-            marker={this.state.activeMarker}
-            visible={this.state.showingInfoWindow}
-            onClose={this.onClose}
-          >
-            <div>
-              <h4>{this.state.selectedPlace.name}</h4>
-            </div>
-          </InfoWindow>
         </Map>
       </div>
     );
