@@ -7,8 +7,14 @@ import SettingIcon from "../../assets/settings-icon.png";
 
 
 function Sidebar() {
-  const [activeIcon, setActiveIcon] = useState('Home');
+  const activePagePaths = {
+    "/" : "Home",
+    "/buildings" : 'Building',
+    "/settings" : 'Settings'
+  }
 
+  const [activeIcon, setActiveIcon] = useState(activePagePaths[window.location.pathname]);
+  
   const toggleOpacity = (name) => {
     setActiveIcon(name);
   }
@@ -16,9 +22,9 @@ function Sidebar() {
   return(
     <div className="sidebar">
       <ul>
-          <li><Link to="/"><img src={HomeIcon} alt='Home Icon' onClick={() => toggleOpacity('Home')} className={activeIcon === 'Home' ? 'active' : null} /></Link></li>
-          <li><Link to="/buildings"><img src={BuildingIcon} alt='Building Icon' onClick={() => toggleOpacity('Building')} className={activeIcon === 'Building' ? 'active' : null} /></Link></li>
-          <li><Link to="/settings"><img src={SettingIcon} alt='Settings Icon' onClick={() => toggleOpacity('Settings')} className={activeIcon === 'Settings' ? 'active' : null} /></Link></li>
+          <li onClick={() => toggleOpacity('Home')}><Link to="/" ><img src={HomeIcon} alt='Home Icon'  className={activeIcon === 'Home' ? 'active' : null} /></Link></li>
+          <li onClick={() => toggleOpacity('Building')}><Link to="/buildings"><img src={BuildingIcon} alt='Building Icon'  className={activeIcon === 'Building' ? 'active' : null} /></Link></li>
+          <li onClick={() => toggleOpacity('Settings')}><Link to="/settings"><img src={SettingIcon} alt='Settings Icon'  className={activeIcon === 'Settings' ? 'active' : null} /></Link></li>
       </ul>
     </div>
   );
