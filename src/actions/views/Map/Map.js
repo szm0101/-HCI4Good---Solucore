@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper } from 'google-maps-react';
-
+const apiKey = process.env.REACT_APP_apiKey;
 const darkMapStyles = [
   {
     "elementType": "geometry",
@@ -250,7 +250,5 @@ export class MapContainer extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: '${process.env.apiKey}'
-  //apiKey: 'AIzaSyCrzF02FUUzsqEFHNe_uzxJcTwmAjuZakg'
-
+  apiKey
 })(MapContainer);
