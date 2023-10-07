@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper } from 'google-maps-react';
+
 const apiKey = process.env.REACT_APP_apiKey;
 const darkMapStyles = [
   {
@@ -40,9 +41,6 @@ const darkMapStyles = [
     "stylers": [
       {
         "color": "#757575"
-      },
-      {
-        "visibility": "off"
       }
     ]
   },
@@ -65,18 +63,25 @@ const darkMapStyles = [
   },
   {
     "featureType": "administrative.locality",
+    "elementType": "labels",
     "stylers": [
       {
         "color": "#bdbdbd"
       },
       {
-        "saturation": 5
-      },
-      {
         "visibility": "simplified"
       },
       {
-        "weight": 8
+        "weight": 4
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.locality",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#bdbdbd"
       }
     ]
   },
@@ -84,10 +89,22 @@ const darkMapStyles = [
     "featureType": "administrative.province",
     "stylers": [
       {
-        "color": "#bdbdbd"
+        "color": "#757575"
       },
       {
-        "visibility": "on"
+        "lightness": 60
+      },
+      {
+        "bold": 4
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.province",
+    "elementType": "labels",
+    "stylers": [
+      {
+        "visibility": "simplified"
       }
     ]
   },
@@ -120,7 +137,7 @@ const darkMapStyles = [
     "elementType": "labels.text.fill",
     "stylers": [
       {
-        "color": "#454647"
+        "color": "#bdbdbd" // "color": "#bdbdbd"
       }
     ]
   },
@@ -176,7 +193,7 @@ const darkMapStyles = [
     "elementType": "labels.text.fill",
     "stylers": [
       {
-        "color": "#000000"
+        "color": "#bdbdbd"
       }
     ]
   },
@@ -207,6 +224,7 @@ const darkMapStyles = [
     ]
   }
 ];
+
 
 export class MapContainer extends Component {
   state = {
