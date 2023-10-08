@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import { Map, GoogleApiWrapper } from 'google-maps-react';
 
 const apiKey = process.env.REACT_APP_apiKey;
+/** ref:
+ * Styling wizard: Google maps apis. 
+ * Retrieved 7 October 2023, 
+ * from https://mapstyle.withgoogle.com/
+ */
 const darkMapStyles = [
   {
     "elementType": "geometry",
