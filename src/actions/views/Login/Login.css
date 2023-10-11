@@ -1,0 +1,85 @@
+/* Login.css */
+.login-container {
+    background-color: #2b2d3c; /* Dark background color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Vertically and horizontally center the content */
+    margin: 0;
+}
+
+.login-card {
+    background-color: #2b2d3c;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    width: 441px; /* Make the card square with a width of 441px */
+    height: 448px; /* Set the height to match the width */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center the content vertically */
+    align-items: center; /* Center the content horizontally */
+    text-align: center; /* Center the content in the card */
+    border: 1px solid rgba(85, 87, 99, 1);
+}
+
+/* Logo and title container styles */
+.logo-title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+
+    margin-bottom: 20px; /* Adjust spacing between logo/title and form */
+}
+
+.logo-big {
+    width: 314px; /* Adjust the logo size */
+    height: 50px; /* Adjust the logo size */
+    margin-bottom: 10px; /* Adjust spacing between logo and title */
+}
+
+/*!* Title styles *!*/
+/*.title {*/
+/*    font-size: 48px;*/
+/*    font-weight: bold;*/
+/*    color: #fff; !* White font color *!*/
+/*    text-shadow: 5px 5px 5px black; !* Black outline *!*/
+/*    margin: 0;*/
+/*    display: none; !* Hide the title *!*/
+/*}*/
+
+/* Adjust the form layout */
+.login-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the form items horizontally */
+    justify-content: center; /* Center the form vertically */
+    width: 100%; /* Take the full width of the card */
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+.login-form-group {
+    display: flex;
+    align-items: center;
+    width: 100%; /* Take the full width of the card */
+    margin-bottom: 20px;
+}
+
+.login-form-group input {
+    width: 314px; /* Take the full width of the form group */
+    height: 35px; /* Adjust the input height */
+    font-size: 18px; /* Adjust the input font size */
+}
+
+.login-btn {
+    width: 314px; /* Take the full width of the form group */
+    height: 35px; /* Adjust the input height */
+    font-size: 18px; /* Adjust the input font size */
+    background-color: rgba(34,149,225,1);
+}
+
+.text-center {
+    text-align: center;
+}
