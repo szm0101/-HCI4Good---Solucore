@@ -1,9 +1,8 @@
-nav {
-    color: white;
-}
+
 
 img{
     padding-left: 10px;
+    padding-right: 10px;
 }
 
 .navbar-container {
@@ -15,29 +14,6 @@ img{
     background-color: #364B68;
     justify-content: space-between;
     align-items: center;
-    padding: 15px;
-}
-
-.navbar-links {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-}
-
-.navbar-links li {
-    margin-left: 5px;
-    margin-top: 5px;
-    margin-right: 10px;
-}
-
-.navbar-links li:first-child {
-    margin-left: 0px;
-}
-
-.navbar-links li a {
-    color: white;
-    text-decoration: none;
     padding: 15px;
 }
 
@@ -57,23 +33,3 @@ img.solutrak-logo{
     width: auto;
 }
 
-/* Responsive styles */
-@media (max-width: 768px) {
-    .navbar-container {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .logo {
-        margin-bottom: 10px;
-    }
-
-    .navbar-links {
-        flex-direction: column;
-    }
-
-    .navbar-links li {
-        margin-left: 0;
-        margin-bottom: 5px;
-    }
-}
