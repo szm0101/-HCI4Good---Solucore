@@ -17,6 +17,7 @@ function Navbar() {
                 <img src={Logo} alt="logo" className='solutrak-logo'/>
                 <ul className="navbar-links">
                     <li><a onClick={() => {navigate('/Alerts')}}><img src={NotificationIcon} alt='Notification icon' className='notif-icon'/></a></li>
+                    <li><a onClick={() => {handleSignOut()}} style={{color:"red"}} >SIGN OUT</a></li>
                 </ul>
             </div>
         </nav>

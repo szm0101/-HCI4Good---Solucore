@@ -8,7 +8,7 @@ import SettingIcon from "../../assets/settings-icon.png";
 
 function Sidebar() {
   const activePagePaths = {
-    "/" : "Home",
+    "/Home" : "Home",
     "/buildings" : 'Building',
     "/settings" : 'Settings'
   }
@@ -22,7 +22,7 @@ function Sidebar() {
   return(
     <div className="sidebar">
       <ul>
-          <li onClick={() => toggleOpacity('Home')}><Link to="/" ><img src={HomeIcon} alt='Home Icon'  className={activeIcon === 'Home' ? 'active' : null} /></Link></li>
+          <li onClick={() => toggleOpacity('Home')}><Link to="/Home" ><img src={HomeIcon} alt='Home Icon'  className={activeIcon === 'Home' ? 'active' : null} /></Link></li>
           <li onClick={() => toggleOpacity('Building')}><Link to="/buildings"><img src={BuildingIcon} alt='Building Icon'  className={activeIcon === 'Building' ? 'active' : null} /></Link></li>
           <li onClick={() => toggleOpacity('Settings')}><Link to="/settings"><img src={SettingIcon} alt='Settings Icon'  className={activeIcon === 'Settings' ? 'active' : null} /></Link></li>
       </ul>
