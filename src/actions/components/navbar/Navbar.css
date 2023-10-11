@@ -1,14 +1,18 @@
 nav {
-    background-color: rgb(34, 34, 34);
     color: white;
 }
 
 img{
-    padding-left: 20px;
+    padding-left: 10px;
 }
 
 .navbar-container {
     display: flex;
+    position: fixed;
+    top: 0;
+    height: 13.5%;
+    width: 100%;
+    background-color: #364B68;
     justify-content: space-between;
     align-items: center;
     padding: 15px;
@@ -37,15 +41,20 @@ img{
     padding: 15px;
 }
 
-.navbar-links li a:hover {
-    color: cadetblue;
+img.notif-icon{
+    width: auto;
+    height: 37px;
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(153deg) brightness(102%) contrast(104%);
+
+}
+img.notif-icon:hover{
+    opacity: 50%;
+    cursor: pointer;
 }
 
-.navbar-container svg {
-    margin-left: 20px;
-    width: 25px;
-    height: 30px;
-    cursor: pointer;
+img.solutrak-logo{
+    height: 43px;
+    width: auto;
 }
 
 /* Responsive styles */
@@ -68,6 +77,3 @@ img{
         margin-bottom: 5px;
     }
 }
-
-
-
