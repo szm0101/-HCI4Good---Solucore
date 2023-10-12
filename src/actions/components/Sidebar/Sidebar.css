@@ -1,40 +1,35 @@
 .sidebar {
-    position: fixed;
-    top: 13.5%;
-    height: 86.5%;
-    left: 0;
-    width: 96px;
-    background-color: #2f3242;
-    overflow-y: hidden;
-    z-index: 10000;
+  height: 100%;
+  position: fixed;
+  top: 13.5%;
+  bottom: 0;
+  left: 0;
+  background-color: #2f3242;
+  overflow-y: hidden;
 }
 
-.sidebar ul {
-    list-style: none;
-    padding-top: 40px;
-    padding-left: 0;
-    width: auto;
+.nav-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding-top: 40px;
 }
 
-.sidebar li a {
-    display: block;
-    color: #fff;
-    padding-bottom: 60px;
-    text-decoration: none;
+.nav-link:hover img{
+    opacity: 1;
 }
 
-.sidebar img:hover {
-    opacity: 100%;
+.sidebar img {
+  padding-left: 0;
+  width: auto;
+  height: 37px;
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(153deg)
+    brightness(102%) contrast(104%);
+  opacity: 50%;
 }
 
-.sidebar img{
-    padding-left: 0;
-    width: auto;
-    height: 37px;
-    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(153deg) brightness(102%) contrast(104%);
-    opacity: 50%;
-}
-
-.sidebar img.active{
-    opacity: 100%;
+.sidebar img.active {
+  opacity: 100%;
 }
