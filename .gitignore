@@ -7,5 +7,3 @@ node_modules/
 
 #Production
 /build
-
-#Environment variables
