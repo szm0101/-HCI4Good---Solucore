@@ -7,18 +7,18 @@ import NotificationIcon from "../../assets/notification-icon.png";
 
 function Navbars() {
     return (
-        <Navbar expand="lg" data-bs-theme="dark">
+        <Navbar data-bs-theme="dark">
             <div className="navbar-container">
                 <Navbar.Brand href="/"><img src={Logo} alt="logo" className='solutrak-logo' /></Navbar.Brand>
                 
-                <Nav className="float-right">
-                    <Nav.Item >
+                <Nav className="ml-auto">
+                    <Nav.Item className='me-3 mt-2'>
                         <Nav.Link className="navbar-links" href="/Alerts">
                             <img src={NotificationIcon} alt='Notification icon' className='notif-icon' />
                         </Nav.Link>
                     </Nav.Item>
 
-                    <Nav.Item>
+                    <Nav.Item className='me-5'>
                         <img src={Photo} alt="profile photo" className='profile-photo'></img>
                             <Nav className="me-auto">
                                 <NavDropdown title="Profile" id="basic-nav-dropdown">
