@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Map, GoogleApiWrapper } from 'google-maps-react';
+import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 
 const apiKey = process.env.REACT_APP_apiKey;
 /** ref:
@@ -266,6 +266,30 @@ export class MapContainer extends Component {
             }
           }
         >
+          <Marker
+            position={{ lat: 41.8780, lng: -87.6298 }}
+            onClick={this.onMarkerClick}
+            name={'Building 1'}
+          />
+          <Marker
+            position={{ lat: 41.8730, lng: -87.6200 }}
+            onClick={this.onMarkerClick}
+            name={'Building 2'}
+          />
+          <Marker
+            position={{ lat: 41.8670, lng: -87.6470 }}
+            onClick={this.onMarkerClick}
+            name={'Building 3'}
+          />
+          <InfoWindow
+            marker={this.state.activeMarker}
+            visible={this.state.showingInfoWindow}
+            onClose={this.onClose}
+          >
+            <div>
+              <h4>{this.state.selectedPlace.name}</h4>
+            </div>
+          </InfoWindow>
         </Map>
       </div>
     );
