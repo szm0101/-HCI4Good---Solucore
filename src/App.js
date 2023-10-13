@@ -14,7 +14,7 @@ import Forgot from './actions/views/Forgot/Forgot';
 
 
 function App() {
-    const storedIsLoggedIn = localStorage.getItem('isLoggedIn');
+    const storedIsLoggedIn = localStorage.getItem('isLoggedIn') || 'false';
 
     return (
         <div className="App">

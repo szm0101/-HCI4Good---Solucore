@@ -9,7 +9,7 @@ const Landing = () => {
 
     const handleUserType = (/*type*/) => {
         //logic
-        navigate('Login');
+        navigate('/Login');
     };
 
     return (
