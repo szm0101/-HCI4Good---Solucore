@@ -25,7 +25,7 @@ function Navbars() {
                                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                                 <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
                                 <NavDropdown.Divider />
-                                    <NavDropdown.Item className="text-danger"href="#action/3.4">
+                                    <NavDropdown.Item className="text-danger"href="/">
                                         Log out
                                     </NavDropdown.Item>
                                 </NavDropdown>

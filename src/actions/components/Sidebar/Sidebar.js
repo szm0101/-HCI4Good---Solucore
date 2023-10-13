@@ -7,7 +7,7 @@ import SettingIcon from "../../assets/settings-icon.png";
 
 function Sidebar() {
   const activePagePaths = {
-    "/": "Home",
+    "/Home": "Home",
     "/buildings": "Buildings",
     "/settings": "Settings",
   };
