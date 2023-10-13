@@ -1,28 +1,41 @@
 import React from 'react';
-import {useNavigate} from "react-router-dom";
+import {Nav, Navbar, NavDropdown} from 'react-bootstrap';
 import Logo from '../../assets/solutrak-logo.png';
+import Photo from '../../assets/Solucore_Icon.png'
 import NotificationIcon from "../../assets/notification-icon.png";
 
 
-function Navbar() {
-    const navigate = useNavigate();
-    const handleSignOut = () => {
-        // Navigate to the root path and then refresh the page
-        navigate('/');
-        window.location.reload();
-    };
+function Navbars() {
     return (
-        <nav>
+        <Navbar data-bs-theme="dark">
             <div className="navbar-container">
-                <img src={Logo} alt="logo" className='solutrak-logo'/>
-                <ul className="navbar-links">
-                    <li><a onClick={() => {navigate('/Alerts')}}><img src={NotificationIcon} alt='Notification icon' className='notif-icon'/></a></li>
-                    <li><a onClick={() => {handleSignOut()}} style={{color:"red"}} >SIGN OUT</a></li>
-                </ul>
+                <Navbar.Brand href="/"><img src={Logo} alt="logo" className='solutrak-logo' /></Navbar.Brand>
+                
+                <Nav className="ml-auto">
+                    <Nav.Item className='me-3 mt-2'>
+                        <Nav.Link className="navbar-links" href="/Alerts">
+                            <img src={NotificationIcon} alt='Notification icon' className='notif-icon' />
+                        </Nav.Link>
+                    </Nav.Item>
+
+                    <Nav.Item className='me-5'>
+                        <img src={Photo} alt="profile photo" className='profile-photo'></img>
+                            <Nav className="me-auto">
+                                <NavDropdown title="Profile" id="basic-nav-dropdown">
+                                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                                <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+                                <NavDropdown.Divider />
+                                    <NavDropdown.Item className="text-danger"href="/">
+                                        Log out
+                                    </NavDropdown.Item>
+                                </NavDropdown>
+                            </Nav>
+                    </Nav.Item>
+                </Nav>
             </div>
-        </nav>
+        </Navbar>
     );
 }
 
-export default Navbar;
+export default Navbars;
 
