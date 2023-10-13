@@ -11,6 +11,7 @@ import Settings from "./actions/views/Settings/Settings";
 import Reporting from "./actions/views/Reporting/Reporting";
 import LoginPage from "./actions/views/Login/Login";
 import Landing from './actions/views/Landing/Landing';
+import Forgot from './actions/views/Forgot/Forgot';
 
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
                     <Routes>
                         <Route path="/" 
                         element={<Landing setUserType={setUserType} />}/>
+                        <Route path="/Forgot" element={<Forgot />}/>
                     </Routes>
                 )}
             </BrowserRouter>
@@ -56,27 +58,3 @@ function App() {
 
 export default App;
 
-
-{/* <div className="App">
-            <BrowserRouter>
-                {isLoggedIn && <Navbar />}
-                {isLoggedIn && <Sidebar />}
-
-                <Routes>
-                    {isLoggedIn ? (
-                        <>
-                            <Route path="/Home" element={<Dashboard />} />
-                            <Route path="/Alerts" element={<Alerts />} />
-                            <Route path="/Buildings" element={<Buildings />} />
-                            <Route path="/Settings" element={<Settings />} />
-                            <Route path="/Report" element={<Reporting />} />
-                        </>
-                    ) : (
-                        <Route
-                            path="/"
-                            element={<LoginPage setIsLoggedIn={setIsLoggedIn} />}
-                        />
-                    )}
-                </Routes>
-            </BrowserRouter>
-        </div> */}

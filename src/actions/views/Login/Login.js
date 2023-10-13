@@ -10,9 +10,21 @@ const Login = ({ setIsLoggedIn }) => {
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
+    const users = [
+        { username: 'admin', password: 'password' },
+        { username: 'user1', password: 'password' },
+        { username: 'client', password: 'password' },
+    ];
+
+    const handleForgotPassword = () => {
+        navigate('/Forgot');
+        window.location.reload();
+    };
+
     const handleLogin = () => {
-        // For simplicity, let's assume successful login if username and password are both 'admin'
-        if (username === 'admin' && password === 'admin') {
+        const userFound = users.find(user => user.username === username && user.password === password);
+    
+        if (userFound) {
             setIsLoggedIn(true);
             navigate('/Home');
         } else {
@@ -61,6 +73,15 @@ const Login = ({ setIsLoggedIn }) => {
                             />
                         </Form.Group>
                         <div className="text-center">
+                            <Button
+                                type="button"
+                                className="forgot-password-btn"
+                                variant="link"
+                                onClick={handleForgotPassword}
+                                style={{ margin: '10px 0' }}
+                            >
+                                Forgot Password ?
+                            </Button>
                             <Button
                                 type="button"
                                 className="login-btn"
