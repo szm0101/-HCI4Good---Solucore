@@ -28,7 +28,7 @@ function Sidebar() {
             <Nav className="flex-column">
               <div className="nav-icon-container">
                 <Nav.Link
-                  href="/"
+                  href="/Home"
                   className="nav-link"
                   onClick={() => toggleOpacity("Home")}
                 >

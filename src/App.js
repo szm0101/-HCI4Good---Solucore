@@ -1,5 +1,4 @@
 import './App.css';
-import React, { useState } from 'react';
 import Navbar from './actions/components/navbar/Navbar';
 import './actions/components/navbar/Navbar.css';
 import Sidebar from "./actions/components/Sidebar/Sidebar";
@@ -15,16 +14,16 @@ import Forgot from './actions/views/Forgot/Forgot';
 
 
 function App() {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const storedIsLoggedIn = localStorage.getItem('isLoggedIn');
 
     return (
         <div className="App">
             <BrowserRouter>
-                {isLoggedIn && <Navbar />}
-                {isLoggedIn && <Sidebar />}
+                {storedIsLoggedIn === 'true' && <Navbar />}
+                {storedIsLoggedIn === 'true' && <Sidebar />}
 
                 <Routes>
-                    {isLoggedIn ? (
+                    {storedIsLoggedIn === 'true' ? (
                         <>
                             <Route path="/Home" element={<Dashboard />} />
                             <Route path="/Alerts" element={<Alerts />} />
@@ -36,7 +35,7 @@ function App() {
                         <>
                          <Route
                             path="/Login"
-                            element={<LoginPage setIsLoggedIn={setIsLoggedIn} />}
+                            element={<LoginPage />}
                         />
                         <Route path="/" element={<Landing/>}/>
                         <Route path="/Forgot" element={<Forgot />}/>

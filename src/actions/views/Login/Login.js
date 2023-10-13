@@ -4,7 +4,7 @@ import { Button, Card, Container, Form, Alert, Image,} from 'react-bootstrap'; /
 import Logo from '../../assets/solutrak-logo.png';
 import './Login.css';
 
-const Login = ({ setIsLoggedIn }) => {
+const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -24,8 +24,11 @@ const Login = ({ setIsLoggedIn }) => {
         const userFound = users.find(user => user.username === username && user.password === password);
     
         if (userFound) {
-            setIsLoggedIn(true);
+            // Set 'isLoggedIn' in localStorage to 'true' when the user logs in
+            localStorage.setItem('isLoggedIn', 'true');
             navigate('/Home');
+            window.location.reload();
+
         } else {
             setError('Invalid username or password');
         }
