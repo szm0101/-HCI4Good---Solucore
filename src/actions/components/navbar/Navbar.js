@@ -1,11 +1,20 @@
 import React from 'react';
 import {Nav, Navbar, NavDropdown} from 'react-bootstrap';
+import {useNavigate} from "react-router-dom";
 import Logo from '../../assets/solutrak-logo.png';
 import Photo from '../../assets/Solucore_Icon.png'
 import NotificationIcon from "../../assets/notification-icon.png";
 
-
 function Navbars() {
+
+    const navigate = useNavigate();
+
+    const handleSignOut = () => {
+        localStorage.setItem('isLoggedIn', 'false');
+        navigate('/');
+        window.location.reload();
+    };
+
     return (
         <Navbar data-bs-theme="dark">
             <div className="navbar-container">
@@ -25,7 +34,7 @@ function Navbars() {
                                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                                 <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
                                 <NavDropdown.Divider />
-                                    <NavDropdown.Item className="text-danger"href="/">
+                                    <NavDropdown.Item className="text-danger" onClick={handleSignOut}>
                                         Log out
                                     </NavDropdown.Item>
                                 </NavDropdown>
