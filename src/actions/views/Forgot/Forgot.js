@@ -1,6 +1,6 @@
 // Forgot.js
 import React, { useState } from 'react';
-import { Container, Form, Button } from 'react-bootstrap';
+import { Alert, Form, Button, Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 const Forgot = () => {
@@ -11,44 +11,60 @@ const Forgot = () => {
 
     const handlePasswordReset = () => {
         setMessage('Password reset successful');
-    
-            setTimeout(() => {
-                setMessage('');
-                navigate('/'); 
-            }, 2000); 
+
+        setTimeout(() => {
+            setMessage('');
+            navigate('/');
+        }, 4000);
     };
-    
 
     return (
-        <Container fluid className="forgot-container d-flex align-items-center justify-content-center">
-            <Form className="forgot-form">
-                <h4 className="forgot-title">Password Reset</h4>
-                {message && <p className="message">{message}</p>}
-                <Form.Group>
-                    <Form.Control
-                        type="text"
-                        placeholder="Username"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                    />
-                </Form.Group>
-                <Form.Group>
-                    <Form.Control
-                        type="password"
-                        placeholder="New Password"
-                        value={newPassword}
-                        onChange={(e) => setNewPassword(e.target.value)}
-                    />
-                </Form.Group>
-                <Button
-                    type="button"
-                    variant="primary"
-                    onClick={handlePasswordReset}
-                >
-                    Reset Password
-                </Button>
-            </Form>
-        </Container>
+        <div style={{ backgroundColor: '#2b2d3c', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Card className="forgot-card px-5 py-5" style={{ background: '#2b2d3c', border: '1px solid rgba(85, 87, 99, 1)' }}>
+                <Card.Header className= "text-white h3"style={{ background: 'transparent', borderColor: 'transparent' }}>Reset Password</Card.Header>
+                <Card.Body>
+                    <Form className="forgot-form">
+                        {message && 
+                        <Alert variant='info'>
+                            {message}
+                        </Alert>}
+                        <Form.Group className="mb-3">
+                            <Form.Control
+                                type="text"
+                                placeholder="Username"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                                className="mb-2"
+                                style={{
+                                    backgroundColor: 'rgba(58, 62, 82, 1)',
+                                    color: 'rgba(153, 155, 170, 1)',
+                                }}
+                            />
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Control
+                                type="password"
+                                placeholder="New Password"
+                                value={newPassword}
+                                onChange={(e) => setNewPassword(e.target.value)}
+                                className="mb-2"
+                                style={{
+                                    backgroundColor: 'rgba(58, 62, 82, 1)',
+                                    color: 'rgba(153, 155, 170, 1)',
+                                }}
+                            />
+                        </Form.Group>
+                        <Button
+                            type="button"
+                            variant="primary"
+                            onClick={handlePasswordReset}
+                        >
+                            Reset Password
+                        </Button>
+                    </Form>
+                </Card.Body>
+            </Card>
+        </div>
     );
 };
 

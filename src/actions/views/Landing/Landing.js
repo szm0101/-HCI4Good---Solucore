@@ -1,15 +1,15 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button, Card, Container, Row, Col, Image } from 'react-bootstrap';
+import { Button, Card, Container, Row, Col, Image} from 'react-bootstrap';
 import './Landing.css'; // Import the CSS file
-import Logo from '../../assets/bigLogo.png';
+import Logo from '../../assets/solutrak-logo.png';
 
-const Landing = ({ setUserType }) => {
+const Landing = () => {
     const navigate = useNavigate();
 
-    const handleUserType = (userType) => {
-        setUserType(userType);
-        navigate('/login');
+    const handleUserType = (/*type*/) => {
+        //logic
+        navigate('Login');
     };
 
     return (
@@ -26,7 +26,7 @@ const Landing = ({ setUserType }) => {
                             <Col md="auto">
                                 <Button
                                     variant="primary"
-                                    onClick={() => handleUserType('client')}
+                                    onClick={() => handleUserType(/*type*/)}
                                     className=" btn-lg mx-2"
                                 >
                                     Client
@@ -35,7 +35,7 @@ const Landing = ({ setUserType }) => {
                             <Col md="auto">
                                 <Button
                                     variant="primary"
-                                    onClick={() => handleUserType('engineer')}
+                                    onClick={() => handleUserType(/*type*/)}
                                     className=" btn-lg mx-2"
                                 >
                                     Engineer

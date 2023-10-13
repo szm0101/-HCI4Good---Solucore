@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button, Card, Container, Form, Alert, Image, Row, Col } from 'react-bootstrap'; // Import Bootstrap components
-import Logo from '../../assets/bigLogo.png';
+import { Button, Card, Container, Form, Alert, Image,} from 'react-bootstrap'; // Import Bootstrap components
+import Logo from '../../assets/solutrak-logo.png';
 import './Login.css';
 
 const Login = ({ setIsLoggedIn }) => {
@@ -18,7 +18,6 @@ const Login = ({ setIsLoggedIn }) => {
 
     const handleForgotPassword = () => {
         navigate('/Forgot');
-        window.location.reload();
     };
 
     const handleLogin = () => {
