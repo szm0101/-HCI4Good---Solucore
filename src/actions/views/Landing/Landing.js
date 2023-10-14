@@ -11,6 +11,7 @@ const Landing = () => {
         //logic
         navigate('/Login');
     };
+    
 
     return (
         <div className="landing-page">

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Card, Container, Form, Alert, Image,} from 'react-bootstrap'; // Import Bootstrap components
 import Logo from '../../assets/solutrak-logo.png';
+import { useCookies } from 'react-cookie';
 import './Login.css';
 
 const Login = () => {
@@ -9,6 +10,7 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
+    const [cookies, setCookie] = useCookies(); // Initialize the isLoggedIn cookie
 
     const users = [
         { username: 'admin', password: 'password' },
@@ -25,10 +27,8 @@ const Login = () => {
     
         if (userFound) {
             // Set 'isLoggedIn' in localStorage to 'true' when the user logs in
-            localStorage.setItem('isLoggedIn', 'true');
+            setCookie('isLoggedIn', 'true', { path: '/'});
             navigate('/Home');
-            window.location.reload();
-
         } else {
             setError('Invalid username or password');
         }

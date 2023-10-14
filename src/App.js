@@ -11,19 +11,24 @@ import Reporting from "./actions/views/Reporting/Reporting";
 import LoginPage from "./actions/views/Login/Login";
 import Landing from './actions/views/Landing/Landing';
 import Forgot from './actions/views/Forgot/Forgot';
-
+import { useCookies } from 'react-cookie';
 
 function App() {
-    const storedIsLoggedIn = localStorage.getItem('isLoggedIn') || 'false';
+
+    const [cookies] = useCookies(); // Access the 'isLoggedIn' cookie
+
+    const userIsLoggedIn = cookies.isLoggedIn;
+    console.log(userIsLoggedIn);
+    
 
     return (
         <div className="App">
             <BrowserRouter>
-                {storedIsLoggedIn === 'true' && <Navbar />}
-                {storedIsLoggedIn === 'true' && <Sidebar />}
-
+                {userIsLoggedIn  && <Navbar />}
+                {userIsLoggedIn  && <Sidebar />}
+    
                 <Routes>
-                    {storedIsLoggedIn === 'true' ? (
+                    {userIsLoggedIn ? (
                         <>
                             <Route path="/Home" element={<Dashboard />} />
                             <Route path="/Alerts" element={<Alerts />} />
