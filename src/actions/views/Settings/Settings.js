@@ -1,6 +1,6 @@
 //need install react-select --force for the import the "Select" component from the 'react-select' library.
 import React, { useState } from 'react';
-import Select from 'react-select';
+import Select, { NonceProvider } from 'react-select';
 import './Settings.css';
 
 //Create the filter use for choose Buildings and Devices
@@ -22,6 +22,32 @@ const devices = [
     {value: '6', label: 'Device 6'},
 ];
 
+function showSecondSelect() {
+ 
+    var firstSelect = document.getElementById("firstSelect");
+    var secondSelectDiv = document.getElementById("secondSelectDiv");
+
+    if (firstSelect.value != "0") {
+        secondSelectDiv.style.display = "block";
+    } else {
+        secondSelectDiv.style.display = "none";
+    }
+}
+function showThirdSelect() {
+ 
+    var secondSelect = document.getElementById("secondSelect");
+    var thirdSelectDiv = document.getElementById("thirdSelectDiv");
+
+    if (secondSelect.value != "0") {
+        thirdSelectDiv.style.display = "block";
+    } else {
+        thirdSelectDiv.style.display = "none";
+    }
+}
+function hideSecondSelect(){
+    var secondSelectDiv = document.getElementById("secondSelectDiv");
+    secondSelectDiv.style.display = "none";
+}
 //Create the Critical Hours and table show the Elevator Day time work information(like dummy code Time 1 and Time 2)
 function Settings() {
     //Use basic Hooks (useState) from react ref "https://legacy.reactjs.org/docs/hooks-reference.html#usestate"
@@ -59,39 +85,45 @@ function Settings() {
     }
 
     return (
+        
         <div className="container">
             <h2 className="header">Settings</h2>
+            <div class="datetimepicker">
+                    <input type="date" id="date" value="2023-10-03"/>
+                    <span></span>
+                    <input type="time" id="time" value="08:00"/>
+                <span class="input-addon">to</span>
+                <input type="date" id="date2" value="2023-10-10"/>
+                    <span></span>
+                    <input type="time" id="time2" value="08:00"/>
+            </div>
             <div className="form-group">
 
-                {/*building selector/filter, user can choose one from a list*/}
-                <fieldset className="form-group">
-                    <label className="label" htmlFor="general.name">
-                        Building:
-                    </label>
-                    <Select
-                        options={buildings}
-                        name="mysettings.general.name"
-                        onChange={settingsChanged}
-                        value={currentSettings['mysettings.general.name']}
-                        isSearchable
-                    />
-                </fieldset>
+            <label for="firstSelect">BUILDING:</label>
+                        <select id="firstSelect" onChange={showSecondSelect} >
+                            <option value="0" selected> </option>
+                            <option value="1">Building 1</option>
+                            <option value="2">Building 2</option>
+                            <option value="3">Building 3</option>
+                            <option value="4">Building 4</option>
+                        </select>
 
-                {/*device filter, user can choose one from a list*/}
-                <fieldset className="form-group1">
-                    <label className="label" htmlFor="general.device">
-                        Device:
-                    </label>
-                    <Select
-                        options={devices}
-                        name="mysettings.general.device"
-                        onChange={(selectedOption) =>
-                            currentSettings['mysettings.general.name'] &&
-                            handleDeviceChange(selectedOption, currentSettings['mysettings.general.name'].value)}
-                        value={currentSettings['mysettings.general.device']}
-                        isSearchable
-                    />
-                </fieldset>
+                   <div class="secondSelectDiv" id="secondSelectDiv" >
+                        <label for="secondSelect"> Bank ID and Location:</label>
+                            <select id="secondSelect" onChange={showThirdSelect}>
+                                <option value="0" selected> </option>
+                                <option value="1">Passenger</option>
+                            </select>
+                    </div>
+        
+                    <div class="thirdSelectDiv" id="thirdSelectDiv" >
+                        <label for="thirdSelect"> Device:</label>
+                            <select id="thirdSelect">
+                                <option value="0" selected> </option>
+                                <option value="1">Elevator 1</option>
+                            </select>
+                    </div>
+                    
             </div>
 
             {/*button to show the result matching the filter*/}
