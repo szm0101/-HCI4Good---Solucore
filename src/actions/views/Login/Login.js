@@ -27,7 +27,7 @@ const Login = () => {
     
         if (userFound) {
             // Set 'isLoggedIn' in localStorage to 'true' when the user logs in
-            setCookie('isLoggedIn', 'true', { path: '/'});
+            setCookie('isLoggedIn', 'true', { path: '/', sameSite: 'None'});
             navigate('/Home');
         } else {
             setError('Invalid username or password');

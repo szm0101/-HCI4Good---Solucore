@@ -28,24 +28,20 @@ function App() {
                 {userIsLoggedIn  && <Sidebar />}
     
                 <Routes>
-                    {userIsLoggedIn ? (
+                    <>
+                    <Route path="/Login" element={<LoginPage />}/>
+                    <Route path="/" element={<Landing/>}/>
+                    <Route path="/Forgot" element={<Forgot />}/>
+                    {userIsLoggedIn && (
                         <>
-                            <Route path="/Home" element={<Dashboard />} />
-                            <Route path="/Alerts" element={<Alerts />} />
-                            <Route path="/Buildings" element={<Buildings />} />
-                            <Route path="/Settings" element={<Settings />} />
-                            <Route path="/Report" element={<Reporting />} />
-                        </>
-                    ) : (
-                        <>
-                         <Route
-                            path="/Login"
-                            element={<LoginPage />}
-                        />
-                        <Route path="/" element={<Landing/>}/>
-                        <Route path="/Forgot" element={<Forgot />}/>
+                        <Route path="/Home" element={<Dashboard />} />
+                        <Route path="/Alerts" element={<Alerts />} />
+                        <Route path="/Buildings" element={<Buildings />} />
+                        <Route path="/Settings" element={<Settings />} />
+                        <Route path="/Report" element={<Reporting />} />
                         </>
                     )}
+                    </>
                 </Routes>
             </BrowserRouter>
         </div>

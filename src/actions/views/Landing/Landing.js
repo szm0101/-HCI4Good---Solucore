@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Card, Container, Row, Col, Image} from 'react-bootstrap';
 import './Landing.css'; // Import the CSS file
 import Logo from '../../assets/solutrak-logo.png';
+import { useCookies } from 'react-cookie'; //
 
 const Landing = () => {
     const navigate = useNavigate();
+    const [cookies,setCookie] = useCookies();
+
+    useEffect(() => {
+        // Set the cookie to 'false' when the component is loaded
+        setCookie('isLoggedIn', 'false', { path: '/', sameSite: 'None' });
+      }, []);
 
     const handleUserType = (/*type*/) => {
         //logic

@@ -12,7 +12,7 @@ function Navbars() {
     const [cookies,setCookie] = useCookies();
 
     const handleSignOut = () => {
-        setCookie('isLoggedIn', 'false', { path: '/'});
+        setCookie('isLoggedIn', 'false', { path: '/', sameSite: 'None'});
         navigate('/');
         window.location.reload();
     };
