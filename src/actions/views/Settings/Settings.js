@@ -109,7 +109,7 @@ function Settings() {
                         </select>
 
                    <div class="secondSelectDiv" id="secondSelectDiv" >
-                        <label for="secondSelect"> Bank ID and Location:</label>
+                        <label for="secondSelect"> BANK ID and LOCATION:</label>
                             <select id="secondSelect" onChange={showThirdSelect}>
                                 <option value="0" selected> </option>
                                 <option value="1">Passenger</option>
@@ -117,7 +117,7 @@ function Settings() {
                     </div>
         
                     <div class="thirdSelectDiv" id="thirdSelectDiv" >
-                        <label for="thirdSelect"> Device:</label>
+                        <label for="thirdSelect"> DEVICE:</label>
                             <select id="thirdSelect">
                                 <option value="0" selected> </option>
                                 <option value="1">Elevator 1</option>

@@ -1,14 +1,56 @@
 /* Settings.css */
+.form-group{
+  background-color: rgb(58, 62, 82);
+  height:auto;
+  width: 80%;
+  margin-left: 10%;
+  color: rgb(215, 218, 222);
+}
 
-
-
-.thirdSelectDiv{
-  display: none;
+#firstSelect{
+  background-color: rgb(58, 62, 82);
+  color: rgb(215, 218, 222);
+  font-family: Montserrat, sans-serif;
+  font-size: 16px;
+  width: auto;
+  height: 34px;
+  line-height: 28px;
+  
+}
+.secondSelectDiv option:not(:checked) {
+  background-color: rgb(58, 62, 82);;
+}
+ 
+#secondSelect{
+  background-color: rgb(58, 62, 82);
+  color: rgb(215, 218, 222);
+  font-family: Montserrat, sans-serif;
+  font-size: 16px;
+  width: auto;
+  height: 34px;
+  line-height: 28px;
+  font-weight: bold;
+}
+#thirdSelect{
+  background-color: rgb(58, 62, 82);
+  color: rgb(215, 218, 222);
+  font-family: Montserrat, sans-serif;
+  font-size: 16px;
+  width: auto;
+  height: 34px;
+  line-height: 28px;
+  font-weight: bold;
 }
 
 .secondSelectDiv{
   display: none;
+ 
 }
+.thirdSelectDiv{
+  display: none;
+
+}
+
 .container {
     margin-top: 100px;
     margin-left: 220px;
