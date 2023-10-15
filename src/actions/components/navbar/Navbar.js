@@ -4,13 +4,15 @@ import {useNavigate} from "react-router-dom";
 import Logo from '../../assets/solutrak-logo.png';
 import Photo from '../../assets/Solucore_Icon.png'
 import NotificationIcon from "../../assets/notification-icon.png";
+import { useCookies } from 'react-cookie'; //
 
 function Navbars() {
 
     const navigate = useNavigate();
+    const [cookies,setCookie] = useCookies();
 
     const handleSignOut = () => {
-        localStorage.setItem('isLoggedIn', 'false');
+        setCookie('isLoggedIn', 'false', { path: '/', sameSite: 'None', secure: true });
         navigate('/');
         window.location.reload();
     };
@@ -18,7 +20,7 @@ function Navbars() {
     return (
         <Navbar data-bs-theme="dark">
             <div className="navbar-container">
-                <Navbar.Brand href="/"><img src={Logo} alt="logo" className='solutrak-logo' /></Navbar.Brand>
+                <Navbar.Brand href="/Home"><img src={Logo} alt="logo" className='solutrak-logo' /></Navbar.Brand>
                 
                 <Nav className="ml-auto">
                     <Nav.Item className='me-3 mt-2'>
