@@ -11,7 +11,7 @@ const Landing = () => {
 
     useEffect(() => {
         // Set the cookie to 'false' when the component is loaded
-        setCookie('isLoggedIn', 'false', { path: '/', sameSite: 'None' });
+        setCookie('isLoggedIn', 'false', { path: '/', sameSite: 'None', secure: true  });
       }, []);
 
     const handleUserType = (/*type*/) => {
