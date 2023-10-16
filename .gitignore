@@ -1,7 +1,13 @@
-# Default ignored files
-/shelf/
-/workspace.xml
-# Editor-based HTTP Client requests
-/httpRequests/
-# Ignore Node Modules
+#Node Dependencies
 node_modules/
+
+#IDE
+.idea/._workspace.xml
+
+#Production
+/build
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
