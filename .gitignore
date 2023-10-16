@@ -1,0 +1,13 @@
+#Node Dependencies
+node_modules/
+
+#IDE
+.idea/._workspace.xml
+
+#Production
+/build
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride

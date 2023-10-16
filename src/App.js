@@ -8,27 +8,46 @@ import Alerts from "./actions/views/Alerts/Alerts";
 import Buildings from "./actions/views/Buildings/Buildings";
 import Settings from "./actions/views/Settings/Settings";
 import Reporting from "./actions/views/Reporting/Reporting";
-
+import LoginPage from "./actions/views/Login/Login";
+import Landing from './actions/views/Landing/Landing';
+import Forgot from './actions/views/Forgot/Forgot';
+import { useCookies } from 'react-cookie';
 
 function App() {
+
+    const [cookies] = useCookies(); // Access the 'isLoggedIn' cookie
+
+    const userIsLoggedIn = cookies.isLoggedIn;
+    console.log(userIsLoggedIn);
+    
+
     return (
         <div className="App">
             <BrowserRouter>
-                <Navbar />
-                <Sidebar />
-
+                {userIsLoggedIn  && <Navbar />}
+                {userIsLoggedIn  && <Sidebar />}
+    
                 <Routes>
-                    <Route path="/" element={<Dashboard/>}/>
-                    <Route path="/Alerts" element={<Alerts/>}/>
-                    <Route path="/Buildings" element={<Buildings/>}/>
-                    <Route path="/Settings" element={<Settings/>}/>
-                    <Route path="/Report" element={<Reporting/>}/>
+                    <>
+                    <Route path="/Login" element={<LoginPage />}/>
+                    <Route path="/" element={<Landing/>}/>
+                    <Route path="/Forgot" element={<Forgot />}/>
+                    {userIsLoggedIn && (
+                        <>
+                        <Route path="/Home" element={<Dashboard />} />
+                        <Route path="/Alerts" element={<Alerts />} />
+                        <Route path="/Buildings" element={<Buildings />} />
+                        <Route path="/Settings" element={<Settings />} />
+                        <Route path="/Report" element={<Reporting />} />
+                        </>
+                    )}
+                    </>
                 </Routes>
-
             </BrowserRouter>
-
         </div>
     );
 }
 
 export default App;
+
+
