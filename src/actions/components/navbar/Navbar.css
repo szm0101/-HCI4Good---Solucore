@@ -11,7 +11,7 @@
     padding: 15px;
 }
 
-img.notif-icon{
+img.notif-icon, img.profile-photo{
     width: auto;
     height: 37px;
     filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(153deg) brightness(102%) contrast(104%);
@@ -26,9 +26,4 @@ img.notif-icon{
 img.solutrak-logo{
     height: 43px;
     width: auto;
-}
-
-img.profile-photo{
-    width: auto;
-    height: 37px;
 }

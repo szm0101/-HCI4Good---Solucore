@@ -3,7 +3,7 @@ import "./Navbar.css";
 import {Nav, Navbar, NavDropdown} from 'react-bootstrap';
 import {useNavigate} from "react-router-dom";
 import Logo from '../../assets/solutrak-logo.png';
-import Photo from '../../assets/Solucore_Icon.png'
+import Photo from '../../assets/profile-icon.png'
 import NotificationIcon from "../../assets/notification-icon.png";
 import { useCookies } from 'react-cookie'; //
 
