@@ -1,4 +1,5 @@
 import React from 'react';
+import "./Navbar.css";
 import {Nav, Navbar, NavDropdown} from 'react-bootstrap';
 import {useNavigate} from "react-router-dom";
 import Logo from '../../assets/solutrak-logo.png';

@@ -18,7 +18,7 @@ img.notif-icon{
 
 }
 
-img.notif-icon:hover{
+.navbar-links .notif-icon:hover{
     opacity: 50%;
     cursor: pointer;
 }
