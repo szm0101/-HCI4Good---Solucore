@@ -18,10 +18,11 @@ img.notif-icon, img.profile-photo{
 
 }
 
-.navbar-links .notif-icon:hover{
+.navbar-links .notif-icon:hover, #basic-nav-dropdown:hover{
     opacity: 50%;
     cursor: pointer;
 }
+
 
 img.solutrak-logo{
     height: 43px;
