@@ -254,7 +254,7 @@ export class MapContainer extends Component {
   };
   render() {
     return (
-      <div style={{ position: 'fixed', top: '0px', left: '90px', right: '0px', bottom: '0px', zIndex: -10 }}>
+      <div style={{ position: 'fixed', top: '0px', left: '100px', right: '0px', bottom: '0px', zIndex: -10 }}>
         <Map
           google={this.props.google}
           zoom={14}
