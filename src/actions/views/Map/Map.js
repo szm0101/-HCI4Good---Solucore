@@ -280,7 +280,7 @@ export class MapContainer extends Component {
               strokeColor: '#161617',
               strokeWeight: 8
             }}
-            // onClick={this.onMarkerClick}
+            onClick={this.onMarkerClick}
             name={'Building 1'}
           />
           <Marker

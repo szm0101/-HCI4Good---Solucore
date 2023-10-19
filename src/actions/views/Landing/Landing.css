@@ -1,12 +1,15 @@
 /* Landing.css */
 .landing-page {
-    background-color: #2b2d3c; /* Dark background color */
+    background-color: #2b2d3c;
+    /* Dark background color */
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Vertically and horizontally center the content */
+    height: 100vh;
+    /* Vertically and horizontally center the content */
     margin: 0;
 }
+
 .card-container {
     background-color: #2b2d3c;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -20,11 +23,15 @@
     align-items: center;
     margin-top: 20px;
 
-    margin-bottom: 20px; /* Adjust spacing between logo/title and form */
+    margin-bottom: 20px;
+    /* Adjust spacing between logo/title and form */
 }
 
 .landing-logo {
-    width: 314px; /* Adjust the logo size */
-    height: 50px; /* Adjust the logo size */
-    margin-bottom: 10px; /* Adjust spacing between logo and title */
+    width: 314px;
+    /* Adjust the logo size */
+    height: 50px;
+    /* Adjust the logo size */
+    margin-bottom: 10px;
+    /* Adjust spacing between logo and title */
 }

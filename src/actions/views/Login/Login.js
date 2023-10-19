@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button, Card, Container, Form, Alert, Image,} from 'react-bootstrap'; // Import Bootstrap components
+import { Button, Card, Container, Form, Alert, Image, } from 'react-bootstrap'; // Import Bootstrap components
 import Logo from '../../assets/solutrak-logo.png';
 import { useCookies } from 'react-cookie';
 import './Login.css';
@@ -24,7 +24,7 @@ const Login = () => {
 
     const handleLogin = () => {
         const userFound = users.find(user => user.username === username && user.password === password);
-    
+
         if (userFound) {
             // Set 'isLoggedIn' in localStorage to 'true' when the user logs in
             setCookie('isLoggedIn', 'true', { path: '/', sameSite: 'None', secure: true });
