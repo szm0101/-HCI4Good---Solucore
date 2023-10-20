@@ -37,13 +37,28 @@ function showThirdSelect() {
  
     var secondSelect = document.getElementById("secondSelect");
     var thirdSelectDiv = document.getElementById("thirdSelectDiv");
+    var formGroupDiv = document.getElementById("form-group");
 
     if (secondSelect.value != "0") {
         thirdSelectDiv.style.display = "block";
+        formGroupDiv.style.height="128px";
+
     } else {
         thirdSelectDiv.style.display = "none";
+        formGroupDiv.style.height="94px";
     }
 }
+
+function showTable() {
+    var thirdSelect = document.getElementById("thirdSelect");
+    var detailsDiv = document.getElementById("form-detailsDiv");
+    if (thirdSelect.value != "0") {
+        detailsDiv.style.display = "block";
+    } else {
+        detailsDiv.style.display = "none";
+    }
+}
+
 function hideSecondSelect(){
     var secondSelectDiv = document.getElementById("secondSelectDiv");
     secondSelectDiv.style.display = "none";
@@ -88,7 +103,7 @@ function Settings() {
         
         <div className="container">
             <h2 className="header">Settings</h2>
-            <div class="datetimepicker">
+            {/* <div class="datetimepicker">
                     <input type="date" id="date" value="2023-10-03"/>
                     <span></span>
                     <input type="time" id="time" value="08:00"/>
@@ -96,10 +111,9 @@ function Settings() {
                 <input type="date" id="date2" value="2023-10-10"/>
                     <span></span>
                     <input type="time" id="time2" value="08:00"/>
-            </div>
-            <div className="form-group">
-
-            <label for="firstSelect">BUILDING:</label>
+            </div> */}
+            <div className="form-group" class="form-group" id="form-group">
+                    <label id="selectLabel" for="firstSelect" >BUILDING:</label>
                         <select id="firstSelect" onChange={showSecondSelect} >
                             <option value="0" selected> </option>
                             <option value="1">Building 1</option>
@@ -107,9 +121,9 @@ function Settings() {
                             <option value="3">Building 3</option>
                             <option value="4">Building 4</option>
                         </select>
-
+                        
                    <div class="secondSelectDiv" id="secondSelectDiv" >
-                        <label for="secondSelect"> BANK ID and LOCATION:</label>
+                        <label for="secondSelect" id="selectLabel" > BANK ID and LOCATION:</label>
                             <select id="secondSelect" onChange={showThirdSelect}>
                                 <option value="0" selected> </option>
                                 <option value="1">Passenger</option>
@@ -117,94 +131,68 @@ function Settings() {
                     </div>
         
                     <div class="thirdSelectDiv" id="thirdSelectDiv" >
-                        <label for="thirdSelect"> DEVICE:</label>
+                        <label for="thirdSelect" id="thirdLabel"> DEVICE:</label>
                             <select id="thirdSelect">
                                 <option value="0" selected> </option>
                                 <option value="1">Elevator 1</option>
                             </select>
                     </div>
+
                     
             </div>
+            <div class="detailsDiv" id="detailsDiv">
+                <div class="mytabs">
+                    <input type="radio" id="deviceServices" name="mytabs" checked="checked"/>
+                    <label for="deviceServices">DEVICE SERVICES</label>
+                    <div class="tab">
+                    <table class="table">
+                            <thead>
+                                <tr>
+                                <th scope="col">Date</th>
+                                <th scope="col">Device</th>
+                                <th scope="col">Device Status</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Username</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div> 
 
-            {/*button to show the result matching the filter*/}
-            <div className="buttons-container">
-                <button className="button" onClick={() => setShowTable(!showTable)}>
-                    Critical Hours
-                </button>
-                <button className="button1" onClick={addRow}>
-                    Add Day
-                </button>
+                    <input type="radio" id="operatingHours"name="mytabs" />
+                    <label for="operatingHours">OPERATING HOURS</label>
+                    <div class="tab">
+                        <table class="table">
+                            <thead bgcolor="rgb(54, 75, 104);">
+                                <tr>
+                                <th scope="col">Day</th>
+                                <th scope="col">Hour Interval</th>
+                                <th scope="col"> </th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div> 
+
+                    <input type="radio" id="criticalHours" name="mytabs" />
+                    <label for="criticalHours">CRITICAL HOURS</label>
+                    <div class="tab">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                <th scope="col">Day</th>
+                                <th scope="col">Morning</th>
+                                <th scope="col">Lunch</th>
+                                <th scope="col">Evening</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div> 
+
+                </div>
             </div>
+           
+</div>
 
-            {/*showing table elements, like Day,Edit, Opening time and Closing time */}
-            {showTable && (
-                <div className="table-container">
-                    <table className="table">
-
-                        <thead>
-                        <tr>
-                            <th className="cell table-header-cell">Day</th>
-                            <th className="cell table-header-cell">Opening time</th>
-                            <th className="cell table-header-cell">Closing time</th>
-                            <th className="cell table-header-cell">Edit</th>
-                        </tr>
-                        </thead>
-                        {/*showing the output/data of day, openingTime and closingTime*/}
-                        <tbody>
-                        {tableRows.map((row, index) => (
-                            <tr key={index}>
-                                <td className="cell">{row.day}</td>
-                                <td className="cell">{row.openingTime}</td>
-                                <td className="cell">{row.closingTime}</td>
-                                <td className="cell">
-                                    {/*the Edit button used to input the Opening/Closing time for a Day*/}
-                                    <button onClick={() => onEditClicked(index)} className="button2">
-                                        Edit
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
-                        </tbody>
-
-                    </table>
-                </div>
-            )}
-
-            {/*Show the Time model when click the Edit button */}
-            {showModel && (
-                <div className="overlay">
-                    <div className="model-container">
-                        <h2 className="model-header">EDIT CRITICAL HOURS</h2>
-
-                        <div className="model-row">
-                            <label>Opening Time:</label>
-                            {/*Opening time input Selector*/}
-                            <input type="time" id="openingTimeInput"
-                                   defaultValue={tableRows[editRowIndex]?.openingTime}
-                                   onChange={e => setOpeningTime(e.target.value)} />
-                        </div>
-                        <div className="model-row">
-                            <label>Closing Time:</label>
-                            {/*Closing time input Selector*/}
-                            <input type="time" id="closingTimeInput"
-                                   defaultValue={tableRows[editRowIndex]?.closingTime}
-                                   onChange={e => setClosingTime(e.target.value)} />
-                        </div>
-
-                        <div className="buttons-container">
-                            {/*submit button*/}
-                            <button onClick={() => onModelClose(true)} className="button">
-                                Save
-                            </button>
-                            {/*cancel button*/}
-                            <button onClick={() => onModelClose(false)} className="button">
-                                Cancel
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            )}
-        </div>
     );
 }
 
