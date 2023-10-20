@@ -1,6 +1,5 @@
 import './App.css';
 import Navbar from './actions/components/navbar/Navbar';
-import './actions/components/navbar/Navbar.css';
 import Sidebar from "./actions/components/Sidebar/Sidebar";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Dashboard from "./actions/views/Dashboard/Dashboard";
