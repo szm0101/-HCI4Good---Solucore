@@ -49,14 +49,13 @@ function showThirdSelect() {
     }
 }
 
-function showTable() {
-    var thirdSelect = document.getElementById("thirdSelect");
-    var detailsDiv = document.getElementById("form-detailsDiv");
-    if (thirdSelect.value != "0") {
-        detailsDiv.style.display = "block";
-    } else {
-        detailsDiv.style.display = "none";
-    }
+function showTable1() {
+    var detailsDiv = document.getElementById("mytabs");
+    detailsDiv.style.display = "flex";
+    var formGroupDiv = document.getElementById("form-group");
+    formGroupDiv.style.height="450px";
+
+    
 }
 
 function hideSecondSelect(){
@@ -100,18 +99,9 @@ function Settings() {
     }
 
     return (
-        
+        <body>
         <div className="container">
-            <h2 className="header">Settings</h2>
-            {/* <div class="datetimepicker">
-                    <input type="date" id="date" value="2023-10-03"/>
-                    <span></span>
-                    <input type="time" id="time" value="08:00"/>
-                <span class="input-addon">to</span>
-                <input type="date" id="date2" value="2023-10-10"/>
-                    <span></span>
-                    <input type="time" id="time2" value="08:00"/>
-            </div> */}
+            <h2 className="header">    </h2>
             <div className="form-group" class="form-group" id="form-group">
                     <label id="selectLabel" for="firstSelect" >BUILDING:</label>
                         <select id="firstSelect" onChange={showSecondSelect} >
@@ -122,26 +112,21 @@ function Settings() {
                             <option value="4">Building 4</option>
                         </select>
                         
-                   <div class="secondSelectDiv" id="secondSelectDiv" >
+                    <div class="secondSelectDiv" id="secondSelectDiv" >
                         <label for="secondSelect" id="selectLabel" > BANK ID and LOCATION:</label>
                             <select id="secondSelect" onChange={showThirdSelect}>
                                 <option value="0" selected> </option>
                                 <option value="1">Passenger</option>
                             </select>
                     </div>
-        
                     <div class="thirdSelectDiv" id="thirdSelectDiv" >
                         <label for="thirdSelect" id="thirdLabel"> DEVICE:</label>
-                            <select id="thirdSelect">
+                            <select id="thirdSelect" onChange={showTable1}>
                                 <option value="0" selected> </option>
                                 <option value="1">Elevator 1</option>
                             </select>
-                    </div>
-
-                    
-            </div>
-            <div class="detailsDiv" id="detailsDiv">
-                <div class="mytabs">
+                    </div> 
+                    <div class="mytabs" id="mytabs">
                     <input type="radio" id="deviceServices" name="mytabs" checked="checked"/>
                     <label for="deviceServices">DEVICE SERVICES</label>
                     <div class="tab">
@@ -163,7 +148,7 @@ function Settings() {
                     <label for="operatingHours">OPERATING HOURS</label>
                     <div class="tab">
                         <table class="table">
-                            <thead bgcolor="rgb(54, 75, 104);">
+                            <thead>
                                 <tr>
                                 <th scope="col">Day</th>
                                 <th scope="col">Hour Interval</th>
@@ -187,11 +172,12 @@ function Settings() {
                             </thead>
                         </table>
                     </div> 
-
-                </div>
+                </div>     
             </div>
-           
-</div>
+            
+        </div>
+
+</body>
 
     );
 }
