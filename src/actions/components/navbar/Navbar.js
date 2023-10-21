@@ -1,12 +1,7 @@
 import React from 'react';
-<<<<<<< HEAD
+import "./Navbar.css";
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
-=======
-import "./Navbar.css";
-import {Nav, Navbar, NavDropdown} from 'react-bootstrap';
-import {useNavigate} from "react-router-dom";
->>>>>>> develop
 import Logo from '../../assets/solutrak-logo.png';
 import Photo from '../../assets/profile-icon.png'
 import NotificationIcon from "../../assets/notification-icon.png";
@@ -36,14 +31,8 @@ function Navbars() {
                     </Nav.Item>
 
                     <Nav.Item className='me-5'>
-<<<<<<< HEAD
-                        <img src={Photo} alt="profile photo" className='profile-photo'></img>
-                        <Nav className="me-auto">
-                            <NavDropdown title="Profile" id="basic-nav-dropdown">
-=======
-                            <Nav className="me-5">
-                                <NavDropdown title={<img src={Photo} alt="profile photo" className='profile-photo' />} id="basic-nav-dropdown">
->>>>>>> develop
+                        <Nav className="me-5">
+                            <NavDropdown title={<img src={Photo} alt="profile photo" className='profile-photo' />} id="basic-nav-dropdown">
                                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                                 <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
                                 <NavDropdown.Divider />
