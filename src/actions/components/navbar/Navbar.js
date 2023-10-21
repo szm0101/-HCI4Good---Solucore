@@ -2,7 +2,7 @@ import React from 'react';
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import Logo from '../../assets/solutrak-logo.png';
-import Photo from '../../assets/Solucore_Icon.png'
+import Photo from '../../assets/profile-icon.png'
 import NotificationIcon from "../../assets/notification-icon.png";
 import { useCookies } from 'react-cookie'; //
 
@@ -23,7 +23,7 @@ function Navbars() {
                 <Navbar.Brand href="/Home"><img src={Logo} alt="logo" className='solutrak-logo' /></Navbar.Brand>
 
                 <Nav className="ml-auto">
-                    <Nav.Item className='me-3 mt-2'>
+                    <Nav.Item className='me-3'>
                         <Nav.Link className="navbar-links" href="/Alerts">
                             <img src={NotificationIcon} alt='Notification icon' className='notif-icon' />
                         </Nav.Link>
