@@ -21,13 +21,13 @@ const Forgot = () => {
     return (
         <div style={{ backgroundColor: '#2b2d3c', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <Card className="forgot-card px-5 py-5" style={{ background: '#2b2d3c', border: '1px solid rgba(85, 87, 99, 1)' }}>
-                <Card.Header className= "text-white h3"style={{ background: 'transparent', borderColor: 'transparent' }}>Reset Password</Card.Header>
+                <Card.Header className="text-white h3" style={{ background: 'transparent', borderColor: 'transparent' }}>Reset Password</Card.Header>
                 <Card.Body>
                     <Form className="forgot-form">
-                        {message && 
-                        <Alert variant='info'>
-                            {message}
-                        </Alert>}
+                        {message &&
+                            <Alert variant='info'>
+                                {message}
+                            </Alert>}
                         <Form.Group className="mb-3">
                             <Form.Control
                                 type="text"

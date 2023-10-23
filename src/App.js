@@ -1,7 +1,7 @@
 import './App.css';
 import Navbar from './actions/components/navbar/Navbar';
 import Sidebar from "./actions/components/Sidebar/Sidebar";
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Dashboard from "./actions/views/Dashboard/Dashboard";
 import Alerts from "./actions/views/Alerts/Alerts";
 import Buildings from "./actions/views/Buildings/Buildings";
@@ -18,28 +18,28 @@ function App() {
 
     const userIsLoggedIn = cookies.isLoggedIn;
     console.log(userIsLoggedIn);
-    
+
 
     return (
         <div className="App">
             <BrowserRouter>
-                {userIsLoggedIn  && <Navbar />}
-                {userIsLoggedIn  && <Sidebar />}
-    
+                {userIsLoggedIn && <Navbar />}
+                {userIsLoggedIn && <Sidebar />}
+
                 <Routes>
                     <>
-                    <Route path="/Login" element={<LoginPage />}/>
-                    <Route path="/" element={<Landing/>}/>
-                    <Route path="/Forgot" element={<Forgot />}/>
-                    {userIsLoggedIn && (
-                        <>
-                        <Route path="/Home" element={<Dashboard />} />
-                        <Route path="/Alerts" element={<Alerts />} />
-                        <Route path="/Buildings" element={<Buildings />} />
-                        <Route path="/Settings" element={<Settings />} />
-                        <Route path="/Report" element={<Reporting />} />
-                        </>
-                    )}
+                        <Route path="/Login" element={<LoginPage />} />
+                        <Route path="/" element={<Landing />} />
+                        <Route path="/Forgot" element={<Forgot />} />
+                        {userIsLoggedIn && (
+                            <>
+                                <Route path="/Home" element={<Dashboard />} />
+                                <Route path="/Alerts" element={<Alerts />} />
+                                <Route path="/Buildings" element={<Buildings />} />
+                                <Route path="/Settings" element={<Settings />} />
+                                <Route path="/Report" element={<Reporting />} />
+                            </>
+                        )}
                     </>
                 </Routes>
             </BrowserRouter>
