@@ -18,6 +18,13 @@ img.profile-photo {
 
 }
 
+img.dropdown-icon {
+    width: auto;
+    height: 20px;
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(153deg) brightness(102%) contrast(104%);
+    opacity: 50%;
+}
+
 .navbar-links .notif-icon:hover,
 #basic-nav-dropdown:hover {
     opacity: 50%;

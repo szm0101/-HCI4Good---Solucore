@@ -8,6 +8,9 @@ import PasswordIcon from '../../assets/change-password-icon.png'
 import PowerIcon from '../../assets/power-icon.png'
 import EditIcon from '../../assets/edit-info-icon.png'
 import NotificationIcon from "../../assets/notification-icon.png";
+import EditInfoIcon from "../../assets/edit-icon.png";
+import ChangePassIcon from "../../assets/changePass-icon.png";
+import SignOutIcon from "../../assets/signOut-icon.png";
 import { useCookies } from 'react-cookie'; //
 import ChangePasswordModal from '../ChangePasswordModal/Modal.js';
 
@@ -63,7 +66,7 @@ function Navbars() {
                                     Change password
                                 </NavDropdown.Item>
                                 <NavDropdown.Divider />
-                                <NavDropdown.Item onClick={handleSignOut} className='my-2 fs-6'>
+                                <NavDropdown.Item className='' onClick={handleSignOut} className='my-2 fs-6'>
                                     <img
                                         alt=""
                                         src={PowerIcon}
