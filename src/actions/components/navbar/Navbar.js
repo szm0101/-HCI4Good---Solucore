@@ -3,8 +3,11 @@ import "./Navbar.css";
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import Logo from '../../assets/solutrak-logo.png';
-import Photo from '../../assets/profile-icon.png'
+import Photo from '../../assets/profile-icon.png';
 import NotificationIcon from "../../assets/notification-icon.png";
+import EditInfoIcon from "../../assets/edit-icon.png";
+import ChangePassIcon from "../../assets/changePass-icon.png";
+import SignOutIcon from "../../assets/signOut-icon.png";
 import { useCookies } from 'react-cookie'; //
 
 function Navbars() {
@@ -33,11 +36,21 @@ function Navbars() {
                     <Nav.Item className='me-5'>
                         <Nav className="me-5">
                             <NavDropdown title={<img src={Photo} alt="profile photo" className='profile-photo' />} id="basic-nav-dropdown">
-                                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+                                <NavDropdown.Item href="#action/3.1">
+                                    <img src={EditInfoIcon} alt='Edit info icon' className='dropdown-icon me-3' />
+                                    Edit info
+                                </NavDropdown.Item>
                                 <NavDropdown.Divider />
+
+                                <NavDropdown.Item href="#action/3.2">
+                                    <img src={ChangePassIcon} alt='Change password icon' className='dropdown-icon me-3 ms-1' />
+                                    Change password
+                                </NavDropdown.Item>
+                                <NavDropdown.Divider />
+                                
                                 <NavDropdown.Item className="text-danger" onClick={handleSignOut}>
-                                    Log out
+                                    <img src={SignOutIcon} alt='Sign out icon' className='dropdown-icon me-3 ms-1' />
+                                    Sign out
                                 </NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
