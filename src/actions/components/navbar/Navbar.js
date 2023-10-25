@@ -52,6 +52,7 @@ function Navbars() {
                                     />
                                     Edit info
                                 </NavDropdown.Item>
+                                <NavDropdown.Divider />
                                 <NavDropdown.Item onClick={() => setModalShow(true)} className='my-2 fs-6'>
                                     <img
                                         alt=""
