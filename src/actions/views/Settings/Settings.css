@@ -196,7 +196,7 @@ body {
 
 .mytabs .tab {
   width: 100%;
-  padding: 20px;
+  /* padding: 20px; */
   background-color: rgb(58, 62, 82);
   order: 1;
   display: none;
@@ -210,16 +210,19 @@ body {
   background: rgb(54, 75, 104);
 }
 
-.table {
-  background-color: transparent;
 
+.table th{
+  background-color: #364B68 !important;
+  color:  #D7DADE !important;
+  height: 60px !important;
+  border: none;
+  text-align: center !important;
+  line-height: 60px !important;
 }
 
 .mytabs .tr {
   background-color: #4F546F;
 }
-
-
 
 
 .table-container {
@@ -259,3 +262,4 @@ body {
 .same-as-selected {
   background-color: rgba(58, 62, 82, 1.000);
 }
+
