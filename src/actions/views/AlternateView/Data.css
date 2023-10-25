@@ -1,0 +1,22 @@
+.table tr{
+    border: 1px solid black !important;
+    border-radius: 0;
+    border-collapse: separate;
+    background-color: #333333;
+    color: black;
+    margin-bottom: 10px;
+    width: 100%;
+    height: auto;
+}
+
+.table th{
+    border: 1px solid black;
+    background-color: grey;
+    font-weight: normal;
+    color: black;
+}
+
+.table td{
+    border: 1px solid black;
+    background-color: white;
+}

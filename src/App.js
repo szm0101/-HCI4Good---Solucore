@@ -11,6 +11,7 @@ import LoginPage from "./actions/views/Login/Login";
 import Landing from './actions/views/Landing/Landing';
 import Forgot from './actions/views/Forgot/Forgot';
 import { useCookies } from 'react-cookie';
+import AlternateView from './actions/views/AlternateView/AlternateView';
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
             <BrowserRouter>
                 {userIsLoggedIn && <Navbar />}
                 {userIsLoggedIn && <Sidebar />}
+                
 
                 <Routes>
                     <>
@@ -38,6 +40,7 @@ function App() {
                                 <Route path="/Buildings" element={<Buildings />} />
                                 <Route path="/Settings" element={<Settings />} />
                                 <Route path="/Report" element={<Reporting />} />
+                                <Route path="/AlternateView" element={<AlternateView />} />
                             </>
                         )}
                     </>
