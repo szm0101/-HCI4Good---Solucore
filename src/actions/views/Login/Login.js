@@ -16,6 +16,7 @@ const Login = () => {
         { username: 'admin', password: 'a7ank' },
         { username: 'user1', password: 'a7ank' },
         { username: 'client', password: 'a7ank' },
+        { username: 'solutrak@wechc.com', password: 'Solutrak_1' },
     ];
 
     const handleForgotPassword = () => {
