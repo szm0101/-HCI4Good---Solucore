@@ -7,7 +7,7 @@ import SettingIcon from "../../assets/settings-icon.png";
 
 function Sidebar() {
   const activePagePaths = {
-    "/": "Home",
+    "/Home": "Home",
     "/buildings": "Buildings",
     "/settings": "Settings",
   };
@@ -28,7 +28,7 @@ function Sidebar() {
             <Nav className="flex-column">
               <div className="nav-icon-container">
                 <Nav.Link
-                  href="/"
+                  href="/Home"
                   className="nav-link"
                   onClick={() => toggleOpacity("Home")}
                 >

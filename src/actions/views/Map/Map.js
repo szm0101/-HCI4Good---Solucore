@@ -254,7 +254,7 @@ export class MapContainer extends Component {
   };
   render() {
     return (
-      <div style={{ position: 'fixed', top: '0px', left: '0px', right: '0px', bottom: '0px', zIndex: -10 }}>
+      <div style={{ position: 'fixed', top: '0px', left: '100px', right: '0px', bottom: '0px', zIndex: -10 }}>
         <Map
           google={this.props.google}
           zoom={14}
@@ -265,20 +265,48 @@ export class MapContainer extends Component {
               lng: -87.6270
             }
           }
+          streetViewControl={false} // disable street view control
+          zoomControlOptions={{
+            position: this.props.google.maps.ControlPosition.BOTTOM_LEFT // Set the position
+          }}
         >
           <Marker
             position={{ lat: 41.8780, lng: -87.6298 }}
+            icon={{
+              path: this.props.google.maps.SymbolPath.CIRCLE,
+              fillColor: '#2096f3', // fill color to blue
+              fillOpacity: 1, // 1 means fully opaque
+              scale: 10, // the size
+              strokeColor: '#161617',
+              strokeWeight: 8
+            }}
             onClick={this.onMarkerClick}
             name={'Building 1'}
           />
           <Marker
             position={{ lat: 41.8730, lng: -87.6200 }}
-            onClick={this.onMarkerClick}
+            icon={{
+              path: this.props.google.maps.SymbolPath.CIRCLE,
+              fillColor: '#2096f3', // fill color to blue
+              fillOpacity: 1, // 1 means fully opaque
+              scale: 10, // the size
+              strokeColor: '#161617',
+              strokeWeight: 8
+            }}
+            // onClick={this.onMarkerClick}
             name={'Building 2'}
           />
           <Marker
             position={{ lat: 41.8670, lng: -87.6470 }}
-            onClick={this.onMarkerClick}
+            icon={{
+              path: this.props.google.maps.SymbolPath.CIRCLE,
+              fillColor: '#2096f3', // fill color to blue
+              fillOpacity: 1, // 1 means fully opaque
+              scale: 10, // the size
+              strokeColor: '#161617',
+              strokeWeight: 8
+            }}
+            // onClick={this.onMarkerClick}
             name={'Building 3'}
           />
           <InfoWindow
