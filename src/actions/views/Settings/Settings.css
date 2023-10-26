@@ -22,19 +22,21 @@ body {
 }
 
 .dateTime1 {
-  padding: 5px 10px 5px 10px;
+  padding: 5px;
   background-color: #354a68;
   font-size: 15px;
   border-color: #5677a5;
   color: white;
+  width: 190px;
 }
 
 .dateTime2 {
-  padding: 5px 10px 5px 10px;
+  padding: 5px;
   background-color: #354a68;
   font-size: 15px;
   border-color: #5677a5;
   color: white;
+  width: 190px;
 }
 
 .form-group {
@@ -211,9 +213,9 @@ body {
 }
 
 
-.table th{
+.table th {
   background-color: #364B68 !important;
-  color:  #D7DADE !important;
+  color: #D7DADE !important;
   height: 60px !important;
   border: none;
   text-align: center !important;
@@ -262,4 +264,3 @@ body {
 .same-as-selected {
   background-color: rgba(58, 62, 82, 1.000);
 }
-
