@@ -6,7 +6,7 @@ function FaultInfo() {
     <>
       <tr>
         <td>
-          <table className="table">
+          <table className="faultTable">
             <thead>
               <th>Floor</th>
               <th>Error</th>

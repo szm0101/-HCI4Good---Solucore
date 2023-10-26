@@ -7,7 +7,7 @@ function TrafficInfo() {
       <tr>
         <td>
           <span>Most used floor: </span>
-          <table className="table">
+          <table className="trafficTable">
             <thead>
               <th>Floor</th>
               <th>Number of stops</th>
@@ -32,7 +32,7 @@ function TrafficInfo() {
       <tr>
         <td>
           <span>Estimated building density: </span>
-          <table className="table">
+          <table className="densityTable">
             <thead>
               <th>Floor</th>
               <th>Going in</th>

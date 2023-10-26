@@ -6,7 +6,7 @@ function PerformanceData() {
     <>
       <tr>
         <td>
-          <table className="table">
+          <table className="performanceTable">
             <tbody>
               <tr>
                 <td>Average door open(s) actual/target</td>

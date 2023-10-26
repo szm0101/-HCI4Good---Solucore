@@ -1,35 +1,23 @@
 
-/* .table tr{
-    border: 1px solid black !important;
-    border-radius: 0;
-    border-collapse: separate;
-    background-color: #333333;
-    color: black;
-    margin-bottom: 10px;
-    width: 100%;
-    height: auto;
-}
-
-.table th{
-    border: 1px solid black;
-    background-color: grey;
-    font-weight: normal;
-    color: black;
-    width: 100%;
-}
-
-.table td{
-    border: 1px solid black;
-    background-color: white;
-    width: 100%;
-} */
-
-.tempTable tr td{
+.tempTable{
     width: 100% !important;
+    font-size: 14px;
+    table-layout: fixed;
+}
+.tempTable td{
     border: 1px solid black;
     background-color: white;
     width: 100%;
     color: black;
+    padding: 2px;
+}
+
+.tempTable tr{
+    border: 1px solid black;
+    background-color: white;
+    width: 100%;
+    color: black;
+    padding: 2px;
 }
 .tempTable th{
     background-color: #C0C0C0;
@@ -42,27 +30,124 @@
 }
 .runTable {
     width: 200px !important;
+    font-size: 14px;
 }
-.doorCycleTable {
-    width: 200px !important; 
-}
-
 .runTable tr td{
-    width: 200px !important;
-
+    max-width: 200px !important;
     border: 1px solid black;
     background-color: white;
     color: black;
+    padding: 2px;
+}
+
+
+.doorCycleTable {
+    width: 200px !important; 
+    font-size: medium;
 }
 
 .doorCycleTable tr td{
     width: 200px !important;
-
     border: 1px solid black;
     background-color: white;
     color: black;
+    padding: 2px;
 }
 .doorCycleTable th{
     background-color: #C0C0C0;
     color: black;
+}
+
+
+.performanceTable{
+    width: 200px !important; 
+    font-size: medium;
+}
+.performanceTable tr td{
+    width: 200px !important;
+    border: 1px solid black;
+    background-color: white;
+    color: black;
+    padding: 2px;
+}
+.performanceTable th{
+    background-color: #C0C0C0;
+    color: black;
+}
+
+.maitenanceTable{
+    width: 100% !important;
+    font-size: medium;
+    table-layout: fixed;
+}
+.maitenanceTable td{
+    border: 1px solid black;
+    background-color: white;
+    width: 100%;
+    color: black;
+    padding: 2px;
+}
+
+.maitenanceTable tr{
+    border: 1px solid black;
+    background-color: white;
+    width: 100%;
+    color: black;
+    padding: 2px;
+}
+.maitenanceTable th{
+    background-color: #C0C0C0;
+    color: black;
+}
+.faultTable th{
+    background-color: #C0C0C0;
+    color: black;
+}
+.faultTable {
+    width: 200px !important;
+    font-size: medium;
+}
+.faultTable tr td{
+    max-width: 200px !important;
+    border: 1px solid black;
+    background-color: white;
+    color: black;
+    padding: 2px;
+}
+
+.trafficTable th{
+    background-color: #C0C0C0;
+    color: black;
+}
+.trafficTable {
+    width: 200px !important;
+    font-size: medium;
+}
+.trafficTable tr td{
+    max-width: 200px !important;
+    border: 1px solid black;
+    background-color: white;
+    color: black;
+    padding: 2px;
+}
+
+.densityTable th{
+    background-color: #C0C0C0;
+    color: black;
+}
+.densityTable {
+    width: 200px !important;
+    font-size: medium;
+}
+
+
+.densityTable tr td{
+    max-width: 200px !important;
+    border: 1px solid black;
+    background-color: white;
+    color: black;
+    padding: 2px;
+}
+.table{
+    height:30px;
 }
