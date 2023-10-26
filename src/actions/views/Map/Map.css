@@ -21,10 +21,11 @@
     }
 }
 
+
 @media only screen and (min-width: 768px) {
     .map-container {
         position: fixed;
-        top: 0px;
+        top: 75px;
         left: 60px;
         bottom: 0px;
         right: 0px;
@@ -35,7 +36,7 @@
 @media only screen and (max-width: 768px) {
     .map-container {
         position: fixed;
-        top: 0px;
+        top: 80px;
         left: 80px;
         bottom: 0px;
         right: 0px;
@@ -46,7 +47,7 @@
 @media only screen and (min-width: 992px) {
     .map-container {
         position: fixed;
-        top: 0px;
+        top: 70px;
         left: 80px;
         bottom: 0px;
         right: 0px;
@@ -57,7 +58,18 @@
 @media only screen and (min-width: 1200px) {
     .map-container {
         position: fixed;
-        top: 0px;
+        top: 90px;
+        left: 100px;
+        bottom: 0px;
+        right: 0px;
+        z-index: -10;
+    }
+}
+
+@media only screen and (min-width: 1400px) {
+    .map-container {
+        position: fixed;
+        top: 90px;
         left: 100px;
         bottom: 0px;
         right: 0px;

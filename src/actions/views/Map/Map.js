@@ -266,9 +266,10 @@ export class MapContainer extends Component {
               lng: -87.6270
             }
           }
+          mapTypeControl={false} // disable Map and Satellite options
           streetViewControl={false} // disable street view control
           zoomControlOptions={{
-            position: this.props.google.maps.ControlPosition.BOTTOM_LEFT, // Set the position
+            position: this.props.google.maps.ControlPosition.BOTTOM_LEFT, // Set the zoom position
           }}
         >
           <Marker
