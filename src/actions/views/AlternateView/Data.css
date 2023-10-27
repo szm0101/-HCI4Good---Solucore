@@ -158,3 +158,10 @@
     color: black;
     padding: 2px;
 }
+.buildingInfo{
+    color: white;
+    background-color: #364B68;
+    /* align-items: center; */
+    padding: 15px;
+    font-family: Montserrat, sans-serif;
+}
