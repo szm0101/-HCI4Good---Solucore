@@ -6,7 +6,7 @@ function MaintenanceInfo() {
     <>
       <tr>
         <td>
-          <table className="table">
+          <table className="maitenanceTable">
             <thead>
               <th>Date</th>
               <th>Car</th>

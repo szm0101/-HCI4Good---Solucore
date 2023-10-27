@@ -7,7 +7,7 @@ function GeneralOpData() {
       <tr>
         <td>
           <span>Run Count: </span>
-          <table className="table">
+          <table className="runTable">
             <thead>
               <th>Direction</th>
               <th>Count</th>
@@ -27,7 +27,7 @@ function GeneralOpData() {
       </tr>
       <tr>
         <td>
-          <table className="table">
+          <table className="doorCycleTable">
             <thead>
               <th colSpan={2}>Door Cycle(Front): </th>
             </thead>
@@ -58,7 +58,8 @@ function GeneralOpData() {
       </tr>
       <tr>
         <td>
-          <table className="table">
+          {/* Need to change table name - width 100% */}
+          <table className="tempTable">
             <thead>
               <th colSpan={2}>Control Temperature Max: </th>
             </thead>
