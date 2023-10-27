@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import "./Map.css";
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 
 const apiKey = process.env.REACT_APP_apiKey;
@@ -254,7 +255,7 @@ export class MapContainer extends Component {
   };
   render() {
     return (
-      <div style={{ position: 'fixed', top: '0px', left: '100px', right: '0px', bottom: '0px', zIndex: -10 }}>
+      <div className="map-container">
         <Map
           google={this.props.google}
           zoom={14}
@@ -265,9 +266,10 @@ export class MapContainer extends Component {
               lng: -87.6270
             }
           }
+          mapTypeControl={false} // disable Map and Satellite options
           streetViewControl={false} // disable street view control
           zoomControlOptions={{
-            position: this.props.google.maps.ControlPosition.BOTTOM_LEFT // Set the position
+            position: this.props.google.maps.ControlPosition.BOTTOM_LEFT, // Set the zoom position
           }}
         >
           <Marker
