@@ -8,7 +8,7 @@ import PasswordIcon from '../../assets/change-password-icon.png'
 import PowerIcon from '../../assets/power-icon.png'
 import EditIcon from '../../assets/edit-info-icon.png'
 import NotificationIcon from "../../assets/notification-icon.png";
-import { useCookies } from 'react-cookie'; //
+import { useCookies } from 'react-cookie'; 
 import ChangePasswordModal from '../ChangePasswordModal/Modal.js';
 
 function Navbars() {
@@ -33,16 +33,16 @@ function Navbars() {
                 <Navbar.Brand href="/Home"><img src={Logo} alt="logo" className='solutrak-logo' /></Navbar.Brand>
 
                 <Nav className="ml-auto">
-                    <Nav.Item className='me-3'>
+                    <Nav.Item className='me-4'>
                         <Nav.Link className="navbar-links" href="/Alerts">
                             <img src={NotificationIcon} alt='Notification icon' className='notif-icon' />
                         </Nav.Link>
                     </Nav.Item>
 
-                    <Nav.Item className='me-5'>
-                        <Nav className="me-5">
-                            <NavDropdown title={<img src={Photo} alt="profile photo" className='profile-photo' />} id="basic-nav-dropdown">
-                                <NavDropdown.Item href="#action/3.1" className='my-2 fs-6'>
+                    <Nav.Item className='me-4'>
+                        <Nav>
+                            <NavDropdown align='end' title={<img src={Photo} alt="profile photo" className='profile-photo' />} className='me-3' id="basic-nav-dropdown">
+                                <NavDropdown.Item href="#action/3.1" className='py-2 fs-6'>
                                     <img
                                         alt=""
                                         src={EditIcon}
@@ -52,7 +52,8 @@ function Navbars() {
                                     />
                                     Edit info
                                 </NavDropdown.Item>
-                                <NavDropdown.Item onClick={() => setModalShow(true)} className='my-2 fs-6'>
+                                <NavDropdown.Divider />
+                                <NavDropdown.Item onClick={() => setModalShow(true)} className='py-2 fs-6'>
                                     <img
                                         alt=""
                                         src={PasswordIcon}
@@ -63,7 +64,7 @@ function Navbars() {
                                     Change password
                                 </NavDropdown.Item>
                                 <NavDropdown.Divider />
-                                <NavDropdown.Item onClick={handleSignOut} className='my-2 fs-6'>
+                                <NavDropdown.Item  onClick={handleSignOut} className='py-2 fs-6'>
                                     <img
                                         alt=""
                                         src={PowerIcon}
