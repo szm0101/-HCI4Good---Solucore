@@ -161,8 +161,6 @@ body {
   margin-right: 50px;
 }
 
-
-
 .mytabs {
   display: none;
   padding-top: 11%;
@@ -177,10 +175,6 @@ body {
   /* display:flex; */
   flex-wrap: wrap;
   padding-left: 30px;
-  /* max-width:800px;
-  margin: 50px auto;
-  padding: 25px; */
-
 }
 
 .mytabs input[type="radio"] {
@@ -198,7 +192,6 @@ body {
 
 .mytabs .tab {
   width: 100%;
-  /* padding: 20px; */
   background-color: rgb(58, 62, 82);
   order: 1;
   display: none;
@@ -212,6 +205,23 @@ body {
   background: rgb(54, 75, 104);
 }
 
+#createActivity {
+  background-color: #2295e1;
+  color: white;
+  margin-left: 100px;
+  padding: 10px;
+  width: 200px;
+  font-family: Montserrat, sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+}
+
+.modal-header {
+  background-color: #2295e1;
+  color: white;
+}
 
 .table th {
   background-color: #364B68 !important;

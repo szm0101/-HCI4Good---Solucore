@@ -1,5 +1,9 @@
 //need install react-select --force for the import the "Select" component from the 'react-select' library.
-import React, { useState } from 'react';
+import React, { useState } from 'react'
+import Modal from "react-bootstrap/Modal";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Button from 'react-bootstrap/Button';
+import CreateActivityForm from './CreateActivityForm';
 import Select, { NonceProvider } from 'react-select';
 import './Settings.css';
 
@@ -54,7 +58,8 @@ function showTable1() {
     detailsDiv.style.display = "flex";
     var formGroupDiv = document.getElementById("form-group");
     formGroupDiv.style.height = "450px";
-
+    // var createActivityDiv = document.getElementById("createActivityDiv");
+    // createActivityDiv.style.display = "block";
 
 }
 
@@ -75,6 +80,9 @@ function Settings() {
     const [fromDateTime, setFromDateTime] = useState('');
     const [toDateTime, setToDateTime] = useState('');
     const [showDatePicker, setShowDatePicker] = useState(false);
+    // State to manage the visibility of the Create Activity form
+    const [showCreateActivityForm, setShowCreateActivityForm] = useState(false);
+
 
     // Update the time value(Opening/Closing time) when click the edited button
     function onModelClose(save) {
@@ -109,6 +117,14 @@ function Settings() {
         setToDateTime(event.target.value);
     }
 
+    function showCreateActivity() {
+        setShowCreateActivityForm(true);
+    }
+
+    function closeCreateActivity() {
+        setShowCreateActivityForm(false);
+    }
+
     function handleDeviceChange(selectedOption, buildingValue) {
     }
 
@@ -131,6 +147,7 @@ function Settings() {
                     />
                 </div>
                 <h2 className="header">    </h2>
+
                 <div className="form-group" class="form-group" id="form-group">
                     <label id="selectLabel" for="firstSelect" >BUILDING:</label>
                     <select id="firstSelect" onChange={showSecondSelect} >
@@ -189,6 +206,22 @@ function Settings() {
 
                         <input type="radio" id="criticalHours" name="mytabs" />
                         <label for="criticalHours">CRITICAL HOURS</label>
+                        <div>
+                            {/* Learned Modal from (ref) - https://react-bootstrap.netlify.app/docs/components/modal */}
+                            <Button id='createActivity' onClick={showCreateActivity}>
+                                CREATE ACTIVITY
+                            </Button>
+                            <Modal show={showCreateActivityForm} size="xl" onHide={closeCreateActivity} >
+                                <Modal.Header closeButton className='modal-header'>
+                                    <Modal.Title id="contained-modal-title-vcenter">
+                                        CREATE ACTIVITY
+                                    </Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body className='modal-header'>
+                                    <CreateActivityForm />
+                                </Modal.Body>
+                            </Modal>
+                        </div>
                         <div class="tab">
                             <table class="table">
                                 <thead>
