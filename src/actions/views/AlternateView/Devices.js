@@ -5,7 +5,7 @@ function Devices() {
   return (
     <body>
         <div class="devices">
-            <h4>Need to add tables</h4>
+        <h2> Device graphics will go here</h2>
         </div>
     </body>
   );
