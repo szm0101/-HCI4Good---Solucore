@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Table } from 'react-bootstrap';
 import './Buildings.css';
 
 const Buildings = () => {
@@ -11,6 +12,7 @@ const Buildings = () => {
       'Valid-token': userToken,
     });
 
+    // call getBuildingInfos API and store Data array
     fetch('https://services.solucore.com/solutrak/api/buildings/getBuildingInfos', {"method": "GET",headers})
       .then((response) => response.json())
       .then((result) => {
@@ -24,30 +26,38 @@ const Buildings = () => {
 
   return (
     <div className="buildings-container">
-      <h1>Buildings</h1>
       <div className="buildings-table">
-        <table>
-          <thead>
-            <tr>
-              <th>BUILDING NAME</th>
-              <th>LOCATION</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data ? (
-              data.map((building) => (
-                <tr key={building.buildingId}>
-                  <td>{building.buildingName}</td>
-                  <td>{building.city}</td>
+   
+        <Table className='table'>
+        <thead>
+        <div className='text-white p-4'>Buildings</div>
+          <tr>
+            <th>BUILDING NAME</th>
+            <th>LOCATION</th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody >
+              {data ? (
+                data.map((building) => (
+                  <tr key={building.buildingId}>
+                    <td className=''>{building.buildingName}</td>
+                    <td className='text-white p-4'>{building.city}</td>
+                    <td className='text-white'>View</td>
+                    <td className='text-white'>Edit</td>
+                    <td className='text-white'>Delete</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="6">Loading...</td>
                 </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="6">Loading...</td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+              )}
+        </tbody>
+        </Table>
       </div>
     </div>
   );
