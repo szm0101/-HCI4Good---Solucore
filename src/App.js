@@ -16,7 +16,6 @@ function App() {
     const [cookies] = useCookies(); // Access the 'isLoggedIn' cookie
 
     const userIsLoggedIn = cookies.isLoggedIn;
-    console.log(userIsLoggedIn);
 
 
     return (

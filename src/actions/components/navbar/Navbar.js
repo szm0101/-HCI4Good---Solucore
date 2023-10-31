@@ -15,16 +15,50 @@ function Navbars() {
 
     const navigate = useNavigate();
     const [cookies, setCookie] = useCookies();
+    const token = cookies.token;
     const [modalShow, setModalShow] = React.useState(false);
+    const [successMsg, setSuccessMsg] = useState('');
 
     const handleClose = () => {
         setModalShow(false);
     };
 
-    const handleSignOut = () => {
-        setCookie('isLoggedIn', 'false', { path: '/', sameSite: 'None', secure: true });
-        navigate('/');
-        window.location.reload();
+    const handleSignOut = (userToken) => {
+
+        var myHeaders = new Headers();
+        myHeaders.append("Valid-token", userToken);
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            redirect: 'follow'
+          };
+          
+          fetch("https://services.solucore.com/solutrak/api/accounts/signOut", requestOptions)
+          .then(response => response.text())
+          .then(result => {
+              // Check the result and handle the login accordingly
+              const data = JSON.parse(result);
+              const status = data.IsSuccess;
+              const userInfo = data.Data;
+              console.log(data.IsSuccess);
+              console.log(data.Message);
+
+            if (status) {
+                setCookie('isLoggedIn', 'false', { path: '/', sameSite: 'None', secure: true });
+                setCookie('token', '', { path: '/', sameSite: 'None', secure: true });
+                setCookie('userType', '', { path: '/', sameSite: 'None', secure: true });
+                navigate('/');
+            } else {
+                console.error("Error");
+            }
+          })
+          .catch(error => console.log('error', error));
+
+        //   const handleSignOut = () => {
+        //     setCookie('isLoggedIn', 'false', { path: '/', sameSite: 'None', secure: true });
+        //     navigate('/');
+        //     window.location.reload();
+        // };
     };
 
     return (
@@ -64,7 +98,7 @@ function Navbars() {
                                     Change password
                                 </NavDropdown.Item>
                                 <NavDropdown.Divider />
-                                <NavDropdown.Item  onClick={handleSignOut} className='py-2 fs-6'>
+                                <NavDropdown.Item  onClick={() => handleSignOut(token)} className='py-2 fs-6'>
                                     <img
                                         alt=""
                                         src={PowerIcon}
