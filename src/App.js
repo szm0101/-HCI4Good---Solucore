@@ -8,7 +8,6 @@ import Buildings from "./actions/views/Buildings/Buildings";
 import Settings from "./actions/views/Settings/Settings";
 import Reporting from "./actions/views/Reporting/Reporting";
 import LoginPage from "./actions/views/Login/Login";
-import Landing from './actions/views/Landing/Landing';
 import Forgot from './actions/views/Forgot/Forgot';
 import { useCookies } from 'react-cookie';
 import AlternateView from './actions/views/AlternateView/AlternateView';
@@ -18,7 +17,6 @@ function App() {
     const [cookies] = useCookies(); // Access the 'isLoggedIn' cookie
 
     const userIsLoggedIn = cookies.isLoggedIn;
-    console.log(userIsLoggedIn);
 
 
     return (
@@ -30,8 +28,7 @@ function App() {
 
                 <Routes>
                     <>
-                        <Route path="/Login" element={<LoginPage />} />
-                        <Route path="/" element={<Landing />} />
+                        <Route path="/" element={<LoginPage />} />
                         <Route path="/Forgot" element={<Forgot />} />
                         {userIsLoggedIn && (
                             <>
