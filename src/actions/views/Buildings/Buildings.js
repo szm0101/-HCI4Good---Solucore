@@ -29,18 +29,16 @@ const Buildings = () => {
         <table>
           <thead>
             <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Location</th>
+              <th>BUILDING NAME</th>
+              <th>LOCATION</th>
             </tr>
           </thead>
           <tbody>
             {data ? (
               data.map((building) => (
                 <tr key={building.buildingId}>
-                  <td>{building.buildingId}</td>
                   <td>{building.buildingName}</td>
-                  <td>{building.buildingCity}</td>
+                  <td>{building.city}</td>
                 </tr>
               ))
             ) : (
