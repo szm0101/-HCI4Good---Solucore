@@ -223,6 +223,20 @@ body {
   color: white;
 }
 
+@media (max-width: 1199px) {
+  .modal-body {
+    background-color: #292c3b;
+    color: white;
+  }
+}
+
+@media (min-width: 1200px) {
+  .modal-body {
+    background-color: #2295e1;
+    color: white;
+  }
+}
+
 .table th {
   background-color: #364B68 !important;
   color: #D7DADE !important;

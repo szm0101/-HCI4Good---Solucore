@@ -217,7 +217,7 @@ function Settings() {
                                         CREATE ACTIVITY
                                     </Modal.Title>
                                 </Modal.Header>
-                                <Modal.Body className='modal-header'>
+                                <Modal.Body className='modal-body'>
                                     <CreateActivityForm />
                                 </Modal.Body>
                             </Modal>
