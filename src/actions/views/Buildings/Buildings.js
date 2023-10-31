@@ -44,8 +44,8 @@ const Buildings = () => {
               {data ? (
                 data.map((building) => (
                   <tr key={building.buildingId}>
-                    <td className=''>{building.buildingName}</td>
-                    <td className='text-white p-4'>{building.city}</td>
+                    <td className='text-white'>{building.buildingName}</td>
+                    <td className='text-white'>{building.city}</td>
                     <td className='text-white'>View</td>
                     <td className='text-white'>Edit</td>
                     <td className='text-white'>Delete</td>
