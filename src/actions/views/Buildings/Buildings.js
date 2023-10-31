@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import { useCookies } from 'react-cookie';
 import { Table } from 'react-bootstrap';
 import './Buildings.css';
 
 const Buildings = () => {
   const [data, setData] = useState([]);
+  const [cookies, setCookie] = useCookies();
+  const token = cookies.token;
+
 
   useEffect(() => {
-    const userToken = '0b13be5e-5947-4c2a-a95b-2898773f50cc';
-
+    
     const headers = new Headers({
-      'Valid-token': userToken,
+      'Valid-token': token,
     });
 
     // call getBuildingInfos API and store Data array
