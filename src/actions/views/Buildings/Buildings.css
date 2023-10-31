@@ -1,6 +1,5 @@
 .table tbody td{
-  background-color: #2f3242; /* 设置背景颜色为蓝色 */
-  color: white; /* 设置文字颜色以确保可读性 */
+  background-color: #3B3E50;
 }
 
 /* Common styles for all screen sizes */
@@ -13,11 +12,7 @@
   overflow-x: auto; /* Add horizontal scrolling for smaller screens */
 }
 
-.buildings-table {
-  background-color: #2f3242;
-  margin-top: 20px;
-  overflow-x: auto; /* Add horizontal scrolling for smaller screens */
-}
+
 
 th,
 td {
