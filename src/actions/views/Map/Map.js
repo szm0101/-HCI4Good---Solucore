@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { useCookies } from 'react-cookie';
 import "./Map.css";
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 
@@ -231,8 +232,8 @@ const darkMapStyles = [
   }
 ];
 
-
 export class MapContainer extends Component {
+  
   state = {
     showingInfoWindow: false,  // Hides or shows the InfoWindow
     activeMarker: {},          // Shows the active marker upon click
