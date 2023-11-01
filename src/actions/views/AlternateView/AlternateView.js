@@ -1,21 +1,55 @@
 import React from "react";
+import { useCookies } from "react-cookie";
 import "./AlternateView.css";
 import Logo from "../../assets/solutrak-logo.png";
 import GeneralOpData from "./GeneralOpData";
-import PerformanceData from './PerformanceData';
+import PerformanceData from "./PerformanceData";
 import MaintenanceInfo from "./MaintenanceInfo";
 import BuildingInfo from "./BuildingInfo";
-import FaultInfo from './FaultInfo';
-import { useState } from "react";
+import FaultInfo from "./FaultInfo";
+import { useState, useEffect } from "react";
 import TrafficInfo from "./TrafficInfo";
 import Devices from "./Devices";
 
 function AlternateView() {
   const [isOpen, setIsOpen] = useState(Array(7).fill(false));
+  const [deviceIds, setDeviceIds] = useState([]);
 
   const toggle = (index) => {
-    setIsOpen(prevIsOpen => prevIsOpen.map((item, i) => i === index ? !item : item))
+    setIsOpen((prevIsOpen) =>
+      prevIsOpen.map((item, i) => (i === index ? !item : item))
+    );
   };
+
+  const [cookies] = useCookies();
+
+  useEffect(() => {
+    var header = new Headers();
+    header.append("Valid-token", cookies.token);
+
+    var requestOptions = {
+      method: "get",
+      headers: header,
+    };
+    let deviceIds = [];
+    const fetchDeviceIds = () => {
+      fetch(
+        "https://services.solucore.com/solutrak/api/buildings/getDeviceInfos",
+        requestOptions
+      )
+        .then((response) => response.json())
+        .then((json) => {
+          json.Data.map(
+            (deviceInfo, idx) => (deviceIds[idx] = deviceInfo.deviceId)
+          );
+        })
+        .catch((error) => console.log("API error" + error));
+    };
+
+    setDeviceIds(deviceIds);
+    fetchDeviceIds();
+  }, []);
+
   return (
     <div className="wrapper">
       <div className="top-bar">
@@ -80,8 +114,13 @@ function AlternateView() {
             </tr>
             {isOpen[3] ? (
               <tr>
-                <table className="general-op-data">
-                  <tbody>{<FaultInfo />}</tbody>
+                <table className="fault-info-table">
+                    {deviceIds.map((deviceId) => (
+                      <tbody>
+                        <span>Error per floor</span>
+                        {<FaultInfo deviceId={deviceId} />}
+                      </tbody>
+                    ))}
                 </table>
               </tr>
             ) : null}
@@ -91,7 +130,9 @@ function AlternateView() {
             {isOpen[4] ? (
               <tr>
                 <table className="general-op-data">
-                  <tbody>{<TrafficInfo />}</tbody>
+                  <tbody>
+                    {<TrafficInfo />}
+                  </tbody>
                 </table>
               </tr>
             ) : null}
