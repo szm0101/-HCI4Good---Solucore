@@ -237,6 +237,10 @@ const MapContainer = ({ google }) => {
   const [showingInfoWindow, setShowingInfoWindow] = useState(false);  // Hides or shows the InfoWindow
   const [activeMarker, setActiveMarker] = useState({});               // Shows the active marker upon click
   const [selectedPlace, setSelectedPlace] = useState({});            // Shows the InfoWindow to the selected place upon a marker
+
+  const [cookies, setCookie] = useCookies();
+  const defaultLat = cookies.defaultLat;
+  const defaultLng = cookies.defaultLng;
   
   const onMarkerClick = (props, marker, e) => {
       setSelectedPlace(props);
@@ -259,8 +263,8 @@ const MapContainer = ({ google }) => {
           styles={darkMapStyles}
           initialCenter={
             {
-              lat: 41.8690,
-              lng: -87.6270
+              lat: defaultLat,
+              lng: defaultLng
             }
           }
           mapTypeControl={false} // disable Map and Satellite options

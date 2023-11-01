@@ -44,6 +44,7 @@ const Login = () => {
                 setCookie('isLoggedIn', 'true', { path: '/', sameSite: 'None', secure: true });
                 setCookie('token', userInfo.token, { path: '/', sameSite: 'None', secure: true });
                 setCookie('userType', userInfo.role, { path: '/', sameSite: 'None', secure: true });
+                // Get user's default location (Latitude and longgitute)
                 setCookie('defaultLat', userInfo.defaultLocationLatitude, { path: '/', sameSite: 'None', secure: true });
                 setCookie('defaultLng', userInfo.defaultLocationLongitute, { path: '/', sameSite: 'None', secure: true });
 
