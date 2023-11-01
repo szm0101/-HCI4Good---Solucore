@@ -1,7 +1,74 @@
-import React from "react";
+import React, { useEffect, useState }  from "react";
 import './Data.css';
+import { useCookies } from "react-cookie";
 
-function GeneralOpData() {
+function GeneralOpData(props) {
+  const [cookies] = useCookies();
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    var header = new Headers();
+    header.append("Valid-token", cookies.token);
+
+    //up count
+
+    //down count
+
+    //run count
+
+    var requestOptions = {
+      method: "get",
+      headers: header,
+    };
+
+    const currentDate = new Date();
+
+    let startDate = new Date(currentDate);
+    startDate.setDate(currentDate.getDate() - 10);
+
+    startDate =
+      startDate.getFullYear() +
+      "-" +
+      (startDate.getMonth() + 1) +
+      "-" +
+      startDate.getDate();
+
+    let endDate =
+      currentDate.getFullYear() +
+      "-" +
+      (currentDate.getMonth() + 1) +
+      "-" +
+      currentDate.getDate();
+
+    var urlParams = {
+      deviceId: props.deviceId,
+      startDate: startDate,
+      endDate: endDate,
+    };
+
+    const handleGeneralOpData = () => {
+      fetch(
+        `https://services.solucore.com/solutrak/api/devicePerformances/getRunCounts?deviceId=${urlParams.deviceId}&beginningDate=${urlParams.startDate}&endingDate=${urlParams.endDate}`,
+        requestOptions
+      )
+        .then((response) => response.json())
+        .then((json) => setData(json.Data))
+        .catch((error) => console.log("API error" + error));
+    };
+
+    handleGeneralOpData();
+  }, [props.deviceId, cookies.token]);
+
+  const parseDate = (date) => {
+    const parsedDate = new Date(date);
+    const options = {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+    }
+
+    var countData = new Array();
+    return countData;
+  }
   return (
     <>
       <tr>
@@ -15,11 +82,29 @@ function GeneralOpData() {
             <tbody>
               <tr>
                 <td>Up</td>
-                <td>value</td>
+                <td>{data ? (
+                data.map((genderalOpData) => (
+                  <tr>
+                    <td>{genderalOpData.Devices}</td>
+                    <td className="genderalOpDataDescription">{genderalOpData.Description}</td>
+                  </tr>
+                ))
+              ) : (
+                <td>Loading...</td>
+              )}</td>
               </tr>
               <tr>
                 <td>Down</td>
-                <td>value</td>
+                <td>{data ? (
+                data.map((genderalOpData) => (
+                  <tr>
+                    <td>{genderalOpData.Devices}</td>
+                    <td className="genderalOpDataDescription">{genderalOpData.Description}</td>
+                  </tr>
+                ))
+              ) : (
+                <td>Loading...</td>
+              )}</td>
               </tr>
             </tbody>
           </table>
