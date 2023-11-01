@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 import "./Map.css";
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
@@ -236,11 +236,29 @@ const MapContainer = ({ google }) => {
   
   const [showingInfoWindow, setShowingInfoWindow] = useState(false);  // Hides or shows the InfoWindow
   const [activeMarker, setActiveMarker] = useState({});               // Shows the active marker upon click
-  const [selectedPlace, setSelectedPlace] = useState({});            // Shows the InfoWindow to the selected place upon a marker
-
+  const [selectedPlace, setSelectedPlace] = useState({});             // Shows the InfoWindow to the selected place upon a marker
+  const [data, setData] = useState([]);                               // Stores the data from the Building API call
   const [cookies, setCookie] = useCookies();
+  
   const defaultLat = cookies.defaultLat;
   const defaultLng = cookies.defaultLng;
+  const token = cookies.token;
+
+  useEffect(() => {
+    const headers = new Headers({
+      'Valid-token': token,
+    });
+
+    // call getBuildingInfos API and store Data array
+    fetch('https://services.solucore.com/solutrak/api/buildings/getBuildingInfos', {"method": "GET",headers})
+      .then((response) => response.json())
+      .then((result) => {
+        setData(result.Data);
+      })
+      .catch((error) => {
+        console.error('API Error:', error);
+      });
+  }, []);
   
   const onMarkerClick = (props, marker, e) => {
       setSelectedPlace(props);
