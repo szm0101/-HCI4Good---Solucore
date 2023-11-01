@@ -75,6 +75,7 @@ function CreateActivityForm() {
                     />
                 </fieldset>
                 <fieldset>
+                    <br></br>
                     <legend>REPAIR STATUS</legend>
                     <label className='status'>STATUS</label>
                     <select value={status} onChange={(e) => setStatus(e.target.value)} className='select'>
