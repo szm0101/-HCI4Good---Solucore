@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { useCookies } from 'react-cookie';
 import "./Map.css";
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
@@ -232,33 +232,29 @@ const darkMapStyles = [
   }
 ];
 
-export class MapContainer extends Component {
+const MapContainer = ({ google }) => {
   
-  state = {
-    showingInfoWindow: false,  // Hides or shows the InfoWindow
-    activeMarker: {},          // Shows the active marker upon click
-    selectedPlace: {}          // Shows the InfoWindow to the selected place upon a marker
-  };
-  onMarkerClick = (props, marker, e) =>
-    this.setState({
-      selectedPlace: props,
-      activeMarker: marker,
-      showingInfoWindow: true
-    });
+  const [showingInfoWindow, setShowingInfoWindow] = useState(false);  // Hides or shows the InfoWindow
+  const [activeMarker, setActiveMarker] = useState({});               // Shows the active marker upon click
+  const [selectedPlace, setSelectedPlace] = useState({});            // Shows the InfoWindow to the selected place upon a marker
+  
+  const onMarkerClick = (props, marker, e) => {
+      setSelectedPlace(props);
+      setActiveMarker(marker);
+      setShowingInfoWindow(true);
+    };
 
-  onClose = props => {
-    if (this.state.showingInfoWindow) {
-      this.setState({
-        showingInfoWindow: false,
-        activeMarker: null
-      });
+  const onClose = () => {
+    if (showingInfoWindow) {
+      setShowingInfoWindow(false);
+      setActiveMarker(null);
     }
   };
-  render() {
+
     return (
       <div className="map-container">
         <Map
-          google={this.props.google}
+          google={google}
           zoom={14}
           styles={darkMapStyles}
           initialCenter={
@@ -270,62 +266,61 @@ export class MapContainer extends Component {
           mapTypeControl={false} // disable Map and Satellite options
           streetViewControl={false} // disable street view control
           zoomControlOptions={{
-            position: this.props.google.maps.ControlPosition.BOTTOM_LEFT, // Set the zoom position
+            position: google.maps.ControlPosition.BOTTOM_LEFT, // Set the zoom position
           }}
         >
           <Marker
             position={{ lat: 41.8780, lng: -87.6298 }}
             icon={{
-              path: this.props.google.maps.SymbolPath.CIRCLE,
+              path: google.maps.SymbolPath.CIRCLE,
               fillColor: '#2096f3', // fill color to blue
               fillOpacity: 1, // 1 means fully opaque
               scale: 10, // the size
               strokeColor: '#161617',
               strokeWeight: 8
             }}
-            onClick={this.onMarkerClick}
+            onClick={onMarkerClick}
             name={'Building 1'}
           />
           <Marker
             position={{ lat: 41.8730, lng: -87.6200 }}
             icon={{
-              path: this.props.google.maps.SymbolPath.CIRCLE,
+              path: google.maps.SymbolPath.CIRCLE,
               fillColor: '#2096f3', // fill color to blue
               fillOpacity: 1, // 1 means fully opaque
               scale: 10, // the size
               strokeColor: '#161617',
               strokeWeight: 8
             }}
-            // onClick={this.onMarkerClick}
+            // onClick={onMarkerClick}
             name={'Building 2'}
           />
           <Marker
             position={{ lat: 41.8670, lng: -87.6470 }}
             icon={{
-              path: this.props.google.maps.SymbolPath.CIRCLE,
+              path: google.maps.SymbolPath.CIRCLE,
               fillColor: '#2096f3', // fill color to blue
               fillOpacity: 1, // 1 means fully opaque
               scale: 10, // the size
               strokeColor: '#161617',
               strokeWeight: 8
             }}
-            // onClick={this.onMarkerClick}
+            // onClick={onMarkerClick}
             name={'Building 3'}
           />
           <InfoWindow
-            marker={this.state.activeMarker}
-            visible={this.state.showingInfoWindow}
-            onClose={this.onClose}
+            marker={activeMarker}
+            visible={showingInfoWindow}
+            onClose={onClose}
           >
             <div>
-              <h4>{this.state.selectedPlace.name}</h4>
+              <h4>{selectedPlace.name}</h4>
             </div>
           </InfoWindow>
         </Map>
       </div>
     );
-  }
-}
+};
 
 export default GoogleApiWrapper({
   apiKey
