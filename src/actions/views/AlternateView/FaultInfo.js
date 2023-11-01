@@ -51,11 +51,10 @@ function FaultInfo(props) {
     };
 
     handleFaultInfo();
-  }, []);
+  }, [props.deviceId, cookies.token]);
 
   return (
     <>
-      
         <td>
           <table className="faultTable">
             <thead>
@@ -82,7 +81,6 @@ function FaultInfo(props) {
             </tbody>
           </table>
         </td>
-      
     </>
   );
 }

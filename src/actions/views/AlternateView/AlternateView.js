@@ -48,7 +48,7 @@ function AlternateView() {
 
     setDeviceIds(deviceIds);
     fetchDeviceIds();
-  }, []);
+  }, [cookies.token]);
 
   return (
     <div className="wrapper">
@@ -105,7 +105,7 @@ function AlternateView() {
             {isOpen[2] ? (
               <tr>
                 <table className="general-op-data">
-                  <tbody>{<MaintenanceInfo />}</tbody>
+                  <tbody>{<MaintenanceInfo deviceId={deviceIds[0]}/>}</tbody>
                 </table>
               </tr>
             ) : null}
