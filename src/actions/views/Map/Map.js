@@ -233,13 +233,13 @@ const darkMapStyles = [
 ];
 
 const MapContainer = ({ google }) => {
-  
+
   const [showingInfoWindow, setShowingInfoWindow] = useState(false);  // Hides or shows the InfoWindow
   const [activeMarker, setActiveMarker] = useState({});               // Shows the active marker upon click
   const [selectedPlace, setSelectedPlace] = useState({});             // Shows the InfoWindow to the selected place upon a marker
   const [data, setData] = useState([]);                               // Stores the data from the Building API call
   const [cookies, setCookie] = useCookies();
-  
+
   const defaultLat = cookies.defaultLat;
   const defaultLng = cookies.defaultLng;
   const token = cookies.token;
@@ -250,7 +250,7 @@ const MapContainer = ({ google }) => {
     });
 
     // call getBuildingInfos API and store Data array
-    fetch('https://services.solucore.com/solutrak/api/buildings/getBuildingInfos', {"method": "GET",headers})
+    fetch('https://services.solucore.com/solutrak/api/buildings/getBuildingInfos', { "method": "GET", headers })
       .then((response) => response.json())
       .then((result) => {
         setData(result.Data);
@@ -259,12 +259,12 @@ const MapContainer = ({ google }) => {
         console.error('API Error:', error);
       });
   }, []);
-  
+
   const onMarkerClick = (props, marker, e) => {
-      setSelectedPlace(props);
-      setActiveMarker(marker);
-      setShowingInfoWindow(true);
-    };
+    setSelectedPlace(props);
+    setActiveMarker(marker);
+    setShowingInfoWindow(true);
+  };
 
   const onClose = () => {
     if (showingInfoWindow) {
@@ -273,75 +273,56 @@ const MapContainer = ({ google }) => {
     }
   };
 
-    return (
-      <div className="map-container">
-        <Map
-          google={google}
-          zoom={11}
-          styles={darkMapStyles}
-          initialCenter={
-            {
-              lat: defaultLat,
-              lng: defaultLng
-            }
+  return (
+    <div className="map-container">
+      <Map
+        google={google}
+        zoom={11}
+        styles={darkMapStyles}
+        initialCenter={
+          {
+            lat: defaultLat,
+            lng: defaultLng
           }
-          mapTypeControl={false} // disable Map and Satellite options
-          streetViewControl={false} // disable street view control
-          zoomControlOptions={{
-            position: google.maps.ControlPosition.BOTTOM_LEFT, // Set the zoom position
-          }}
+        }
+        mapTypeControl={false}
+        streetViewControl={false}
+        zoomControlOptions={{
+          position: google.maps.ControlPosition.BOTTOM_LEFT,
+        }}
+      >
+        {data ? (
+          data.map((building) => (
+            <Marker
+              key={building.buildingId}
+              position={{ lat: building.latitude, lng: building.longitute }}
+              icon={{
+                path: google.maps.SymbolPath.CIRCLE,
+                fillColor: '#2096f3',
+                fillOpacity: 1,
+                scale: 10,
+                strokeColor: '#161617',
+                strokeWeight: 8
+              }}
+              onClick={onMarkerClick}
+              name={building.buildingName}
+            />
+          ))
+        ) : (
+          <p>Loading...</p>
+        )}
+        <InfoWindow
+          marker={activeMarker}
+          visible={showingInfoWindow}
+          onClose={onClose}
         >
-          <Marker
-            position={{ lat: 41.8780, lng: -87.6298 }}
-            icon={{
-              path: google.maps.SymbolPath.CIRCLE,
-              fillColor: '#2096f3', // fill color to blue
-              fillOpacity: 1, // 1 means fully opaque
-              scale: 10, // the size
-              strokeColor: '#161617',
-              strokeWeight: 8
-            }}
-            onClick={onMarkerClick}
-            name={'Building 1'}
-          />
-          <Marker
-            position={{ lat: 41.8730, lng: -87.6200 }}
-            icon={{
-              path: google.maps.SymbolPath.CIRCLE,
-              fillColor: '#2096f3', // fill color to blue
-              fillOpacity: 1, // 1 means fully opaque
-              scale: 10, // the size
-              strokeColor: '#161617',
-              strokeWeight: 8
-            }}
-            // onClick={onMarkerClick}
-            name={'Building 2'}
-          />
-          <Marker
-            position={{ lat: 41.8670, lng: -87.6470 }}
-            icon={{
-              path: google.maps.SymbolPath.CIRCLE,
-              fillColor: '#2096f3', // fill color to blue
-              fillOpacity: 1, // 1 means fully opaque
-              scale: 10, // the size
-              strokeColor: '#161617',
-              strokeWeight: 8
-            }}
-            // onClick={onMarkerClick}
-            name={'Building 3'}
-          />
-          <InfoWindow
-            marker={activeMarker}
-            visible={showingInfoWindow}
-            onClose={onClose}
-          >
-            <div>
-              <h4>{selectedPlace.name}</h4>
-            </div>
-          </InfoWindow>
-        </Map>
-      </div>
-    );
+          <div>
+            <h4>{selectedPlace.name}</h4>
+          </div>
+        </InfoWindow>
+      </Map>
+    </div>
+  );
 };
 
 export default GoogleApiWrapper({
