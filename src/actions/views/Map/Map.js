@@ -277,7 +277,7 @@ const MapContainer = ({ google }) => {
       <div className="map-container">
         <Map
           google={google}
-          zoom={14}
+          zoom={11}
           styles={darkMapStyles}
           initialCenter={
             {
