@@ -1,8 +1,3 @@
-.fault-info-table{
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-}
 
 .tempTable{
     width: 100% !important;

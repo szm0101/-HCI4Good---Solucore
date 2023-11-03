@@ -1,5 +1,6 @@
 import React from "react";
 import { useCookies } from "react-cookie";
+import { Link } from "react-router-dom";
 import "./AlternateView.css";
 import Logo from "../../assets/solutrak-logo.png";
 import GeneralOpData from "./GeneralOpData";
@@ -53,7 +54,7 @@ function AlternateView() {
   return (
     <div className="wrapper">
       <div className="top-bar">
-        <img src={Logo} alt="Solutrak logo" className="solutrak-logo"></img>
+        <a href="/home"><img src={Logo} alt="Solutrak logo" className="solutrak-logo"></img></a>
       </div>
       <div className="content">
         <table className="main-table">
