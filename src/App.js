@@ -22,8 +22,8 @@ function App() {
     return (
         <div className="App">
             <BrowserRouter>
-                {userIsLoggedIn && <Navbar />}
-                {userIsLoggedIn && <Sidebar />}
+                {userIsLoggedIn && !window.location.pathname.includes("/AlternateView") && <Navbar />}
+                {userIsLoggedIn && !window.location.pathname.includes("/AlternateView") && <Sidebar />}
                 
 
                 <Routes>
