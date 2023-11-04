@@ -124,27 +124,27 @@ const darkMapStyles = [
       }
     ]
   },
-  {
-    "featureType": "road",
-    "elementType": "labels.icon",
-    "stylers": [
-      {
-        "visibility": "simplified"
-      },
-      {
-        "weight": 8
-      },
-      {
-        "color": "#121212"
-      }
-    ]
-  },
+  // {
+  //   "featureType": "road",
+  //   "elementType": "labels.icon",
+  //   "stylers": [
+  //     {
+  //       "visibility": "simplified"
+  //     },
+  //     {
+  //       "weight": 8
+  //     },
+  //     {
+  //       "color": "#121212"
+  //     }
+  //   ]
+  // },
   {
     "featureType": "road",
     "elementType": "labels.text.fill",
     "stylers": [
       {
-        "color": "#bdbdbd" // "color": "#bdbdbd"
+        "color": "#bdbdbd"
       }
     ]
   },
@@ -191,7 +191,7 @@ const darkMapStyles = [
         "visibility": "on",
       },
       {
-        "color": "#171717" // Set the trsnsit color to black
+        "color": "#171717"
       }
     ]
   },
