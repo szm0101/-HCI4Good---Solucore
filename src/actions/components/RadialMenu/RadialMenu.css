@@ -1,0 +1,163 @@
+/* RadialMenu.css */
+.radial-menu-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.radial-menu {
+  position: relative;
+  width: 360px;
+  height: 360px;
+  border: 3px solid #2196F3;
+  background-color: #204C70;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.temperature-gauge {
+  width: 250px;
+  height: 250px;
+  position: absolute;
+  z-index: 10;
+  transform: translate(-147.5px, -45%);
+  fill: #011729;
+}
+
+.temp-info-celsius {
+  position: absolute;
+  color: white;
+  transform: translateY(50%);
+  top: 102.5%;
+  left: 15%;
+}
+
+.temp-info-farenheit {
+  position: absolute;  
+  color: white;
+  transform: translateY(-50%);
+  top: 125%;
+  left: 15%;
+}
+
+.temperature-container{
+  position: relative;
+}
+
+.temperature-value{
+  position: absolute;
+  z-index: 20;
+  top: 100%;
+  left: -30%;
+  transform: translate(-5%, -50%);
+}
+
+.temperature-value-svg{
+  fill: red;
+  
+}
+
+.inner-ring {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  border: 3px solid #1D6BAE;
+  background-color: #011729;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.second-ring {
+  position: relative;
+  width: 205px;
+  height: 205px;
+  border: 6px solid #1D6BAE;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Specific selector for .third-ring with !important rule */
+.third-ring {
+  position: relative;
+  width: 260px;
+  height: 260px;
+  border: 5px dashed #1D548B;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-item-container {
+  width: 80px;
+  height: 80px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-item-container:nth-child(2) {
+  top: -10%;
+  left: 65%;
+  z-index: 50;
+}
+
+.menu-item-container:nth-child(3) {
+  top: 15%;
+  left: 100%;
+  z-index: 50;
+}
+
+.menu-item-container:nth-child(4) {
+  top: 55%;
+  left: 100%;
+  z-index: 50;
+}
+
+.menu-item-container:nth-child(5) {
+  top: 85%;
+  left: 75%;
+  z-index: 50;
+}
+
+.menu-item-container:nth-child(6) {
+  top: 85%;
+  left: 25%;
+  z-index: 50;
+}
+
+.device-image {
+  width: 50px; /* Adjust size as necessary */
+  margin-bottom: 10px;
+  margin-left: 0px;
+  padding-left: 0px;
+}
+
+.device-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px; /* Adjust font size as necessary */
+  color: white; /* Adjust color as necessary */
+}
+
+/* For Testing Only (DELETE LATER)*/
+body{
+  background-color: #4b535a;
+}
