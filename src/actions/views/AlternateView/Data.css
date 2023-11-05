@@ -3,7 +3,6 @@
     width: 100% !important;
     font-size: medium;
     table-layout: fixed;
-
 }
 .tempTable td{
     border: 1px solid black;
@@ -30,11 +29,12 @@
     background-color: #C0C0C0;
     color: black;
     padding: 2px;
-    
 }
 .runTable {
     width: 200px !important;
     font-size: 14px;
+    display: inline-table;
+    margin-bottom: 10px;
 }
 .runTable tr td{
     max-width: 200px !important;
@@ -42,6 +42,7 @@
     background-color: white;
     color: black;
     padding: 2px;
+    
 }
 
 
@@ -67,6 +68,7 @@
 .performanceTable{
     width: 200px !important; 
     font-size: medium;
+
 }
 .performanceTable tr td{
     width: 200px !important;
@@ -155,7 +157,6 @@
     font-size: medium;
 }
 
-
 .densityTable tr td{
     max-width: 200px !important;
     border: 1px solid black;
@@ -163,8 +164,6 @@
     color: black;
     padding: 2px;
 }
-
-
 
 .buildingInfo{
     color: white;

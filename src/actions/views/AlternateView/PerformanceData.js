@@ -54,22 +54,40 @@ function PerformanceData(props) {
     handlePerformanceData();
   }, [props.deviceId, cookies.token]);
 
-
-
   return (
     <>
       <tr>
         <td>
           <table className="performanceTable">
             <tbody>
-              <tr>
-                <td>Average door open(s) actual/targe</td>
-                <td>value</td>
-              </tr>
-              <tr>
-                <td>Average door close(s) actual/targe</td>
-                <td>value</td>
-              </tr>
+            {data ? (
+                data.map((PerformanceData) => (
+                  <tr>
+                    <td>Average door open(s) actual/target</td>
+                    <td>{PerformanceData.Date}</td> 
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td>Average door open(s) actual/target</td>
+                  <td>Loading...</td>
+                </tr>
+              )}
+             
+             {data ? (
+                data.map((PerformanceData) => (
+                  <tr>
+                    <td>Average door close(s) actual/target</td>
+                    <td>{PerformanceData.Date}</td> 
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td>Average door close(s) actual/target</td>
+                  <td>Loading...</td>
+                </tr>
+              )}
+             
               <tr>
                 <td>Floor with slowest door close</td>
                 <td>value</td>
@@ -88,62 +106,6 @@ function PerformanceData(props) {
               </tr>
               <tr>
                 <td>Maximum speed up</td>
-                <td>value</td>
-              </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          <table className="doorCycleTable">
-            <thead>
-              <th colSpan={2}>Door Cycle(Front): </th>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Up</td>
-                <td>value</td>
-              </tr>
-              <tr>
-                <td>Door Open</td>
-                <td>value</td>
-              </tr>
-              <tr>
-                <td>Door Close</td>
-                <td>value</td>
-              </tr>
-              <tr>
-                <td>Nudging</td>
-                <td>value</td>
-              </tr>
-              <tr>
-                <td>Reopen</td>
-                <td>value</td>
-              </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          {/* Need to change table name - width 100% */}
-          <table className="tempTable">
-            <thead>
-              <th colSpan={2}>Control Temperature Max: </th>
-            </thead>
-            <tbody>
-              <tr>
-                <td>...</td>
-                <td>value</td>
-              </tr>
-              <tr>
-                <td>Time</td>
-                <td>value</td>
-              </tr>
-              <tr>
-                <td>...</td>
                 <td>value</td>
               </tr>
             </tbody>

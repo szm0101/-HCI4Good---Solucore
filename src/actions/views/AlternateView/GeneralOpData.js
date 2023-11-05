@@ -46,15 +46,38 @@ function GeneralOpData(props) {
         .then((response) => response.json())
         .then((json) => setData(json.Data))
         .catch((error) => console.log("API error" + error));
+        return null;
     };
 
-    handleGeneralOpData();
+    const doorCycleData = () => {
+      fetch(
+        `https://services.solucore.com/solutrak/api/devicePerformances/getDoorCycleCounts?deviceId=${urlParams.deviceId}&beginningDate=${urlParams.startDate}&endingDate=${urlParams.endDate}`,
+        requestOptions
+      )
+          .then((response) => response.json())
+          .then((json) => setData(json.Data))
+          .catch((error) => console.log("API error" + error));
+          return null;
+    };
+   
+    
+    // handleGeneralOpData();
+    // doorCycleData();
+    Promise.all([handleGeneralOpData(), doorCycleData()])
+  .then(([generalOpData, doorCycleData]) => {
+    // Check if both API calls were successful before updating the state
+    if (generalOpData !== null && doorCycleData !== null) {
+      // Set the data state with the results of both API calls
+      setData({ generalOpData, doorCycleData });
+    }
+      });
+  
   }, [props.deviceId, cookies.token]);
+  
   
   return (
     <>
         <td>
-          <span>Run Count: </span>
           <table className="runTable">
             <thead>
               <th>Direction</th>
@@ -63,21 +86,82 @@ function GeneralOpData(props) {
             <tbody>
             {data ? (
                 data.map((runCounts) => (
-                  <tr>
-                    <td>{"Up : "+ runCounts.Up}</td>
-                    <td>{"Down : "+ runCounts.Down }</td>
-                  </tr>
+                  <><tr>
+                    <td>Up</td>
+                    <td>{runCounts.Up}</td>
+                  </tr><tr>
+                      <td>Down</td>
+                      <td>{runCounts.Down}</td>
+                    </tr></>
                 ))
               ) : (
-                <tr>
+                <><tr>
+                  <td>Up</td>
                   <td>Loading...</td>
-                  <td>Loading...</td>
-                </tr>
+                </tr><tr>
+                    <td>Down</td>
+                    <td>Loading...</td>
+                  </tr></>
               )}
             </tbody>
           </table>
+        
+        <tr>
+        
+          <table className="doorCycleTable">
+            <thead>
+              <th colSpan={2}>Door Cycle(Front): </th>
+            </thead>
+            <tbody>
+              {data ? (
+                  data.map((doorCycle) => (
+                    <>
+                    <tr>
+                      <td>Door Open</td>
+                      <td>{doorCycle.Open}</td>
+                    </tr>
+                    <tr>
+                    <td>Door Close</td>
+                      <td>{doorCycle.Close}</td>
+                    </tr>
+                    <tr>
+                      <td>Nudging</td>
+                      <td>{doorCycle.Nudging}</td>
+                    </tr>
+                    <tr>
+                      <td>Reopen</td>
+                      <td>{doorCycle.Reopen}</td>
+                    </tr>
+                    </>
+                  ))
+                ) : (
+                  <>
+                      <tr>
+                        <td>Door Open</td>
+                        <td>Loading...</td>
+                      </tr>
+                      <tr>
+                        <td>Door Close</td>
+                        <td>Loading...</td>
+                      </tr>
+                      <tr>
+                        <td>Nudging</td>
+                        <td>Loading...</td>
+                      </tr>
+                      <tr>
+                        <td>Reopen</td>
+                        <td>Loading...</td>
+                      </tr>
+                      </>
+                    )}
+            </tbody>
+          </table>
+          </tr>
         </td>
       
+      
+
+        
       </>
   );
 

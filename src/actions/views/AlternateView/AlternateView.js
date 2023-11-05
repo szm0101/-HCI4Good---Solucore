@@ -85,7 +85,12 @@ function AlternateView() {
             {isOpen[0] ? (
               <tr>
                 <table className="general-op-data">
-                  <tbody>{<GeneralOpData />}</tbody>
+                {deviceIds.map((deviceId) => (
+                      <tbody>
+                        {<GeneralOpData deviceId={deviceId} />}
+                      </tbody>
+                    ))}
+                
                 </table>
               </tr>
             ) : null}
@@ -96,7 +101,9 @@ function AlternateView() {
             {isOpen[1] ? (
               <tr>
                 <table className="general-op-data">
-                  <tbody>{<PerformanceData />}</tbody>
+                      <tbody>
+                        {<PerformanceData deviceId={deviceIds[0]} />}
+                      </tbody>
                 </table>
               </tr>
             ) : null}
