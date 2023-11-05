@@ -1,0 +1,262 @@
+/* screen size like mobile */
+@media only screen and (min-width: 400px) {
+    .device {
+        padding-right: 40px;
+    }
+
+    input[type=text] {
+        width: 300px;
+    }
+
+    .activity {
+        padding-right: 30px;
+    }
+
+    .datePicker {
+        width: 300px;
+    }
+
+    .reporter,
+    .entrapment,
+    .problem,
+    .status,
+    .closeDate,
+    .machanic {
+        padding-right: 15px;
+    }
+
+    .textarea {
+        display: flex;
+        align-items: center;
+    }
+
+    .select {
+        background-color: #292c3b;
+        color: white;
+        border: 1px solid white;
+        font-weight: bold;
+        width: 300px;
+        height: 30px;
+    }
+
+    input[type=submit] {
+        background-color: #2295e1;
+        color: white;
+        margin: 50px;
+        padding: 10px;
+        width: 200px;
+        font-family: Montserrat, sans-serif;
+        font-weight: bold;
+        font-size: 16px;
+        border: 1px solid transparent;
+        border-radius: 2px;
+    }
+
+    .sumbitButton {
+        text-align: center;
+    }
+
+    legend {
+        font-weight: bold;
+        color: white;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .device {
+        padding-right: 40px;
+    }
+
+    input[type=text] {
+        width: 300px;
+    }
+
+    .activity {
+        padding-right: 30px;
+    }
+
+    .datePicker {
+        width: 300px;
+    }
+
+    .reporter,
+    .entrapment,
+    .problem,
+    .status,
+    .closeDate,
+    .machanic {
+        padding-right: 15px;
+    }
+
+    .textarea {
+        display: flex;
+        align-items: center;
+    }
+
+    .select {
+        background-color: #292c3b;
+        color: white;
+        border: 1px solid white;
+        font-weight: bold;
+        width: 300px;
+        height: 30px;
+    }
+
+    input[type=submit] {
+        background-color: #2295e1;
+        color: white;
+        margin: 50px;
+        padding: 10px;
+        width: 200px;
+        font-family: Montserrat, sans-serif;
+        font-weight: bold;
+        font-size: 16px;
+        border: 1px solid transparent;
+        border-radius: 2px;
+    }
+
+    .sumbitButton {
+        text-align: center;
+    }
+
+    legend {
+        font-weight: bold;
+        color: white;
+    }
+}
+
+/* screen size like tablets */
+@media only screen and (min-width: 992px) {
+    .device {
+        padding-right: 40px;
+    }
+
+    input[type=text] {
+        width: 300px;
+    }
+
+    .activity {
+        padding-right: 30px;
+    }
+
+    .datePicker {
+        width: 300px;
+    }
+
+    .reporter,
+    .entrapment,
+    .problem,
+    .status,
+    .closeDate,
+    .machanic {
+        padding-right: 15px;
+    }
+
+    .textarea {
+        display: flex;
+        align-items: center;
+    }
+
+    .select {
+        background-color: #292c3b;
+        color: white;
+        border: 1px solid white;
+        font-weight: bold;
+        width: 300px;
+        height: 30px;
+    }
+
+    input[type=submit] {
+        background-color: #2295e1;
+        color: white;
+        margin: 50px;
+        padding: 10px;
+        width: 200px;
+        font-family: Montserrat, sans-serif;
+        font-weight: bold;
+        font-size: 16px;
+        border: 1px solid transparent;
+        border-radius: 2px;
+    }
+
+    .sumbitButton {
+        text-align: center;
+    }
+
+    legend {
+        font-weight: bold;
+        color: white;
+    }
+}
+
+/* screen size like desktop */
+@media only screen and (min-width: 1200px) {
+    .grid-container {
+        display: grid;
+        grid-template-columns: 650px 450px;
+        padding: 10px;
+        background-color: #292c3b;
+        color: white;
+    }
+
+    .device {
+        padding-right: 40px;
+    }
+
+    input[type=text] {
+        width: 300px;
+    }
+
+    .activity {
+        padding-right: 30px;
+    }
+
+    .datePicker {
+        width: 300px;
+    }
+
+    .reporter,
+    .entrapment,
+    .problem,
+    .status,
+    .closeDate,
+    .machanic {
+        padding-right: 15px;
+    }
+
+    .textarea {
+        display: flex;
+        align-items: center;
+    }
+
+    .select {
+        background-color: #292c3b;
+        color: white;
+        border: 1px solid white;
+        font-weight: bold;
+        width: 300px;
+        height: 30px;
+    }
+
+    input[type=submit] {
+        background-color: #2295e1;
+        color: white;
+        margin-left: 450px;
+        padding: 10px;
+        width: 200px;
+        font-family: Montserrat, sans-serif;
+        font-weight: bold;
+        font-size: 16px;
+        border: 1px solid transparent;
+        border-radius: 2px;
+    }
+
+    .sumbitButton {
+        text-align: center;
+    }
+
+    legend {
+        font-weight: bold;
+        color: white;
+    }
+}

@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useCookies } from 'react-cookie';
+import "./Map.css";
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 
 const apiKey = process.env.REACT_APP_apiKey;
@@ -122,27 +124,27 @@ const darkMapStyles = [
       }
     ]
   },
-  {
-    "featureType": "road",
-    "elementType": "labels.icon",
-    "stylers": [
-      {
-        "visibility": "simplified"
-      },
-      {
-        "weight": 8
-      },
-      {
-        "color": "#121212"
-      }
-    ]
-  },
+  // {
+  //   "featureType": "road",
+  //   "elementType": "labels.icon",
+  //   "stylers": [
+  //     {
+  //       "visibility": "simplified"
+  //     },
+  //     {
+  //       "weight": 8
+  //     },
+  //     {
+  //       "color": "#121212"
+  //     }
+  //   ]
+  // },
   {
     "featureType": "road",
     "elementType": "labels.text.fill",
     "stylers": [
       {
-        "color": "#bdbdbd" // "color": "#bdbdbd"
+        "color": "#bdbdbd"
       }
     ]
   },
@@ -189,7 +191,7 @@ const darkMapStyles = [
         "visibility": "on",
       },
       {
-        "color": "#171717" // Set the trsnsit color to black
+        "color": "#171717"
       }
     ]
   },
@@ -230,71 +232,98 @@ const darkMapStyles = [
   }
 ];
 
+const MapContainer = ({ google }) => {
 
-export class MapContainer extends Component {
-  state = {
-    showingInfoWindow: false,  // Hides or shows the InfoWindow
-    activeMarker: {},          // Shows the active marker upon click
-    selectedPlace: {}          // Shows the InfoWindow to the selected place upon a marker
-  };
-  onMarkerClick = (props, marker, e) =>
-    this.setState({
-      selectedPlace: props,
-      activeMarker: marker,
-      showingInfoWindow: true
+  const [showingInfoWindow, setShowingInfoWindow] = useState(false);  // Hides or shows the InfoWindow
+  const [activeMarker, setActiveMarker] = useState({});               // Shows the active marker upon click
+  const [selectedPlace, setSelectedPlace] = useState({});             // Shows the InfoWindow to the selected place upon a marker
+  const [data, setData] = useState([]);                               // Stores the data from the Building API call
+  const [cookies, setCookie] = useCookies();
+
+  const defaultLat = cookies.defaultLat;
+  const defaultLng = cookies.defaultLng;
+  const token = cookies.token;
+
+  useEffect(() => {
+    const headers = new Headers({
+      'Valid-token': token,
     });
 
-  onClose = props => {
-    if (this.state.showingInfoWindow) {
-      this.setState({
-        showingInfoWindow: false,
-        activeMarker: null
+    // call getBuildingInfos API and store Data array
+    fetch('https://services.solucore.com/solutrak/api/buildings/getBuildingInfos', { "method": "GET", headers })
+      .then((response) => response.json())
+      .then((result) => {
+        setData(result.Data);
+      })
+      .catch((error) => {
+        console.error('API Error:', error);
       });
+  }, []);
+
+  const onMarkerClick = (props, marker, e) => {
+    setSelectedPlace(props);
+    setActiveMarker(marker);
+    setShowingInfoWindow(true);
+  };
+
+  const onClose = () => {
+    if (showingInfoWindow) {
+      setShowingInfoWindow(false);
+      setActiveMarker(null);
     }
   };
-  render() {
-    return (
-      <div style={{ position: 'fixed', top: '0px', left: '0px', right: '0px', bottom: '0px', zIndex: -10 }}>
-        <Map
-          google={this.props.google}
-          zoom={14}
-          styles={darkMapStyles}
-          initialCenter={
-            {
-              lat: 41.8690,
-              lng: -87.6270
-            }
+
+  return (
+    <div className="map-container">
+      <Map
+        google={google}
+        zoom={11}
+        styles={darkMapStyles}
+        initialCenter={
+          {
+            lat: defaultLat,
+            lng: defaultLng
           }
+        }
+        mapTypeControl={false}
+        streetViewControl={false}
+        zoomControlOptions={{
+          position: google.maps.ControlPosition.BOTTOM_LEFT,
+        }}
+      >
+        {data ? (
+          data.map((building) => (
+            <Marker
+              key={building.buildingId}
+              position={{ lat: building.latitude, lng: building.longitute }}
+              icon={{
+                path: google.maps.SymbolPath.CIRCLE,
+                fillColor: '#2096f3',
+                fillOpacity: 1,
+                scale: 10,
+                strokeColor: '#161617',
+                strokeWeight: 8
+              }}
+              onClick={onMarkerClick}
+              name={building.buildingName}
+            />
+          ))
+        ) : (
+          <p>Loading...</p>
+        )}
+        <InfoWindow
+          marker={activeMarker}
+          visible={showingInfoWindow}
+          onClose={onClose}
         >
-          <Marker
-            position={{ lat: 41.8780, lng: -87.6298 }}
-            onClick={this.onMarkerClick}
-            name={'Building 1'}
-          />
-          <Marker
-            position={{ lat: 41.8730, lng: -87.6200 }}
-            onClick={this.onMarkerClick}
-            name={'Building 2'}
-          />
-          <Marker
-            position={{ lat: 41.8670, lng: -87.6470 }}
-            onClick={this.onMarkerClick}
-            name={'Building 3'}
-          />
-          <InfoWindow
-            marker={this.state.activeMarker}
-            visible={this.state.showingInfoWindow}
-            onClose={this.onClose}
-          >
-            <div>
-              <h4>{this.state.selectedPlace.name}</h4>
-            </div>
-          </InfoWindow>
-        </Map>
-      </div>
-    );
-  }
-}
+          <div>
+            <h4>{selectedPlace.name}</h4>
+          </div>
+        </InfoWindow>
+      </Map>
+    </div>
+  );
+};
 
 export default GoogleApiWrapper({
   apiKey

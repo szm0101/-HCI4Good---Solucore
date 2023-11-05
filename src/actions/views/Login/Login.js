@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button, Card, Container, Form, Alert, Image,} from 'react-bootstrap'; // Import Bootstrap components
+import { Button, Card, Container, Form, Alert, Image, } from 'react-bootstrap'; // Import Bootstrap components
 import Logo from '../../assets/solutrak-logo.png';
 import { useCookies } from 'react-cookie';
 import './Login.css';
@@ -12,27 +12,53 @@ const Login = () => {
     const navigate = useNavigate();
     const [cookies, setCookie] = useCookies(); // Initialize the isLoggedIn cookie
 
-    const users = [
-        { username: 'admin', password: 'a7ank' },
-        { username: 'user1', password: 'a7ank' },
-        { username: 'client', password: 'a7ank' },
-    ];
 
     const handleForgotPassword = () => {
         navigate('/Forgot');
     };
-
-    const handleLogin = () => {
-        const userFound = users.find(user => user.username === username && user.password === password);
     
-        if (userFound) {
-            // Set 'isLoggedIn' in localStorage to 'true' when the user logs in
-            setCookie('isLoggedIn', 'true', { path: '/', sameSite: 'None', secure: true });
-            navigate('/Home');
-        } else {
-            setError('Invalid username or password');
-        }
+
+    const handleLogin = (username, password) => {
+
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        var raw = JSON.stringify({
+            "email": username,
+            "password": password
+          });
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+          };
+          
+          fetch("https://services.solucore.com/solutrak/api/accounts/signIn", requestOptions)
+          .then(response => response.text())
+          .then(result => {
+              // Check the result and handle the login accordingly
+              const data = JSON.parse(result);
+              const status = data.IsSuccess;
+              const userInfo = data.Data;
+            if (status) {
+                setCookie('isLoggedIn', 'true', { path: '/', sameSite: 'None', secure: true });
+                setCookie('token', userInfo.token, { path: '/', sameSite: 'None', secure: true });
+                setCookie('userType', userInfo.role, { path: '/', sameSite: 'None', secure: true });
+                // Get user's default location (Latitude and longgitute)
+                setCookie('defaultLat', userInfo.defaultLocationLatitude, { path: '/', sameSite: 'None', secure: true });
+                setCookie('defaultLng', userInfo.defaultLocationLongitute, { path: '/', sameSite: 'None', secure: true });
+
+
+                navigate('/Home');
+            } else {
+                setError('Invalid username or password');
+                console.log(data.IsSuccess);
+            }
+          })
+          .catch(error => console.log('error', error));
     };
+    
+    
 
     return (
         <Container fluid className="login-container d-flex align-items-center justify-content-center">
@@ -88,7 +114,7 @@ const Login = () => {
                                 type="button"
                                 className="login-btn"
                                 variant="primary"
-                                onClick={handleLogin}
+                                onClick={() => handleLogin(username, password)}
                                 style={{ margin: '10px 0' }}
                             >
                                 Login

@@ -1,27 +1,72 @@
 //need install react-select --force for the import the "Select" component from the 'react-select' library.
-import React, { useState } from 'react';
-import Select from 'react-select';
+import React, { useState } from 'react'
+import Modal from "react-bootstrap/Modal";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Button from 'react-bootstrap/Button';
+import CreateActivityForm from './CreateActivityForm';
+import Select, { NonceProvider } from 'react-select';
 import './Settings.css';
 
 //Create the filter use for choose Buildings and Devices
 const buildings = [
-    {value: '1', label: 'Building 1'},
-    {value: '2', label: 'Building 2'},
-    {value: '3', label: 'Building 3'},
-    {value: '4', label: 'Building 4'},
-    {value: '5', label: 'Building 5'},
-    {value: '6', label: 'Building 6'},
+    { value: '1', label: 'Building 1' },
+    { value: '2', label: 'Building 2' },
+    { value: '3', label: 'Building 3' },
+    { value: '4', label: 'Building 4' },
+    { value: '5', label: 'Building 5' },
+    { value: '6', label: 'Building 6' },
 ];
 
 const devices = [
-    {value: '1', label: 'Device 1'},
-    {value: '2', label: 'Device 2'},
-    {value: '3', label: 'Device 3'},
-    {value: '4', label: 'Device 4'},
-    {value: '5', label: 'Device 5'},
-    {value: '6', label: 'Device 6'},
+    { value: '1', label: 'Device 1' },
+    { value: '2', label: 'Device 2' },
+    { value: '3', label: 'Device 3' },
+    { value: '4', label: 'Device 4' },
+    { value: '5', label: 'Device 5' },
+    { value: '6', label: 'Device 6' },
 ];
 
+function showSecondSelect() {
+
+    var firstSelect = document.getElementById("firstSelect");
+    var secondSelectDiv = document.getElementById("secondSelectDiv");
+
+    if (firstSelect.value != "0") {
+        secondSelectDiv.style.display = "block";
+    } else {
+        secondSelectDiv.style.display = "none";
+    }
+}
+function showThirdSelect() {
+
+    var secondSelect = document.getElementById("secondSelect");
+    var thirdSelectDiv = document.getElementById("thirdSelectDiv");
+    var formGroupDiv = document.getElementById("form-group");
+
+    if (secondSelect.value != "0") {
+        thirdSelectDiv.style.display = "block";
+        formGroupDiv.style.height = "128px";
+
+    } else {
+        thirdSelectDiv.style.display = "none";
+        formGroupDiv.style.height = "94px";
+    }
+}
+
+function showTable1() {
+    var detailsDiv = document.getElementById("mytabs");
+    detailsDiv.style.display = "flex";
+    var formGroupDiv = document.getElementById("form-group");
+    formGroupDiv.style.height = "450px";
+    // var createActivityDiv = document.getElementById("createActivityDiv");
+    // createActivityDiv.style.display = "block";
+
+}
+
+function hideSecondSelect() {
+    var secondSelectDiv = document.getElementById("secondSelectDiv");
+    secondSelectDiv.style.display = "none";
+}
 //Create the Critical Hours and table show the Elevator Day time work information(like dummy code Time 1 and Time 2)
 function Settings() {
     //Use basic Hooks (useState) from react ref "https://legacy.reactjs.org/docs/hooks-reference.html#usestate"
@@ -32,6 +77,12 @@ function Settings() {
     const [editRowIndex, setEditRowIndex] = useState(-1);
     const [openingTime, setOpeningTime] = useState("");
     const [closingTime, setClosingTime] = useState("");
+    const [fromDateTime, setFromDateTime] = useState('');
+    const [toDateTime, setToDateTime] = useState('');
+    const [showDatePicker, setShowDatePicker] = useState(false);
+    // State to manage the visibility of the Create Activity form
+    const [showCreateActivityForm, setShowCreateActivityForm] = useState(false);
+
 
     // Update the time value(Opening/Closing time) when click the edited button
     function onModelClose(save) {
@@ -47,7 +98,7 @@ function Settings() {
     }
     // State variable to store the table rows for the selected building and device
     function addRow() {
-        setTableRows([...tableRows, {day: `Day ${tableRows.length + 1}`, openingTime: '', closingTime: ''}]);
+        setTableRows([...tableRows, { day: `Day ${tableRows.length + 1}`, openingTime: '', closingTime: '' }]);
     }
     // State variable to store the index of the row being edited
     function onEditClicked(index) {
@@ -55,124 +106,141 @@ function Settings() {
         setShowModel(true);
     }
 
+    // Date and Time event handlers
+    function showDatePickerInput() {
+        setShowDatePicker(true);
+    }
+    function handleFromDateTimeChange(event) {
+        setFromDateTime(event.target.value);
+    }
+    function handleToDateTimeChange(event) {
+        setToDateTime(event.target.value);
+    }
+
+    function showCreateActivity() {
+        setShowCreateActivityForm(true);
+    }
+
+    function closeCreateActivity() {
+        setShowCreateActivityForm(false);
+    }
+
     function handleDeviceChange(selectedOption, buildingValue) {
     }
 
     return (
-        <div className="container">
-            <h2 className="header">Settings</h2>
-            <div className="form-group">
-
-                {/*building selector/filter, user can choose one from a list*/}
-                <fieldset className="form-group">
-                    <label className="label" htmlFor="general.name">
-                        Building:
-                    </label>
-                    <Select
-                        options={buildings}
-                        name="mysettings.general.name"
-                        onChange={settingsChanged}
-                        value={currentSettings['mysettings.general.name']}
-                        isSearchable
+        <body>
+            <div className="container">
+                <div className="dateTimePicker">
+                    <input
+                        className="dateTime1"
+                        type="datetime-local"
+                        value={fromDateTime}
+                        onChange={handleFromDateTimeChange}
                     />
-                </fieldset>
-
-                {/*device filter, user can choose one from a list*/}
-                <fieldset className="form-group1">
-                    <label className="label" htmlFor="general.device">
-                        Device:
-                    </label>
-                    <Select
-                        options={devices}
-                        name="mysettings.general.device"
-                        onChange={(selectedOption) =>
-                            currentSettings['mysettings.general.name'] &&
-                            handleDeviceChange(selectedOption, currentSettings['mysettings.general.name'].value)}
-                        value={currentSettings['mysettings.general.device']}
-                        isSearchable
+                    <label className="labelTo">to</label>
+                    <input
+                        className="dateTime2"
+                        type="datetime-local"
+                        value={toDateTime}
+                        onChange={handleToDateTimeChange}
                     />
-                </fieldset>
-            </div>
-
-            {/*button to show the result matching the filter*/}
-            <div className="buttons-container">
-                <button className="button" onClick={() => setShowTable(!showTable)}>
-                    Critical Hours
-                </button>
-                <button className="button1" onClick={addRow}>
-                    Add Day
-                </button>
-            </div>
-
-            {/*showing table elements, like Day,Edit, Opening time and Closing time */}
-            {showTable && (
-                <div className="table-container">
-                    <table className="table">
-
-                        <thead>
-                        <tr>
-                            <th className="cell table-header-cell">Day</th>
-                            <th className="cell table-header-cell">Opening time</th>
-                            <th className="cell table-header-cell">Closing time</th>
-                            <th className="cell table-header-cell">Edit</th>
-                        </tr>
-                        </thead>
-                        {/*showing the output/data of day, openingTime and closingTime*/}
-                        <tbody>
-                        {tableRows.map((row, index) => (
-                            <tr key={index}>
-                                <td className="cell">{row.day}</td>
-                                <td className="cell">{row.openingTime}</td>
-                                <td className="cell">{row.closingTime}</td>
-                                <td className="cell">
-                                    {/*the Edit button used to input the Opening/Closing time for a Day*/}
-                                    <button onClick={() => onEditClicked(index)} className="button2">
-                                        Edit
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
-                        </tbody>
-
-                    </table>
                 </div>
-            )}
+                <h2 className="header">    </h2>
 
-            {/*Show the Time model when click the Edit button */}
-            {showModel && (
-                <div className="overlay">
-                    <div className="model-container">
-                        <h2 className="model-header">EDIT CRITICAL HOURS</h2>
+                <div className="form-group" class="form-group" id="form-group">
+                    <label id="selectLabel" for="firstSelect" >BUILDING:</label>
+                    <select id="firstSelect" onChange={showSecondSelect} >
+                        <option value="0" selected> </option>
+                        <option value="1">Building 1</option>
+                        <option value="2">Building 2</option>
+                        <option value="3">Building 3</option>
+                        <option value="4">Building 4</option>
+                    </select>
 
-                        <div className="model-row">
-                            <label>Opening Time:</label>
-                            {/*Opening time input Selector*/}
-                            <input type="time" id="openingTimeInput"
-                                   defaultValue={tableRows[editRowIndex]?.openingTime}
-                                   onChange={e => setOpeningTime(e.target.value)} />
+                    <div class="secondSelectDiv" id="secondSelectDiv" >
+                        <label for="secondSelect" id="selectLabel" > BANK ID and LOCATION:</label>
+                        <select id="secondSelect" onChange={showThirdSelect}>
+                            <option value="0" selected> </option>
+                            <option value="1">Passenger</option>
+                        </select>
+                    </div>
+                    <div class="thirdSelectDiv" id="thirdSelectDiv" >
+                        <label for="thirdSelect" id="thirdLabel"> DEVICE:</label>
+                        <select id="thirdSelect" onChange={showTable1}>
+                            <option value="0" selected> </option>
+                            <option value="1">Elevator 1</option>
+                        </select>
+                    </div>
+                    <div class="mytabs" id="mytabs">
+                        <input type="radio" id="deviceServices" name="mytabs" checked="checked" />
+                        <label for="deviceServices">DEVICE SERVICES</label>
+                        <div class="tab">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Device</th>
+                                        <th scope="col">Device Status</th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Username</th>
+                                    </tr>
+                                </thead>
+                            </table>
                         </div>
-                        <div className="model-row">
-                            <label>Closing Time:</label>
-                            {/*Closing time input Selector*/}
-                            <input type="time" id="closingTimeInput"
-                                   defaultValue={tableRows[editRowIndex]?.closingTime}
-                                   onChange={e => setClosingTime(e.target.value)} />
+
+                        <input type="radio" id="operatingHours" name="mytabs" />
+                        <label for="operatingHours">OPERATING HOURS</label>
+                        <div class="tab">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Day</th>
+                                        <th scope="col">Hour Interval</th>
+                                        <th scope="col"> </th>
+                                    </tr>
+                                </thead>
+                            </table>
                         </div>
 
-                        <div className="buttons-container">
-                            {/*submit button*/}
-                            <button onClick={() => onModelClose(true)} className="button">
-                                Save
-                            </button>
-                            {/*cancel button*/}
-                            <button onClick={() => onModelClose(false)} className="button">
-                                Cancel
-                            </button>
+                        <input type="radio" id="criticalHours" name="mytabs" />
+                        <label for="criticalHours">CRITICAL HOURS</label>
+                        <div>
+                            {/* Learned Modal from (ref) - https://react-bootstrap.netlify.app/docs/components/modal */}
+                            <Button id='createActivity' onClick={showCreateActivity}>
+                                CREATE ACTIVITY
+                            </Button>
+                            <Modal show={showCreateActivityForm} size="xl" onHide={closeCreateActivity} >
+                                <Modal.Header closeButton className='modal-header'>
+                                    <Modal.Title id="contained-modal-title-vcenter">
+                                        CREATE ACTIVITY
+                                    </Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body className='modal-body'>
+                                    <CreateActivityForm />
+                                </Modal.Body>
+                            </Modal>
+                        </div>
+                        <div class="tab">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Day</th>
+                                        <th scope="col">Morning</th>
+                                        <th scope="col">Lunch</th>
+                                        <th scope="col">Evening</th>
+                                    </tr>
+                                </thead>
+                            </table>
                         </div>
                     </div>
                 </div>
-            )}
-        </div>
+
+            </div>
+
+        </body>
+
     );
 }
 
