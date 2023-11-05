@@ -9,6 +9,8 @@ import Settings from "./actions/views/Settings/Settings";
 import Reporting from "./actions/views/Reporting/Reporting";
 import LoginPage from "./actions/views/Login/Login";
 import Forgot from './actions/views/Forgot/Forgot';
+import RadialMenuTest from "./actions/views/RadialMenuTest/RadialMenuTest";
+
 import { useCookies } from 'react-cookie';
 
 function App() {
@@ -35,6 +37,7 @@ function App() {
                                 <Route path="/Buildings" element={<Buildings />} />
                                 <Route path="/Settings" element={<Settings />} />
                                 <Route path="/Report" element={<Reporting />} />
+                                <Route path="/RadialMenuTest" element={<RadialMenuTest />} />
                             </>
                         )}
                     </>
