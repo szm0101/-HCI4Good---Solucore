@@ -50,3 +50,9 @@
     flex-wrap: wrap;
     flex-direction: row;
 }
+
+.general-op-data{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
