@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
+import { useCookies } from 'react-cookie'; 
 import './Modal.css';
 
 function ChangePasswordModal(props) {
+
+    const [cookies, setCookie] = useCookies(); // Initialize the isLoggedIn cookie
+    const token = cookies.token;
 
     const initialFormData = {
         oldPassword: '',
@@ -18,11 +22,50 @@ function ChangePasswordModal(props) {
           [name]: value,
         });
       };
-
+    
     const handleSubmit = () => {
+
+        if (formData.oldPassword === '' || formData.newPassword === '' || formData.confirmPassword === '') {
+            window.alert('Please fill in all fields');
+        } else if (formData.newPassword !== formData.confirmPassword) {
+            window.alert('New password and confirm password do not match');
+        } else {
+            handleChangePassword(token);
+        }
+      };
+
+    const handleChangePassword = (userToken) => {
         console.log(formData);
         setFormData(initialFormData);
-      };
+
+        var myHeaders = new Headers();
+        myHeaders.append("Valid-token", userToken);
+        myHeaders.append("Content-Type", "application/json");
+        var raw = JSON.stringify({
+            "oldPassword": formData.oldPassword,
+            "newPassword": formData.newPassword
+          });
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+          };
+          
+          fetch("https://services.solucore.com/solutrak/api/accounts/changePassword", requestOptions)
+          .then(response => response.text())
+          .then(result => {
+              // Check the result and handle accordingly
+              const data = JSON.parse(result);
+              const status = data.IsSuccess;
+            if (status) {
+                window.alert("Your password has been succesfully updated to: " + formData.newPassword)
+            } else {
+                window.alert("Status: " + data.IsSuccess + "\n" + data.Message )
+            }
+          })
+          .catch(error => window.alert('error', error));
+    };
 
   return (
     <Modal
