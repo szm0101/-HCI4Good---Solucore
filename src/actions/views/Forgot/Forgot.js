@@ -22,23 +22,23 @@ const Forgot = () => {
     };
 
     return (
-        <Container fluid className="forgot-container d-flex align-items-center justify-content-center">
-            <Card className="forgot-card w-25 h-50 px-0 py-0">
-                <div className="forgot-title-container text-center">
+        <Container fluid className="forgot-container d-flex align-items-center justify-content-center py-0">
+            <Card className="forgot-card px-0 py-0">
+                <div className="forgot-title-container px-0 py-0 text-center">
                     <Image className="logo-big" src={Logo} alt="Logo" />
-                </div>
-                <Card.Body className='mx-4'>
                     <h4 className="card-title text-center" style={{ color: 'white' }}>
                         Forgot Password
                     </h4>
-                    <div className='card-title text-center text-white'>We can help you reset your password using email address associated with your account.</div>
+                    <div className='py-0 text-center text-white' style={{width: '40%',}}>We can help you reset your password using email address associated with your account.</div>
+                </div>
+                <Card.Body>
                     {error && <Alert variant="danger">{error}</Alert>}
                     <Form className="forgot-form forgot-form-container">
                         {message &&
                             <Alert variant='info'>
                                 {message}
                             </Alert>}
-                        <Form.Group className="">
+                        <Form.Group className="py-0">
                             <Form.Control
                                 type="text"
                                 placeholder="Email"

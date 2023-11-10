@@ -35,6 +35,7 @@
     flex-direction: column;
     align-items: center;
     margin-top: 20px;
+    padding: 0px;
 
     margin-bottom: 20px;
     /* Adjust spacing between logo/title and form */

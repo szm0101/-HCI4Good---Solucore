@@ -62,7 +62,7 @@ const Login = () => {
 
     return (
         <Container fluid className="login-container d-flex align-items-center justify-content-center">
-            <Card className="login-card w-25 h-50 px-0 py-0">
+            <Card className="login-card vw-25 vh-50 px-0 py-0">
                 <div className="logo-title-container text-center">
                     <Image className="logo-big" src={Logo} alt="Logo" />
                 </div>
