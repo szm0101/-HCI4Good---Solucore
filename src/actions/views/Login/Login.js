@@ -62,17 +62,17 @@ const Login = () => {
 
     return (
         <Container fluid className="login-container d-flex align-items-center justify-content-center">
-            <Card className="login-card">
+            <Card className="login-card w-25 h-50 px-0 py-0">
                 <div className="logo-title-container text-center">
                     <Image className="logo-big" src={Logo} alt="Logo" />
                 </div>
-                <Card.Body>
-                    <h4 className="card-title text-center" style={{ color: 'white' }}>
+                <Card.Body className='mx-4'>
+                    <h4 className="card-title text-center mb-3" style={{ color: 'white' }}>
                         Login
                     </h4>
                     {error && <Alert variant="danger">{error}</Alert>}
                     <Form className="login-form-container">
-                        <Form.Group>
+                        <Form.Group className='my-2 w-100'>
                             <Form.Control
                                 type="text"
                                 id="username"
@@ -82,11 +82,11 @@ const Login = () => {
                                 style={{
                                     backgroundColor: 'rgba(58, 62, 82, 1)',
                                     color: 'rgba(153, 155, 170, 1)',
-                                    margin: '10px 0',
+                                    // margin: '10px 0',
                                 }}
                             />
                         </Form.Group>
-                        <Form.Group>
+                        <Form.Group className='my-2 w-100'>
                             <Form.Control
                                 type="password"
                                 id="password"
@@ -96,32 +96,26 @@ const Login = () => {
                                 style={{
                                     backgroundColor: 'rgba(58, 62, 82, 1)',
                                     color: 'rgba(153, 155, 170, 1)',
-                                    margin: '10px 0',
+                                    // margin: '10px 0',
                                 }}
                             />
-                        </Form.Group>
-                        <div className="text-center">
-                            <Button
-                                type="button"
-                                className="forgot-password-btn"
-                                variant="link"
-                                onClick={handleForgotPassword}
-                                style={{ margin: '10px 0' }}
-                            >
-                                Forgot Password ?
-                            </Button>
+                        </Form.Group >
+                        <div className="text-center mt-4">
                             <Button
                                 type="button"
                                 className="login-btn"
                                 variant="primary"
                                 onClick={() => handleLogin(username, password)}
-                                style={{ margin: '10px 0' }}
+                                // style={{ margin: '10px 0' }}
                             >
                                 Login
                             </Button>
                         </div>
                     </Form>
                 </Card.Body>
+                <Card.Footer className='text-primary w-100 ' style={{backgroundColor: '#3a3e52',}}>
+                    <a href="/Forgot" class="text-reset">Forgot Password?</a>
+                </Card.Footer>
             </Card>
         </Container>
     );
