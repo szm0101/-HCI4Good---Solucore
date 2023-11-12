@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 import "./Map.css";
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
+import RadialMenu from '../../components/RadialMenu/RadialMenu'; 
+import ElevatorIcon from "../../assets/elevator-central-image.png";
+
+
 
 const apiKey = process.env.REACT_APP_apiKey;
 /** ref:
@@ -239,10 +243,18 @@ const MapContainer = ({ google }) => {
   const [selectedPlace, setSelectedPlace] = useState({});             // Shows the InfoWindow to the selected place upon a marker
   const [data, setData] = useState([]);                               // Stores the data from the Building API call
   const [cookies, setCookie] = useCookies();
+  // State variables for radial menu 
+  const [showRadialMenu, setShowRadialMenu] = useState(false);
+  const [radialMenuData, setRadialMenuData] = useState({ bNumber: '', deviceId: '' });
+  
 
   const defaultLat = cookies.defaultLat;
   const defaultLng = cookies.defaultLng;
   const token = cookies.token;
+
+  // Zooms on click event
+  const [mapCenter, setMapCenter] = useState({ lat: defaultLat, lng: defaultLng });
+  const [mapZoom, setMapZoom] = useState(11); 
 
   useEffect(() => {
     const headers = new Headers({
@@ -264,6 +276,22 @@ const MapContainer = ({ google }) => {
     setSelectedPlace(props);
     setActiveMarker(marker);
     setShowingInfoWindow(true);
+     // Change map center and zoom level
+     setMapCenter({ lat: marker.position.lat(), lng: marker.position.lng() });
+     setMapZoom(20); // Zoom level when a marker is clicked, adjust as needed
+    
+
+     // Delay the display of RadialMenu
+     setTimeout(() => {
+      setShowRadialMenu(true);
+      setRadialMenuData({ bNumber: props.name, deviceId: marker.key });
+    }, 1000); // Delay for zoom animation
+
+  };
+
+  // Function to close RadialMenu
+  const closeRadialMenu = () => {
+    setShowRadialMenu(false);
   };
 
   const onClose = () => {
@@ -273,11 +301,14 @@ const MapContainer = ({ google }) => {
     }
   };
 
+  
+
   return (
     <div className="map-container">
       <Map
         google={google}
-        zoom={11}
+        zoom={mapZoom}
+        center={mapCenter}
         styles={darkMapStyles}
         initialCenter={
           {
@@ -311,7 +342,7 @@ const MapContainer = ({ google }) => {
         ) : (
           <p>Loading...</p>
         )}
-        <InfoWindow
+        {/* <InfoWindow
           marker={activeMarker}
           visible={showingInfoWindow}
           onClose={onClose}
@@ -319,8 +350,18 @@ const MapContainer = ({ google }) => {
           <div>
             <h4>{selectedPlace.name}</h4>
           </div>
-        </InfoWindow>
+        </InfoWindow> */}
       </Map>
+      {/* Conditional rendering of RadialMenu */}
+      {showRadialMenu && (
+        <RadialMenu
+          imageSrc= {ElevatorIcon}
+          // bNumber={radialMenuData.bNumber}
+          bNumber ={"B#07823908"}
+          deviceId={radialMenuData.deviceId}
+          // Add a prop for closing the menu, e.g., onClose={closeRadialMenu}
+        />
+      )}
     </div>
   );
 };
