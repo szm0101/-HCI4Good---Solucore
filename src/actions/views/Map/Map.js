@@ -245,7 +245,7 @@ const MapContainer = ({ google }) => {
   const [cookies, setCookie] = useCookies();
   // State variables for radial menu 
   const [showRadialMenu, setShowRadialMenu] = useState(false);
-  const [radialMenuData, setRadialMenuData] = useState({ deviceName: '', deviceId: '', floorLocation: '' });
+  const [radialMenuData, setRadialMenuData] = useState({ deviceName: '', deviceId: '', floorLocation: '', deviceTemp: '' });
 
   // Set up user's default location
   const defaultLat = cookies.defaultLat;
@@ -284,7 +284,7 @@ const MapContainer = ({ google }) => {
      // Delay the display of RadialMenu
      setTimeout(() => {
       setShowRadialMenu(true);
-      setRadialMenuData({ deviceName: props.name, deviceId: props.deviceId, floorLocation: props.floorLocation});
+      setRadialMenuData({ deviceName: props.name, deviceId: props.deviceId, floorLocation: props.floorLocation, deviceTemp: props.deviceTemp });
     }, 1000); // Delay for zoom animation
 
   };
@@ -339,6 +339,7 @@ const MapContainer = ({ google }) => {
               name={device.deviceName}
               deviceId={device.deviceId}
               floorLocation={device.infoMessage.location}
+              deviceTemp={device.infoMessage.temperature}
             />
           ))
         ) : (
@@ -361,6 +362,7 @@ const MapContainer = ({ google }) => {
           deviceName={radialMenuData.deviceName}
           deviceId={radialMenuData.deviceId}
           deviceFloor={radialMenuData.floorLocation}
+          deviceTemp={radialMenuData.deviceTemp}
           onClose={closeRadialMenu}
         />
       )}

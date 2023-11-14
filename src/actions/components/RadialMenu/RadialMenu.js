@@ -16,7 +16,7 @@ const menuItems = [
   {id: "info-button", label: '', imageSrc: InfoIcon }, 
 ];
 
-const RadialMenu = ({ imageSrc, deviceName, deviceId, deviceFloor, onClose }) => {
+const RadialMenu = ({ imageSrc, deviceName, deviceId, deviceFloor, deviceTemp, onClose }) => {
   // Placeholder for default image, replace 'path_to_some_default_image' with your actual default image path
   const defaultImage = 'path_to_some_default_image';
 
@@ -54,8 +54,8 @@ const RadialMenu = ({ imageSrc, deviceName, deviceId, deviceFloor, onClose }) =>
             </svg>
 
             <div>
-              <h3 class="temp-info-celsius">35°C</h3>
-              <h3 class="temp-info-farenheit">95°F</h3>
+              <h3 class="temp-info-celsius">{deviceTemp}°C</h3>
+              <h3 class="temp-info-farenheit">{deviceTemp*9/5+32}°F</h3>
             </div>
           </div>
       
