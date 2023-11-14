@@ -47,6 +47,8 @@ function Navbars() {
                 setCookie('isLoggedIn', 'false', { path: '/', sameSite: 'None', secure: true });
                 setCookie('token', '', { path: '/', sameSite: 'None', secure: true });
                 setCookie('userType', '', { path: '/', sameSite: 'None', secure: true });
+                setCookie('defaultLat', '', { path: '/', sameSite: 'None', secure: true });
+                setCookie('defaultLng', '', { path: '/', sameSite: 'None', secure: true });
                 navigate('/');
             } else {
                 console.error("Error");
