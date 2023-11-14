@@ -6,14 +6,13 @@ import DownArrow from "../../assets/down-arrow.png";
 import UpArrow from "../../assets/up-arrow.png";
 import InfoIcon from "../../assets/info.png";
 import CameraIcon from "../../assets/icon_device_camera.png";
-import FloorIcon from "../../assets/1-yellow.png";
 
 // Menu items configuration
 const menuItems = [
   { id: "doors-button", label: 'DOORS', imageSrc: DoorOpenIcon },
   {id: "direction-button", label: 'DIRECTION', imageSrc: UpArrow, imageSrc2: DownArrow },
   {id: "camera-button", label: 'CAMERA', imageSrc: CameraIcon },
-  {id: "position-button", label: 'POSITION', imageSrc: FloorIcon },
+  {id: "position-button", label: 'POSITION', floorLevel: 1 },
   {id: "info-button", label: '', imageSrc: InfoIcon }, 
 ];
 
@@ -51,6 +50,7 @@ const RadialMenu = ({ imageSrc, bNumber, deviceId }) => {
               <HexagonButton 
                 imgSrc={item.imageSrc} 
                 imgSrc2={item.imageSrc2} 
+                floorLevel={item.floorLevel}
                 label={item.label} 
                 onClick={index === 2 ? () => openDashboardWindow(item.deviceId) : undefined}
                 />
