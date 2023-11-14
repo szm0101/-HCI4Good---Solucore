@@ -245,7 +245,7 @@ const MapContainer = ({ google }) => {
   const [cookies, setCookie] = useCookies();
   // State variables for radial menu 
   const [showRadialMenu, setShowRadialMenu] = useState(false);
-  const [radialMenuData, setRadialMenuData] = useState({ bNumber: '', deviceId: '' });
+  const [radialMenuData, setRadialMenuData] = useState({ deviceName: '', deviceId: '' });
 
   // Set up user's default location
   const defaultLat = cookies.defaultLat;
@@ -284,7 +284,7 @@ const MapContainer = ({ google }) => {
      // Delay the display of RadialMenu
      setTimeout(() => {
       setShowRadialMenu(true);
-      setRadialMenuData({ bNumber: props.name, deviceId: marker.key });
+      setRadialMenuData({ deviceName: props.name, deviceId: props.deviceId });
     }, 1000); // Delay for zoom animation
 
   };
@@ -337,6 +337,7 @@ const MapContainer = ({ google }) => {
               }}
               onClick={onMarkerClick}
               name={device.deviceName}
+              deviceId={device.deviceId}
             />
           ))
         ) : (
@@ -356,10 +357,9 @@ const MapContainer = ({ google }) => {
       {showRadialMenu && (
         <RadialMenu
           imageSrc= {ElevatorIcon}
-          // bNumber={radialMenuData.bNumber}
-          bNumber ={"B#07823908"}
+          deviceName={radialMenuData.deviceName}
           deviceId={radialMenuData.deviceId}
-          // Add a prop for closing the menu, e.g., onClose={closeRadialMenu}
+          onClose={closeRadialMenu}
         />
       )}
     </div>

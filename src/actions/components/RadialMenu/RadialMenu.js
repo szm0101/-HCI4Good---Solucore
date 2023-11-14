@@ -16,7 +16,7 @@ const menuItems = [
   {id: "info-button", label: '', imageSrc: InfoIcon }, 
 ];
 
-const RadialMenu = ({ imageSrc, bNumber, deviceId }) => {
+const RadialMenu = ({ imageSrc, deviceName, deviceId, onClose }) => {
   // Placeholder for default image, replace 'path_to_some_default_image' with your actual default image path
   const defaultImage = 'path_to_some_default_image';
 
@@ -64,7 +64,7 @@ const RadialMenu = ({ imageSrc, bNumber, deviceId }) => {
                 {/* Use the imageSrc prop to dynamically set the image, or use a default if no imageSrc is provided */}
                 <img src={imageSrc || defaultImage} alt="Device Icon" className="device-image" />
                 <div className="device-info">
-                  <div><h3>{bNumber}</h3></div>
+                  <div><h3>{deviceName}</h3></div>
                   <div>DEVICE ID: {deviceId}</div>
                 </div>
               </div>
