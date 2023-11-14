@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef} from 'react';
 import './RadialMenu.css';
 import HexagonButton from '../../components/HexagonButton/HexagonButton';
 import DoorOpenIcon from "../../assets/elevator-door-open.png";
@@ -26,8 +26,24 @@ const RadialMenu = ({ imageSrc, deviceName, deviceId, onClose }) => {
     window.open(dashboardUrl, '_blank', 'width=600,height=400');
   };
 
+  // Function to close the radial menu when click outside of the menu
+  const menuRef = useRef(null);
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        onClose();
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [onClose]);
+
   return (
-      <div className="radial-menu-container">
+      <div className="radial-menu-container" ref={menuRef}>
         <div className="radial-menu">
           <div className="temperature-gauge">
             <svg className="temperature-container" viewBox="280 360 200 240" xmlns="http://www.w3.org/2000/svg">
