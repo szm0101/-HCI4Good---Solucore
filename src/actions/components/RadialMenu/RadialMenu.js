@@ -12,11 +12,11 @@ const menuItems = [
   { id: "doors-button", label: 'DOORS', imageSrc: DoorOpenIcon },
   {id: "direction-button", label: 'DIRECTION', imageSrc: UpArrow, imageSrc2: DownArrow },
   {id: "camera-button", label: 'CAMERA', imageSrc: CameraIcon },
-  {id: "position-button", label: 'POSITION', floorLevel: 1 },
+  {id: "position-button", label: 'POSITION'},
   {id: "info-button", label: '', imageSrc: InfoIcon }, 
 ];
 
-const RadialMenu = ({ imageSrc, deviceName, deviceId, onClose }) => {
+const RadialMenu = ({ imageSrc, deviceName, deviceId, deviceFloor, onClose }) => {
   // Placeholder for default image, replace 'path_to_some_default_image' with your actual default image path
   const defaultImage = 'path_to_some_default_image';
 
@@ -66,7 +66,7 @@ const RadialMenu = ({ imageSrc, deviceName, deviceId, onClose }) => {
               <HexagonButton 
                 imgSrc={item.imageSrc} 
                 imgSrc2={item.imageSrc2} 
-                floorLevel={item.floorLevel}
+                floorLevel={index ===3 ? deviceFloor : undefined}
                 label={item.label} 
                 onClick={index === 2 ? () => openDashboardWindow(item.deviceId) : undefined}
                 />
