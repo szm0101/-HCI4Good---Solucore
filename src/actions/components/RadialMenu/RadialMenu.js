@@ -42,7 +42,12 @@ const RadialMenu = ({ imageSrc, bNumber, deviceId }) => {
           {menuItems.map((item, index) => (
             <div key={index} className="menu-item-container">
       
-              <HexagonButton imgSrc={item.imageSrc} imgSrc2={item.imageSrc2} label={item.label} />
+              <HexagonButton 
+                imgSrc={item.imageSrc} 
+                imgSrc2={item.imageSrc2} 
+                label={item.label} 
+                onClick={index === 2 ? () => alert(`Clicked on ${item.label}`) : undefined}
+              />
       
             </div>
           ))}
