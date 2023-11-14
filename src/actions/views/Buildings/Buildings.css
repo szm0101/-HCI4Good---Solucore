@@ -1,4 +1,4 @@
-.table tbody td{
+.table tbody td {
   background-color: #3B3E50;
 }
 
@@ -9,19 +9,21 @@
   flex-direction: column;
   align-items: center;
   margin-top: 100px;
-  overflow-x: auto; /* Add horizontal scrolling for smaller screens */
+  overflow-x: auto;
+  /* Add horizontal scrolling for smaller screens */
 }
-
-
 
 th,
 td {
   padding: 10px 16px;
   border: 1px solid #666;
   text-align: left;
-  white-space: nowrap; /* Prevent line breaks for table cells */
-  overflow: hidden; /* Hide overflowing content */
-  text-overflow: ellipsis; /* Show ellipsis (...) for truncated content */
+  white-space: nowrap;
+  /* Prevent line breaks for table cells */
+  overflow: hidden;
+  /* Hide overflowing content */
+  text-overflow: ellipsis;
+  /* Show ellipsis (...) for truncated content */
 }
 
 th {
@@ -43,7 +45,15 @@ tbody tr:hover {
 /* Adjust table font size for smaller screens */
 @media (max-width: 768px) {
   table {
-    font-size: 14px;
+    margin-left: 70px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  table {
+    margin-left: 150px;
+    font-size: 12px;
   }
 }
 
@@ -53,4 +63,3 @@ tbody tr:hover {
     font-size: 12px;
   }
 }
-
