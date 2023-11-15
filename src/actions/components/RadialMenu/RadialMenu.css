@@ -6,7 +6,7 @@
   height: 100vh;
 }
 
-.ring {
+.outer-ring {
   position: relative;
   width: 400px;
   height: 400px;
@@ -83,7 +83,6 @@
   position: relative;
   width: 260px;
   height: 260px;
-  /* border: 9px dashed #1D548B; */
   border-radius: 50%;
   display: flex;
   flex-direction: column;
@@ -98,7 +97,7 @@
   height: 100%;
   border: 10px dashed #1D548B;
   border-radius: 50%;
-  animation: rotateDashedBorder 5s linear 1;
+  animation: rotateDashedBorder 5s ease-in 1;
 }
 
 @keyframes rotateDashedBorder {
@@ -198,9 +197,7 @@
   align-items: center;
   justify-content: center;
   font-size: 14px;
-  /* Adjust font size as necessary */
   color: white;
-  /* Adjust color as necessary */
 }
 
 

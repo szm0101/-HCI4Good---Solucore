@@ -26,7 +26,7 @@ const RadialMenu = ({ imageSrc, bNumber, deviceId }) => {
 
   return (
     <div className="radial-menu-container">
-      <div className='ring'>
+      <div className='outer-ring'>
         <div className="radial-menu">
           <div className="temperature-gauge">
             <svg className="temperature-container" viewBox="280 360 200 240" xmlns="http://www.w3.org/2000/svg">
