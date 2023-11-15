@@ -1,10 +1,20 @@
 import React from 'react';
 import './HexagonButton.css';
 
-const HexagonButton = ({ imgSrc, imgSrc2, label, size = 50, onClick, floorLevel }) => {
+// Add a function to calculate opacity
+const calculateOpacity = (direction, arrowType) => {
+  if ((Number(direction) === 20 && arrowType === 'downArrow') || (Number(direction) === 30 && arrowType === 'upArrow')) {
+    return 0.25; // Set opacity to 25%
+  } else {
+    return 1; // Don't change opacity at default
+  }
+};
+
+const HexagonButton = ({ imgSrc, imgSrc2, label, size = 50, onClick, floorLevel, direction }) => {
   const imageSize = size * 0.75;
   const position = (100 - imageSize) / 2;
-
+  const downArrowOpacity = calculateOpacity(direction, 'downArrow');
+  const upArrowOpacity = calculateOpacity(direction, 'upArrow');
 
 
   // return (
@@ -20,8 +30,8 @@ const HexagonButton = ({ imgSrc, imgSrc2, label, size = 50, onClick, floorLevel 
       <path d="M 32.5 4.7C 27.1 4.7 22.2 7.5 19.5 12.2C 19.5 12.2 2.0 42.5 2.0 42.5C -0.7 47.1 -0.7 52.9 2.0 57.5C 2.0 57.5 19.5 87.8 19.5 87.8C 22.2 92.5 27.1 95.3 32.5 95.3C 32.5 95.3 67.5 95.3 67.5 95.3C 72.9 95.3 77.8 92.5 80.5 87.8C 80.5 87.8 98.0 57.5 98.0 57.5C 100.7 52.9 100.7 47.1 98.0 42.5C 98.0 42.5 80.5 12.2 80.5 12.2C 77.8 7.5 72.9 4.7 67.5 4.7C 67.5 4.7 32.5 4.7 32.5 4.7C 32.5 4.7 32.5 4.7 32.5 4.7M 0,0" transform="rotate(90,50,50)" stroke="#833839" fill="#011729" />
         <foreignObject x="0" y="0" width="100" height="100">
           <div className="image-container">
-            {imgSrc && <img src={imgSrc} className="hexagon-image" alt="Hexagon Icon 1" />}
-            {imgSrc2 && <img src={imgSrc2} className="hexagon-image" alt="Hexagon Icon 2" />}
+            {imgSrc && <img src={imgSrc} className="hexagon-image" alt="Hexagon Icon 1" style={{ opacity: upArrowOpacity }} />}
+            {imgSrc2 && <img src={imgSrc2} className="hexagon-image" alt="Hexagon Icon 2" style={{ opacity: downArrowOpacity }} />}
             {floorLevel && <h3 className='text-white mt-1'>{floorLevel}</h3>}
           </div>
         </foreignObject>

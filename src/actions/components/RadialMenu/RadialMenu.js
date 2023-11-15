@@ -17,18 +17,19 @@ const menuItems = [
   {id: "info-button", label: '', imageSrc: InfoIcon }, 
 ];
 
-const RadialMenu = ({ imageSrc, deviceName, deviceId, deviceFloor, deviceTemp, cameraUrl, doorStatus, onClose }) => {
+const RadialMenu = (props) => {
   // Placeholder for default image, replace 'path_to_some_default_image' with your actual default image path
   const defaultImage = 'path_to_some_default_image';
 
   // Open a new window when camera is clicked of a corresponding device ID
   const openDashboardWindow = () => {
     
-    window.open(cameraUrl, '_blank', 'width=600,height=400');
+    window.open(props.cameraUrl, '_blank', 'width=600,height=400');
   };
 
-  // Function to close the radial menu when click outside of the menu
+  // Function to close the radial menu when click outside of the menu, may be modified after having the radial right menu
   const menuRef = useRef(null);
+  const { onClose } = props;
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -55,8 +56,8 @@ const RadialMenu = ({ imageSrc, deviceName, deviceId, deviceFloor, deviceTemp, c
             </svg>
 
             <div>
-              <h3 class="temp-info-celsius">{deviceTemp}°C</h3>
-              <h3 class="temp-info-farenheit">{deviceTemp*9/5+32}°F</h3>
+              <h3 className="temp-info-celsius">{props.deviceTemp}°C</h3>
+              <h3 className="temp-info-farenheit">{props.deviceTemp*9/5+32}°F</h3>
             </div>
           </div>
       
@@ -65,12 +66,13 @@ const RadialMenu = ({ imageSrc, deviceName, deviceId, deviceFloor, deviceTemp, c
             <div key={index} className="menu-item-container">
       
               <HexagonButton 
-                imgSrc={index === 0 && doorStatus == 20 ? undefined : item.imageSrc} // If doorStatus is 20, the door is closed
-                imgSrc2={index === 0 && doorStatus == 10 ? undefined : item.imageSrc2} // If doorStatus is 10, the door is opened
-                floorLevel={index === 3 ? deviceFloor : undefined}
+                imgSrc={index === 0 && Number(props.doorStatus) === 20 ? undefined : item.imageSrc} // If doorStatus is 20, the door is closed
+                imgSrc2={index === 0 && Number(props.doorStatus) === 10 ? undefined : item.imageSrc2} // If doorStatus is 10, the door is opened
+                floorLevel={index === 3 ? props.deviceFloor : undefined}
                 label={item.label} 
-                onClick={index === 2 ? () => openDashboardWindow(deviceId) : undefined}
-                />
+                direction={index === 1 ? props.direction : undefined}
+                onClick={index === 2 ? () => openDashboardWindow(props.deviceId) : undefined}             
+              />
       
             </div>
           ))}
@@ -79,10 +81,10 @@ const RadialMenu = ({ imageSrc, deviceName, deviceId, deviceFloor, deviceTemp, c
             <div className="second-ring">
               <div className="inner-ring">
                 {/* Use the imageSrc prop to dynamically set the image, or use a default if no imageSrc is provided */}
-                <img src={imageSrc || defaultImage} alt="Device Icon" className="device-image" />
+                <img src={props.imageSrc || defaultImage} alt="Device Icon" className="device-image" />
                 <div className="device-info">
-                  <div><h3>{deviceName}</h3></div>
-                  <div>DEVICE ID: {deviceId}</div>
+                  <div><h3>{props.deviceName}</h3></div>
+                  <div>DEVICE ID: {props.deviceId}</div>
                 </div>
               </div>
             </div>
