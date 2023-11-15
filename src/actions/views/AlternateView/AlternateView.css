@@ -56,3 +56,8 @@
     flex-wrap: wrap;
     flex-direction: row;
 }
+
+.building-select{
+    width: auto;
+    height: auto;
+}
