@@ -2,6 +2,7 @@ import React, { useEffect, useRef} from 'react';
 import './RadialMenu.css';
 import HexagonButton from '../../components/HexagonButton/HexagonButton';
 import DoorOpenIcon from "../../assets/elevator-door-open.png";
+import DoorCloseIcon from "../../assets/eleveator-door-closed.png"
 import DownArrow from "../../assets/down-arrow.png";
 import UpArrow from "../../assets/up-arrow.png";
 import InfoIcon from "../../assets/info.png";
@@ -16,14 +17,14 @@ const menuItems = [
   {id: "info-button", label: '', imageSrc: InfoIcon }, 
 ];
 
-const RadialMenu = ({ imageSrc, deviceName, deviceId, deviceFloor, deviceTemp, onClose }) => {
+const RadialMenu = ({ imageSrc, deviceName, deviceId, deviceFloor, deviceTemp, cameraUrl, onClose }) => {
   // Placeholder for default image, replace 'path_to_some_default_image' with your actual default image path
   const defaultImage = 'path_to_some_default_image';
 
   // Open a new window when camera is clicked of a corresponding device ID
-  const openDashboardWindow = (deviceId) => {
-    const dashboardUrl = `http://192.168.1.10/${deviceId}`;
-    window.open(dashboardUrl, '_blank', 'width=600,height=400');
+  const openDashboardWindow = () => {
+    
+    window.open(cameraUrl, '_blank', 'width=600,height=400');
   };
 
   // Function to close the radial menu when click outside of the menu
@@ -68,7 +69,7 @@ const RadialMenu = ({ imageSrc, deviceName, deviceId, deviceFloor, deviceTemp, o
                 imgSrc2={item.imageSrc2} 
                 floorLevel={index ===3 ? deviceFloor : undefined}
                 label={item.label} 
-                onClick={index === 2 ? () => openDashboardWindow(item.deviceId) : undefined}
+                onClick={index === 2 ? () => openDashboardWindow(deviceId) : undefined}
                 />
       
             </div>

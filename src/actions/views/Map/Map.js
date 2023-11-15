@@ -245,7 +245,7 @@ const MapContainer = ({ google }) => {
   const [cookies, setCookie] = useCookies();
   // State variables for radial menu 
   const [showRadialMenu, setShowRadialMenu] = useState(false);
-  const [radialMenuData, setRadialMenuData] = useState({ deviceName: '', deviceId: '', floorLocation: '', deviceTemp: '' });
+  const [radialMenuData, setRadialMenuData] = useState({ deviceName: '', deviceId: '', floorLocation: '', deviceTemp: '', cameraUrl: '' });
 
   // Set up user's default location
   const defaultLat = cookies.defaultLat;
@@ -284,7 +284,13 @@ const MapContainer = ({ google }) => {
      // Delay the display of RadialMenu
      setTimeout(() => {
       setShowRadialMenu(true);
-      setRadialMenuData({ deviceName: props.name, deviceId: props.deviceId, floorLocation: props.floorLocation, deviceTemp: props.deviceTemp });
+      setRadialMenuData({ 
+        deviceName: props.name, 
+        deviceId: props.deviceId, 
+        floorLocation: props.floorLocation, 
+        deviceTemp: props.deviceTemp,
+        cameraUrl: props.cameraUrl
+      });
     }, 1000); // Delay for zoom animation
 
   };
@@ -340,6 +346,7 @@ const MapContainer = ({ google }) => {
               deviceId={device.deviceId}
               floorLocation={device.infoMessage.location}
               deviceTemp={device.infoMessage.temperature}
+              cameraUrl={device.cameraUrl}
             />
           ))
         ) : (
@@ -363,6 +370,7 @@ const MapContainer = ({ google }) => {
           deviceId={radialMenuData.deviceId}
           deviceFloor={radialMenuData.floorLocation}
           deviceTemp={radialMenuData.deviceTemp}
+          cameraUrl={radialMenuData.cameraUrl}
           onClose={closeRadialMenu}
         />
       )}
