@@ -10,14 +10,14 @@ import CameraIcon from "../../assets/icon_device_camera.png";
 
 // Menu items configuration
 const menuItems = [
-  { id: "doors-button", label: 'DOORS', imageSrc: DoorOpenIcon },
+  { id: "doors-button", label: 'DOORS', imageSrc: DoorOpenIcon , imageSrc2: DoorCloseIcon},
   {id: "direction-button", label: 'DIRECTION', imageSrc: UpArrow, imageSrc2: DownArrow },
   {id: "camera-button", label: 'CAMERA', imageSrc: CameraIcon },
   {id: "position-button", label: 'POSITION'},
   {id: "info-button", label: '', imageSrc: InfoIcon }, 
 ];
 
-const RadialMenu = ({ imageSrc, deviceName, deviceId, deviceFloor, deviceTemp, cameraUrl, onClose }) => {
+const RadialMenu = ({ imageSrc, deviceName, deviceId, deviceFloor, deviceTemp, cameraUrl, doorStatus, onClose }) => {
   // Placeholder for default image, replace 'path_to_some_default_image' with your actual default image path
   const defaultImage = 'path_to_some_default_image';
 
@@ -65,9 +65,9 @@ const RadialMenu = ({ imageSrc, deviceName, deviceId, deviceFloor, deviceTemp, c
             <div key={index} className="menu-item-container">
       
               <HexagonButton 
-                imgSrc={item.imageSrc} 
-                imgSrc2={item.imageSrc2} 
-                floorLevel={index ===3 ? deviceFloor : undefined}
+                imgSrc={index === 0 && doorStatus == 20 ? undefined : item.imageSrc} // If doorStatus is 20, the door is closed
+                imgSrc2={index === 0 && doorStatus == 10 ? undefined : item.imageSrc2} // If doorStatus is 10, the door is opened
+                floorLevel={index === 3 ? deviceFloor : undefined}
                 label={item.label} 
                 onClick={index === 2 ? () => openDashboardWindow(deviceId) : undefined}
                 />
