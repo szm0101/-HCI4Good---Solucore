@@ -1,28 +1,51 @@
-import React from 'react';
+import React, { useEffect, useRef} from 'react';
 import './RadialMenu.css';
 import HexagonButton from '../../components/HexagonButton/HexagonButton';
 import DoorOpenIcon from "../../assets/elevator-door-open.png";
+import DoorCloseIcon from "../../assets/eleveator-door-closed.png"
 import DownArrow from "../../assets/down-arrow.png";
 import UpArrow from "../../assets/up-arrow.png";
 import InfoIcon from "../../assets/info.png";
 import CameraIcon from "../../assets/icon_device_camera.png";
-import FloorIcon from "../../assets/1-yellow.png";
 
 // Menu items configuration
 const menuItems = [
-  { id: "doors-button", label: 'DOORS', imageSrc: DoorOpenIcon },
+  { id: "doors-button", label: 'DOORS', imageSrc: DoorOpenIcon , imageSrc2: DoorCloseIcon},
   {id: "direction-button", label: 'DIRECTION', imageSrc: UpArrow, imageSrc2: DownArrow },
   {id: "camera-button", label: 'CAMERA', imageSrc: CameraIcon },
-  {id: "position-button", label: 'POSITION', imageSrc: FloorIcon },
+  {id: "position-button", label: 'POSITION'},
   {id: "info-button", label: '', imageSrc: InfoIcon }, 
 ];
 
-const RadialMenu = ({ imageSrc, bNumber, deviceId }) => {
+const RadialMenu = (props) => {
   // Placeholder for default image, replace 'path_to_some_default_image' with your actual default image path
   const defaultImage = 'path_to_some_default_image';
 
+  // Open a new window when camera is clicked of a corresponding device ID
+  const openDashboardWindow = () => {
+    
+    window.open(props.cameraUrl, '_blank', 'width=600,height=400');
+  };
+
+  // Function to close the radial menu when click outside of the menu, may be modified after having the radial right menu
+  const menuRef = useRef(null);
+  const { onClose } = props;
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        onClose();
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [onClose]);
+
   return (
-      <div className="radial-menu-container">
+      <div className="radial-menu-container" ref={menuRef}>
         <div className="radial-menu">
           <div className="temperature-gauge">
             <svg className="temperature-container" viewBox="280 360 200 240" xmlns="http://www.w3.org/2000/svg">
@@ -33,8 +56,8 @@ const RadialMenu = ({ imageSrc, bNumber, deviceId }) => {
             </svg>
 
             <div>
-              <h3 class="temp-info-celsius">35°C</h3>
-              <h3 class="temp-info-farenheit">95°F</h3>
+              <h3 className="temp-info-celsius">{props.deviceTemp}°C</h3>
+              <h3 className="temp-info-farenheit">{props.deviceTemp*9/5+32}°F</h3>
             </div>
           </div>
       
@@ -42,7 +65,14 @@ const RadialMenu = ({ imageSrc, bNumber, deviceId }) => {
           {menuItems.map((item, index) => (
             <div key={index} className="menu-item-container">
       
-              <HexagonButton imgSrc={item.imageSrc} imgSrc2={item.imageSrc2} label={item.label} />
+              <HexagonButton 
+                imgSrc={index === 0 && Number(props.doorStatus) === 20 ? undefined : item.imageSrc} // If doorStatus is 20, the door is closed
+                imgSrc2={index === 0 && Number(props.doorStatus) === 10 ? undefined : item.imageSrc2} // If doorStatus is 10, the door is opened
+                floorLevel={index === 3 ? props.deviceFloor : undefined}
+                label={item.label} 
+                direction={index === 1 ? props.direction : undefined}
+                onClick={index === 2 ? () => openDashboardWindow(props.deviceId) : undefined}             
+              />
       
             </div>
           ))}
@@ -51,10 +81,10 @@ const RadialMenu = ({ imageSrc, bNumber, deviceId }) => {
             <div className="second-ring">
               <div className="inner-ring">
                 {/* Use the imageSrc prop to dynamically set the image, or use a default if no imageSrc is provided */}
-                <img src={imageSrc || defaultImage} alt="Device Icon" className="device-image" />
+                <img src={props.imageSrc || defaultImage} alt="Device Icon" className="device-image" />
                 <div className="device-info">
-                  <div><h3>{bNumber}</h3></div>
-                  <div>DEVICE ID: {deviceId}</div>
+                  <div><h3>{props.deviceName}</h3></div>
+                  <div>DEVICE ID: {props.deviceId}</div>
                 </div>
               </div>
             </div>

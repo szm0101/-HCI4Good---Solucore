@@ -241,13 +241,21 @@ const MapContainer = ({ google }) => {
   const [showingInfoWindow, setShowingInfoWindow] = useState(false);  // Hides or shows the InfoWindow
   const [activeMarker, setActiveMarker] = useState({});               // Shows the active marker upon click
   const [selectedPlace, setSelectedPlace] = useState({});             // Shows the InfoWindow to the selected place upon a marker
-  const [data, setData] = useState([]);                               // Stores the data from the Building API call
+  const [data, setData] = useState([]);                               // Stores the data from the Device API call
   const [cookies, setCookie] = useCookies();
   // State variables for radial menu 
   const [showRadialMenu, setShowRadialMenu] = useState(false);
-  const [radialMenuData, setRadialMenuData] = useState({ bNumber: '', deviceId: '' });
-  
+  const [radialMenuData, setRadialMenuData] = useState({ 
+    deviceName: '', 
+    deviceId: '', 
+    floorLocation: '', 
+    deviceTemp: '', 
+    cameraUrl: '', 
+    doorStatus: '', 
+    direction: ''
+  });
 
+  // Set up user's default location
   const defaultLat = cookies.defaultLat;
   const defaultLng = cookies.defaultLng;
   const token = cookies.token;
@@ -261,8 +269,8 @@ const MapContainer = ({ google }) => {
       'Valid-token': token,
     });
 
-    // call getBuildingInfos API and store Data array
-    fetch('https://services.solucore.com/solutrak/api/buildings/getBuildingInfos', { "method": "GET", headers })
+    // call getDeviceInfos API and store Data array
+    fetch('https://services.solucore.com/solutrak/api/buildings/getDeviceInfos', { "method": "GET", headers })
       .then((response) => response.json())
       .then((result) => {
         setData(result.Data);
@@ -284,7 +292,15 @@ const MapContainer = ({ google }) => {
      // Delay the display of RadialMenu
      setTimeout(() => {
       setShowRadialMenu(true);
-      setRadialMenuData({ bNumber: props.name, deviceId: marker.key });
+      setRadialMenuData({ 
+        deviceName: props.name, 
+        deviceId: props.deviceId, 
+        floorLocation: props.floorLocation, 
+        deviceTemp: props.deviceTemp,
+        cameraUrl: props.cameraUrl,
+        doorStatus: props.doorStatus,
+        direction: props.direction
+      });
     }, 1000); // Delay for zoom animation
 
   };
@@ -323,10 +339,10 @@ const MapContainer = ({ google }) => {
         }}
       >
         {data ? (
-          data.map((building) => (
+          data.map((device) => (
             <Marker
-              key={building.buildingId}
-              position={{ lat: building.latitude, lng: building.longitute }}
+              key={device.deviceId}
+              position={{ lat: device.latitude, lng: device.longitute }}
               icon={{
                 path: google.maps.SymbolPath.CIRCLE,
                 fillColor: '#2096f3',
@@ -336,7 +352,13 @@ const MapContainer = ({ google }) => {
                 strokeWeight: 8
               }}
               onClick={onMarkerClick}
-              name={building.buildingName}
+              name={device.deviceName}
+              deviceId={device.deviceId}
+              floorLocation={device.infoMessage.location}
+              deviceTemp={device.infoMessage.temperature}
+              cameraUrl={device.cameraUrl}
+              doorStatus={device.infoMessage.door}
+              direction={device.infoMessage.direction}
             />
           ))
         ) : (
@@ -356,10 +378,14 @@ const MapContainer = ({ google }) => {
       {showRadialMenu && (
         <RadialMenu
           imageSrc= {ElevatorIcon}
-          // bNumber={radialMenuData.bNumber}
-          bNumber ={"B#07823908"}
+          deviceName={radialMenuData.deviceName}
           deviceId={radialMenuData.deviceId}
-          // Add a prop for closing the menu, e.g., onClose={closeRadialMenu}
+          deviceFloor={radialMenuData.floorLocation}
+          deviceTemp={radialMenuData.deviceTemp}
+          cameraUrl={radialMenuData.cameraUrl}
+          doorStatus={radialMenuData.doorStatus}
+          direction={radialMenuData.direction}
+          onClose={closeRadialMenu}
         />
       )}
     </div>
