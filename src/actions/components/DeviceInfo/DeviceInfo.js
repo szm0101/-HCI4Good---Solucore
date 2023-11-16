@@ -93,7 +93,7 @@ const DeviceInfo = ({ buildingId, onClose }) => {
                                     <span>Door: Close(0)</span>
                                 </th>
                                 <th>
-                                    <span>11:30PM</span>
+                                    <span>11/30/2003</span>
                                 </th>
                                 <th>
                                     <span>100010165</span>
