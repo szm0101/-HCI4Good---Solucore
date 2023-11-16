@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 import "./Map.css";
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
-import RadialMenu from '../../components/RadialMenu/RadialMenu'; 
+import RadialMenu from '../../components/RadialMenu/RadialMenu';
+import DeviceInfo from '../../components/DeviceInfo/DeviceInfo';
 import ElevatorIcon from "../../assets/elevator-central-image.png";
 
 
@@ -128,21 +129,6 @@ const darkMapStyles = [
       }
     ]
   },
-  // {
-  //   "featureType": "road",
-  //   "elementType": "labels.icon",
-  //   "stylers": [
-  //     {
-  //       "visibility": "simplified"
-  //     },
-  //     {
-  //       "weight": 8
-  //     },
-  //     {
-  //       "color": "#121212"
-  //     }
-  //   ]
-  // },
   {
     "featureType": "road",
     "elementType": "labels.text.fill",
@@ -245,15 +231,17 @@ const MapContainer = ({ google }) => {
   const [cookies, setCookie] = useCookies();
   // State variables for radial menu 
   const [showRadialMenu, setShowRadialMenu] = useState(false);
-  const [radialMenuData, setRadialMenuData] = useState({ 
-    deviceName: '', 
-    deviceId: '', 
-    floorLocation: '', 
-    deviceTemp: '', 
-    cameraUrl: '', 
-    doorStatus: '', 
+  const [radialMenuData, setRadialMenuData] = useState({
+    deviceName: '',
+    deviceId: '',
+    floorLocation: '',
+    deviceTemp: '',
+    cameraUrl: '',
+    doorStatus: '',
     direction: ''
   });
+
+  const [showDeviceInfo, setDeviceInfo] = useState(false);
 
   // Set up user's default location
   const defaultLat = cookies.defaultLat;
@@ -262,7 +250,7 @@ const MapContainer = ({ google }) => {
 
   // Zooms on click event
   const [mapCenter, setMapCenter] = useState({ lat: defaultLat, lng: defaultLng });
-  const [mapZoom, setMapZoom] = useState(11); 
+  const [mapZoom, setMapZoom] = useState(11);
 
   useEffect(() => {
     const headers = new Headers({
@@ -284,23 +272,24 @@ const MapContainer = ({ google }) => {
     setSelectedPlace(props);
     setActiveMarker(marker);
     setShowingInfoWindow(true);
-     // Change map center and zoom level
-     setMapCenter({ lat: marker.position.lat(), lng: marker.position.lng() });
-     setMapZoom(20); // Zoom level when a marker is clicked, adjust as needed
-    
+    // Change map center and zoom level
+    setMapCenter({ lat: marker.position.lat(), lng: marker.position.lng() });
+    setMapZoom(20); // Zoom level when a marker is clicked, adjust as needed
 
-     // Delay the display of RadialMenu
-     setTimeout(() => {
+
+    // Delay the display of RadialMenu
+    setTimeout(() => {
       setShowRadialMenu(true);
-      setRadialMenuData({ 
-        deviceName: props.name, 
-        deviceId: props.deviceId, 
-        floorLocation: props.floorLocation, 
+      setRadialMenuData({
+        deviceName: props.name,
+        deviceId: props.deviceId,
+        floorLocation: props.floorLocation,
         deviceTemp: props.deviceTemp,
         cameraUrl: props.cameraUrl,
         doorStatus: props.doorStatus,
         direction: props.direction
       });
+      setDeviceInfo(true);
     }, 1000); // Delay for zoom animation
 
   };
@@ -317,7 +306,7 @@ const MapContainer = ({ google }) => {
     }
   };
 
-  
+
 
   return (
     <div className="map-container">
@@ -377,7 +366,7 @@ const MapContainer = ({ google }) => {
       {/* Conditional rendering of RadialMenu */}
       {showRadialMenu && (
         <RadialMenu
-          imageSrc= {ElevatorIcon}
+          imageSrc={ElevatorIcon}
           deviceName={radialMenuData.deviceName}
           deviceId={radialMenuData.deviceId}
           deviceFloor={radialMenuData.floorLocation}
@@ -388,6 +377,8 @@ const MapContainer = ({ google }) => {
           onClose={closeRadialMenu}
         />
       )}
+      {/* Conditional rendering of DeviceInfo */}
+      {showDeviceInfo && (<DeviceInfo />)}
     </div>
   );
 };
