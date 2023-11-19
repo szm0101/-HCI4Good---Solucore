@@ -166,11 +166,39 @@
 }
 
 .buildingInfo{
+    display: flex;
+    flex-direction: column;
+    background-color: #364B68;
+    text-align: left;
+}
+
+.buildingInfoContainer {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
     color: white;
     background-color: #364B68;
     text-align: left;
     padding: 15px;
     font-family: Montserrat, sans-serif;
     font-weight: bold;
-    height: 300px !important;
+  }
+  
+
+.selected-building{
+    display: flex;
+    flex-direction: column;
+}
+
+.selected-building-name{
+    margin-bottom: 10px;
+}
+
+.selected-building-info{
+    display: flex;
+    flex-direction: row;
+}
+
+.selected-building-info h5{
+    margin-right: 20px;
 }

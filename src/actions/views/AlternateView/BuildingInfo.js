@@ -1,51 +1,68 @@
 import React from "react";
 import "./Data.css";
-import { useState, useEffect } from "react";
-import { useRef } from "react";
+import { useState } from "react";
 import { DropdownButton, Dropdown } from "react-bootstrap";
 
 function BuildingInfo(props) {
-  const [building, setBuilding] = useState("-- Select Building --");
+  const [building, setBuilding] = useState(null);
   const [dropDownOpen, setDropDownOpen] = useState(false);
-  const dropdownRef = useRef(null);
 
-  const handleToggle = () => {
-    setDropDownOpen(!dropDownOpen);
+  console.log(props.buildings);
+
+  const handleBuildingSelect = (building) => {
+    console.log(building);
+    setBuilding(building);
+    props.setBuildingDevices(building.bankInfos[0].deviceInfos);
   };
 
-  useEffect(() => {
-    if (dropDownOpen && dropdownRef.current) {
-      const dropdownMenu = dropdownRef.current.querySelector(".dropdown-menu");
-      if (dropdownMenu) {
-        const dropdownMenuHeight = dropdownMenu.clientHeight;
-        dropdownRef.current.style.height = `${dropdownMenuHeight}px`;
-      }
-    } else {
-      dropdownRef.current.style.height = "auto";
-    }
-  }, [dropDownOpen]);
-
   return (
-    <div class="buildingInfo" ref={dropdownRef}>
-      <Dropdown show={dropDownOpen} onToggle={handleToggle}>
-        <Dropdown.Toggle id="dropdown-basic">
-          {building}
-        </Dropdown.Toggle>
-        <Dropdown.Menu>
+    <div className="buildingInfoContainer">
+      <div
+        className="buildingInfo"
+        onClick={() => setDropDownOpen(!dropDownOpen)}
+      >
+        {building ? (
+          <div className="selected-building">
+            <div className="selected-building-name">
+              <h3>
+                <strong>{building.buildingName}</strong>
+              </h3>
+            </div>
+            <div className="selected-building-info">
+              <h5>
+                {`${building.bankInfos[0].deviceInfos.length} Devices`}
+              </h5>
+              <h5>-</h5>
+              <h5>
+                  <strong>{`${building.bankInfos[0].deviceInfos[0].contractor}`}</strong>
+              </h5>
+            </div>
+          </div>
+        ) : 
+        <div>
+          <h3><strong>No building selected</strong></h3>
+        </div>
+        }
+      </div>
+
+      <div className="dropdown-container">
+        <DropdownButton
+          title="-- Select-Building --"
+          onClick={() => setDropDownOpen(!dropDownOpen)}
+          className="dropdown-button"
+          drop="right"
+        >
           {props.buildings.map((building, idx) => (
-            <Dropdown.Item onClick={() => setBuilding(building)}>
+            <Dropdown.Item
+              key={idx}
+              onClick={() => handleBuildingSelect(building)}
+              className="dropdown-item"
+            >
               {building.buildingName}
             </Dropdown.Item>
           ))}
-        </Dropdown.Menu>
-      </Dropdown>
-
-      {building !== "-- Select Building --" ? (
-        <div>
-          <h4>{building.buildingName}</h4>
-          <h4>{`${building.bankInfos[0].deviceInfos.length} - Devices`}</h4>
-        </div>
-      ) : null}
+        </DropdownButton>
+      </div>
     </div>
   );
 }

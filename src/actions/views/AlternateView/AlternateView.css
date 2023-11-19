@@ -58,6 +58,7 @@
 }
 
 .building-select{
-    width: auto;
-    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    height: fit-content;
 }
