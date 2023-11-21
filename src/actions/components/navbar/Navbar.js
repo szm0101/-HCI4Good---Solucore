@@ -78,7 +78,7 @@ function Navbars() {
                     <Nav.Item className='me-4'>
                         <Nav>
                             <NavDropdown align='end' title={<img src={Photo} alt="profile photo" className='profile-photo' />} className='me-3' id="basic-nav-dropdown">
-                                <NavDropdown.Item href="#action/3.1" className='py-2 fs-6'>
+                                <NavDropdown.Item href="/Profile" className='py-2 fs-6'>
                                     <img
                                         alt=""
                                         src={EditIcon}
