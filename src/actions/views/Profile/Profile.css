@@ -5,3 +5,13 @@
     height: 100%;
   }
   
+  .photo {
+    width: 200px;
+    /* Adjust the logo size */
+    height: 200px;
+    /* Adjust the logo size */
+}
+
+.dark-bg {
+    background-color: #3A3E52 !important;
+}
