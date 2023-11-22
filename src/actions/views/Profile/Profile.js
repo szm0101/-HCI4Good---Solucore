@@ -14,6 +14,7 @@ const Profile = () => {
     const lName = cookies.lastName;
     const pNumber = cookies.phoneNumber;
     const mNumber = cookies.mobileNumber;
+    const pPicture = cookies.profilePictureUrl;
 
     const [userData, setUserData] = useState({
         firstName: fName,
@@ -22,7 +23,7 @@ const Profile = () => {
         mobile: mNumber,
       });
 
-      const [profilePicture, setProfilePicture] = useState(Photo);
+      const [profilePictureUrl, setProfilePictureUrl] = useState(pPicture);
     
       const [passwordModalShow, setPasswordModalShow] = React.useState(false);
       const [editModalShow, setEditModalShow] = React.useState(false);
@@ -33,7 +34,9 @@ const Profile = () => {
     const handleEditClose = () => {
         setEditModalShow(false);
     };
-      
+    const handleImageError = () => {
+        setProfilePictureUrl(Photo);
+    }; 
 
     return(
         <div className=" container mt-4 ms-4">
@@ -64,16 +67,12 @@ const Profile = () => {
           <Card className='h-100 profile-card-dark-bg text-white'>
             <Card.Body className="d-flex flex-column align-items-center justify-content-center mb-5">
               <Card.Title className='mt-2 mb-5 fs-2'>Profile Picture</Card.Title>
-              {/* Display the profile picture if available */}
-              {profilePicture ? (
-                <img
-                  src={Photo}
+              <img
+                  src={profilePictureUrl}
                   alt="Profile"
                   className="img-fluid photo"
+                  onError={handleImageError}
                 />
-              ) : (
-                <p className="text-muted">No picture uploaded</p>
-              )}
 
               {/* Upload Button and Form */}
               <Form>
