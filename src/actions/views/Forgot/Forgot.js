@@ -1,6 +1,6 @@
 // Forgot.js
 import React, { useState } from 'react';
-import { Alert, Form, Button, Card, Image, Container } from 'react-bootstrap';
+import { Alert, Form, Button, Card, Image, Container, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import Logo from '../../assets/solutrak-logo.png';
 import './Forgot.css';
@@ -23,15 +23,18 @@ const Forgot = () => {
 
     return (
         <Container fluid className="forgot-container d-flex align-items-center justify-content-center py-0">
-            <Card className="forgot-card px-0 py-0">
-                <div className="forgot-title-container px-0 py-0 text-center">
-                    <Image className="logo-big" src={Logo} alt="Logo" />
-                    <h4 className="card-title text-center" style={{ color: 'white' }}>
-                        Forgot Password
-                    </h4>
-                    <div className='py-0 text-center text-white' style={{width: '40%',}}>We can help you reset your password using email address associated with your account.</div>
-                </div>
-                <Card.Body>
+            <Card className="forgot-card px-0 py-0">     
+                <Card.Body className='py-5 '>
+                    <div className="forgot-title-container px-0 py-0 text-center">
+                        <Image className="logo-big my-4" src={Logo} alt="Logo" />
+                        <h4 className="card-title text-center" style={{ color: 'white' }}>
+                            Forgot Password
+                        </h4>
+                        <div className='text-center w-50 '>
+                            <div className='py-0 text-center text-white text-wrap ' style={{wordWrap: 'break-word'}}><p>We can help you reset your password using email address associated with your account.</p></div>
+                        </div>
+                    </div>
+
                     {error && <Alert variant="danger">{error}</Alert>}
                     <Form className="forgot-form forgot-form-container">
                         {message &&
@@ -50,14 +53,15 @@ const Forgot = () => {
                                     color: 'rgba(153, 155, 170, 1)',
                                 }}
                             />
-                        </Form.Group>
-                        <Button
+                            <Button
                             type="button"
                             variant="primary"
+                            className='w-100'
                             onClick={handlePasswordReset}
                         >
                             Reset Password
                         </Button>
+                        </Form.Group>
                     </Form>
                 </Card.Body>
                 <Card.Footer className='text-primary w-100 ' style={{backgroundColor: '#3a3e52',}}>
