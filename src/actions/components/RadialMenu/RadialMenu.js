@@ -32,6 +32,12 @@ const tempGaugeSVG = [
   { id: 100, svgPath: "M -206 3 C -206 -19 -207 -90 -124 -131 L -115 -114 C -190 -77 -187 -19 -187 3 Z"}
 ]
 
+// Temperature gauge value-to-svg selector
+const selectTemperatureSVGPath = (temperature) => {
+  const selectedPath = tempGaugeSVG.find(entry => entry.id >= temperature);
+  return selectedPath ? selectedPath.svgPath : ''; 
+};
+
 const RadialMenu = (props) => {
   // Placeholder for default image, replace 'path_to_some_default_image' with your actual default image path
   const defaultImage = 'path_to_some_default_image';
@@ -68,7 +74,7 @@ const RadialMenu = (props) => {
               <path d={'M440.739 367l-18.253 9.174C353.717 410.736 311 480.167 311 557.373v20.621l40.82-.115V557.373a160.821 160.821 0 0 1 88.93-144.521L459 403.677Zm-1.513 42.8a164.221 164.221 0 0 0-90.811 147.578v17.1l-34.017.1V557.373c0-75.9 42-144.164 109.61-178.143l15.211-7.645 15.218 30.565'} />
             </svg>
             <svg className="temperature-value" viewBox="-280 -140 175 270" xmlns="http://www.w3.org/2000/svg">
-              <path className="temperature-value-svg" d="M -206 3 C -206 -19 -207 -85 -135 -125 L -126 -108 C -190 -72 -187 -19 -187 3 Z" fill="none" />
+              <path className="temperature-value-svg" d={selectTemperatureSVGPath(props.deviceTemp)} fill="none" />
             </svg>
             <div>
               <h3 className="temp-info-celsius">{props.deviceTemp}°C</h3>
