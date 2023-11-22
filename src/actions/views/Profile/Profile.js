@@ -4,14 +4,22 @@ import Photo from '../../assets/profile-icon.png'
 import './Profile.css';
 import ChangePasswordModal from '../../components/ChangePasswordModal/Modal.js';
 import EditProfileModal from './EditProfileModal.js';
+import { useCookies } from 'react-cookie';
 
 const Profile = () => {
 
+    const [cookies, setCookie] = useCookies();
+    const token = cookies.token;
+    const fName = cookies.firstName;
+    const lName = cookies.lastName;
+    const pNumber = cookies.phoneNumber;
+    const mNumber = cookies.mobileNumber;
+
     const [userData, setUserData] = useState({
-        firstName: 'John',
-        lastName: 'Doe',
-        phoneNumber: '123-456-7890',
-        mobile: '1',
+        firstName: fName,
+        lastName: lName,
+        phoneNumber: pNumber,
+        mobile: mNumber,
       });
 
       const [profilePicture, setProfilePicture] = useState(Photo);
