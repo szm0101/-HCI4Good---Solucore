@@ -52,7 +52,7 @@ const Login = () => {
                 setCookie('lastName', userInfo.lastName, { path: '/', sameSite: 'None', secure: true });
                 setCookie('phoneNumber', userInfo.phoneNumber, { path: '/', sameSite: 'None', secure: true });
                 setCookie('mobileNumber', userInfo.mobileNumber, { path: '/', sameSite: 'None', secure: true });
-
+                setCookie('profilePictureUrl', userInfo.profilePictureUrl, { path: '/', sameSite: 'None', secure: true });
 
                 navigate('/Home');
             } else {
