@@ -7,8 +7,27 @@
         bottom: 0px;
         right: 0px;
         z-index: -10;
+        /* Rules for radial menu */
+        display: flex;
+        flex-direction: row; /* align children in a row */
+        align-items: stretch; /* stretch children to fill the container */
+        height: 100%; /* adjust as needed */
     }
 }
+/* Added for radial menu integration */
+.map-wrapper {
+    flex-grow: 1; /* take up remaining space */
+    /* additional styling as needed */
+  }
+
+.radial-menu-container {
+    /* Style as needed, for example: */
+    flex: 0 0 auto; /* don't grow, don't shrink, and base width on content */
+    padding: 10px; /* optional spacing */
+    padding-left: 120px;
+
+  }
+
 
 @media only screen and (min-width: 600px) {
     .map-container {

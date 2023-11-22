@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 import "./Map.css";
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
+import RadialMenu from '../../components/RadialMenu/RadialMenu'; 
+import ElevatorIcon from "../../assets/elevator-central-image.png";
+
+
 
 const apiKey = process.env.REACT_APP_apiKey;
 /** ref:
@@ -237,20 +241,36 @@ const MapContainer = ({ google }) => {
   const [showingInfoWindow, setShowingInfoWindow] = useState(false);  // Hides or shows the InfoWindow
   const [activeMarker, setActiveMarker] = useState({});               // Shows the active marker upon click
   const [selectedPlace, setSelectedPlace] = useState({});             // Shows the InfoWindow to the selected place upon a marker
-  const [data, setData] = useState([]);                               // Stores the data from the Building API call
+  const [data, setData] = useState([]);                               // Stores the data from the Device API call
   const [cookies, setCookie] = useCookies();
+  // State variables for radial menu 
+  const [showRadialMenu, setShowRadialMenu] = useState(false);
+  const [radialMenuData, setRadialMenuData] = useState({ 
+    deviceName: '', 
+    deviceId: '', 
+    floorLocation: '', 
+    deviceTemp: '', 
+    cameraUrl: '', 
+    doorStatus: '', 
+    direction: ''
+  });
 
+  // Set up user's default location
   const defaultLat = cookies.defaultLat;
   const defaultLng = cookies.defaultLng;
   const token = cookies.token;
+
+  // Zooms on click event
+  const [mapCenter, setMapCenter] = useState({ lat: defaultLat, lng: defaultLng });
+  const [mapZoom, setMapZoom] = useState(11); 
 
   useEffect(() => {
     const headers = new Headers({
       'Valid-token': token,
     });
 
-    // call getBuildingInfos API and store Data array
-    fetch('https://services.solucore.com/solutrak/api/buildings/getBuildingInfos', { "method": "GET", headers })
+    // call getDeviceInfos API and store Data array
+    fetch('https://services.solucore.com/solutrak/api/buildings/getDeviceInfos', { "method": "GET", headers })
       .then((response) => response.json())
       .then((result) => {
         setData(result.Data);
@@ -264,6 +284,30 @@ const MapContainer = ({ google }) => {
     setSelectedPlace(props);
     setActiveMarker(marker);
     setShowingInfoWindow(true);
+     // Change map center and zoom level
+     setMapCenter({ lat: marker.position.lat(), lng: marker.position.lng() });
+     setMapZoom(20); // Zoom level when a marker is clicked, adjust as needed
+    
+
+     // Delay the display of RadialMenu
+     setTimeout(() => {
+      setShowRadialMenu(true);
+      setRadialMenuData({ 
+        deviceName: props.name, 
+        deviceId: props.deviceId, 
+        floorLocation: props.floorLocation, 
+        deviceTemp: props.deviceTemp,
+        cameraUrl: props.cameraUrl,
+        doorStatus: props.doorStatus,
+        direction: props.direction
+      });
+    }, 1000); // Delay for zoom animation
+
+  };
+
+  // Function to close RadialMenu
+  const closeRadialMenu = () => {
+    setShowRadialMenu(false);
   };
 
   const onClose = () => {
@@ -273,11 +317,14 @@ const MapContainer = ({ google }) => {
     }
   };
 
+  
+
   return (
     <div className="map-container">
       <Map
         google={google}
-        zoom={11}
+        zoom={mapZoom}
+        center={mapCenter}
         styles={darkMapStyles}
         initialCenter={
           {
@@ -292,10 +339,10 @@ const MapContainer = ({ google }) => {
         }}
       >
         {data ? (
-          data.map((building) => (
+          data.map((device) => (
             <Marker
-              key={building.buildingId}
-              position={{ lat: building.latitude, lng: building.longitute }}
+              key={device.deviceId}
+              position={{ lat: device.latitude, lng: device.longitute }}
               icon={{
                 path: google.maps.SymbolPath.CIRCLE,
                 fillColor: '#2096f3',
@@ -305,13 +352,19 @@ const MapContainer = ({ google }) => {
                 strokeWeight: 8
               }}
               onClick={onMarkerClick}
-              name={building.buildingName}
+              name={device.deviceName}
+              deviceId={device.deviceId}
+              floorLocation={device.infoMessage.location}
+              deviceTemp={device.infoMessage.temperature}
+              cameraUrl={device.cameraUrl}
+              doorStatus={device.infoMessage.door}
+              direction={device.infoMessage.direction}
             />
           ))
         ) : (
           <p>Loading...</p>
         )}
-        <InfoWindow
+        {/* <InfoWindow
           marker={activeMarker}
           visible={showingInfoWindow}
           onClose={onClose}
@@ -319,8 +372,22 @@ const MapContainer = ({ google }) => {
           <div>
             <h4>{selectedPlace.name}</h4>
           </div>
-        </InfoWindow>
+        </InfoWindow> */}
       </Map>
+      {/* Conditional rendering of RadialMenu */}
+      {showRadialMenu && (
+        <RadialMenu
+          imageSrc= {ElevatorIcon}
+          deviceName={radialMenuData.deviceName}
+          deviceId={radialMenuData.deviceId}
+          deviceFloor={radialMenuData.floorLocation}
+          deviceTemp={radialMenuData.deviceTemp}
+          cameraUrl={radialMenuData.cameraUrl}
+          doorStatus={radialMenuData.doorStatus}
+          direction={radialMenuData.direction}
+          onClose={closeRadialMenu}
+        />
+      )}
     </div>
   );
 };
