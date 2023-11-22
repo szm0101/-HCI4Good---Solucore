@@ -5,14 +5,18 @@ import './EditProfileModal.css';
 
 function EditProfileModal(props) {
 
-    const [cookies, setCookie] = useCookies(); // Initialize the isLoggedIn cookie
+    const [cookies, setCookie] = useCookies();
     const token = cookies.token;
+    const fName = cookies.firstName;
+    const lName = cookies.lastName;
+    const pNumber = cookies.phoneNumber;
+    const mNumber = cookies.mobileNumber;
 
     const initialProfileData = {
-        firstName: '',
-        lastName: '',
-        phoneNumber: '',
-        mobile: '',
+        firstName: fName,
+        lastName: lName,
+        phoneNumber: pNumber,
+        mobile: mNumber,
       };
     const [profileFormData, setProfileFormData] = useState(initialProfileData);
 
@@ -52,7 +56,7 @@ function EditProfileModal(props) {
                 <Form.Label className='text-white fs-6'>FIRST NAME</Form.Label>
                 <Form.Control
                     type="text" 
-                    placeholder=""
+                    placeholder={fName}
                     name="firstName"
                     value={profileFormData.firstName}
                     onChange={handleChange}
@@ -63,7 +67,7 @@ function EditProfileModal(props) {
                 <Form.Label className='text-white fs-6'>LAST NAME</Form.Label>
                 <Form.Control
                     type="text" 
-                    placeholder=""
+                    placeholder={lName}
                     name="lastName"
                     value={profileFormData.lastName}
                     onChange={handleChange}
@@ -74,7 +78,7 @@ function EditProfileModal(props) {
                 <Form.Label className='text-white fs-6'>PHONE NUMBER</Form.Label>
                 <Form.Control
                     type="text" 
-                    placeholder=""
+                    placeholder={pNumber}
                     name="phoneNumber"
                     value={profileFormData.phoneNumber}
                     onChange={handleChange}
@@ -85,7 +89,7 @@ function EditProfileModal(props) {
                 <Form.Label className='text-white fs-6'>MOBILE NUMBER</Form.Label>
                 <Form.Control
                     type="text" 
-                    placeholder=""
+                    placeholder={mNumber}
                     name="mobile"
                     value={profileFormData.mobile}
                     onChange={handleChange}

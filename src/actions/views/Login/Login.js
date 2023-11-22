@@ -47,6 +47,11 @@ const Login = () => {
                 // Get user's default location (Latitude and longgitute)
                 setCookie('defaultLat', userInfo.defaultLocationLatitude, { path: '/', sameSite: 'None', secure: true });
                 setCookie('defaultLng', userInfo.defaultLocationLongitute, { path: '/', sameSite: 'None', secure: true });
+                //Get user's profile data
+                setCookie('firstName', userInfo.firstName, { path: '/', sameSite: 'None', secure: true });
+                setCookie('lastName', userInfo.lastName, { path: '/', sameSite: 'None', secure: true });
+                setCookie('phoneNumber', userInfo.phoneNumber, { path: '/', sameSite: 'None', secure: true });
+                setCookie('mobileNumber', userInfo.mobileNumber, { path: '/', sameSite: 'None', secure: true });
 
 
                 navigate('/Home');
