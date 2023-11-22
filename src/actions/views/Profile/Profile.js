@@ -65,6 +65,7 @@ const Profile = () => {
             const status = data.IsSuccess;
           if (status) {
               window.alert("Your profile picture has been succesfully updated to: " + data.Data.newName);
+              setCookie('profilePictureUrl', data.Data.url);
               window.location.reload();
           } else {
               window.alert("Status: " + data.IsSuccess + "\n" + data.Message )
