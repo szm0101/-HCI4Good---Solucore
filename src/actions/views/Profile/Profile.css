@@ -12,6 +12,10 @@
     /* Adjust the logo size */
 }
 
-.dark-bg {
+.profile-card-dark-bg {
     background-color: #3A3E52 !important;
+}
+
+.editProfile-btn {
+    background-color: #2295e1;
 }
