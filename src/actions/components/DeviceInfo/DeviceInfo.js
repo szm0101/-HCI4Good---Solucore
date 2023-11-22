@@ -10,10 +10,12 @@ const DeviceInfo = ({ buildingId, onClose }) => {
     const [cookies] = useCookies();
     const token = cookies.token;
 
+
     useEffect(() => {
         const headers = new Headers({
             'Valid-token': token,
         });
+
 
         // Make API call to get building information
         fetch(`https://services.solucore.com/solutrak/api/buildings/getDeviceInfos`, {
@@ -93,7 +95,7 @@ const DeviceInfo = ({ buildingId, onClose }) => {
                                     <span>Door: Close(0)</span>
                                 </th>
                                 <th>
-                                    <span>11/30/2003</span>
+                                    <span>11/30/2023</span>
                                 </th>
                                 <th>
                                     <span>100010165</span>
