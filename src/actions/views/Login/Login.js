@@ -63,11 +63,11 @@ const Login = () => {
     return (
         <Container fluid className="login-container d-flex align-items-center justify-content-center">
             <Card className="login-card vw-25 vh-50 px-0 py-0">
-                <div className="logo-title-container text-center">
+                <div className="logo-title-container text-center pt-5">
                     <Image className="logo-big" src={Logo} alt="Logo" />
                 </div>
-                <Card.Body className='mx-4'>
-                    <h4 className="card-title text-center mb-3" style={{ color: 'white' }}>
+                <Card.Body className='mx-5'>
+                    <h4 className="card-title text-center mb-5" style={{ color: 'white' }}>
                         Login
                     </h4>
                     {error && <Alert variant="danger">{error}</Alert>}
@@ -77,6 +77,7 @@ const Login = () => {
                                 type="text"
                                 id="username"
                                 placeholder="Email"
+                                className='login-input'
                                 value={username}
                                 onChange={(e) => setUsername(e.target.value)}
                                 style={{
@@ -91,6 +92,7 @@ const Login = () => {
                                 type="password"
                                 id="password"
                                 placeholder="Password"
+                                className='login-input'
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 style={{
@@ -100,7 +102,16 @@ const Login = () => {
                                 }}
                             />
                         </Form.Group >
-                        <div className="text-center mt-4">
+                        <Form.Group className='my-2 w-100'>
+                            <Form.Check
+                                type="checkbox"
+                                label="Remember me next time"
+                                id="rememberMe"
+                                className='text-white text-start'
+                                // Add any additional props or styling as needed
+                            />
+                        </Form.Group>
+                        <div className="text-center my-2">
                             <Button
                                 type="button"
                                 className="login-btn"
