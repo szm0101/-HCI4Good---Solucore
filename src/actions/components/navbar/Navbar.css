@@ -1,6 +1,6 @@
 .navbar-container {
     display: flex;
-    position: fixed;
+    position: relative;
     top: 0;
     height: 13.5%;
     width: 100%;
@@ -8,6 +8,10 @@
     justify-content: space-between;
     align-items: center;
     padding: 15px;
+}
+
+.navbar{
+    padding: 0 !important;
 }
 
 img.notif-icon,
