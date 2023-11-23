@@ -17,13 +17,17 @@ function CreateActivityForm() {
         setVisibility(false);
     }
 
+    const inputTextWidth = {
+        width: '300px'
+      };
+
     return (
         <div>
             <form onSubmit={visibility} className="grid-container">
                 <fieldset>
                     <div>
                         <label className='device'>DEVICE </label>
-                        <input type="text" value='Elevator - A #60262' />
+                        <input type="text" value='Elevator - A #60262' style={inputTextWidth}/>
                     </div> <br></br>
                     <div>
                         <label className='activity'>ACTIVITY <br></br> DATE</label>
@@ -40,6 +44,7 @@ function CreateActivityForm() {
                             type="text"
                             value={reporter}
                             onChange={(e) => setReporter(e.target.value)}
+                            style={inputTextWidth}
                         />
                     </div> <br></br>
                     <label className='entrapment'>ENTRAPMENT</label>
@@ -72,6 +77,7 @@ function CreateActivityForm() {
                         type="text"
                         value={referenceNo}
                         onChange={(e) => setReferenceNo(e.target.value)}
+                        style={inputTextWidth}
                     />
                 </fieldset>
                 <fieldset>
@@ -109,6 +115,7 @@ function CreateActivityForm() {
                             type="text"
                             value={mechanic}
                             onChange={(e) => setMechanic(e.target.value)}
+                            style={inputTextWidth}
                         />
                     </div> <br></br>
                     <div class="textarea">
