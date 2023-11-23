@@ -26,12 +26,18 @@ function App() {
                 {userIsLoggedIn && <Navbar />}
                 {userIsLoggedIn && <Sidebar />}
 
+                <Routes>
+                    <>
+                      <Route path="/" element={<LoginPage />} />
+                      <Route path="/Forgot" element={<Forgot />} />
+                    </>
+                </Routes>
+
                 <div className="container">
-          <Routes>
-            <>
-              <Route path="/" element={<LoginPage />} />
-              <Route path="/Forgot" element={<Forgot />} />
+          
+            
               {userIsLoggedIn && (
+                <Routes>
                 <>
                   <Route path="/Home" element={<Dashboard />} />
                   <Route path="/Alerts" element={<Alerts />} />
@@ -41,9 +47,9 @@ function App() {
                   <Route path="/RadialMenuTest" element={<RadialMenuTest />} />
                   <Route path="/Profile" element={<Profile />} />
                 </>
+                </Routes>
               )}
-            </>
-          </Routes>
+          
         </div>
             </BrowserRouter>
         </div>
