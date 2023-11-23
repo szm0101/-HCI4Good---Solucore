@@ -9,21 +9,46 @@ import './Forgot.css';
 const Forgot = () => {
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
-    const [error, setError] = useState('');
+    const [error, setError] = useState(false);
     const navigate = useNavigate();
     const [emailSent, setEmailSent] = useState(false);
 
 
+    const handleSubmit = () => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            setError(true);
+            setMessage('Email is not a valid email.')
+            return;
+        }else{
+            handlePasswordReset();
+        }
+    };
+    
     const handlePasswordReset = () => {
-        // setMessage('Password reset successful');
+        var requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+          };
+          
+          fetch("https://services.solucore.com/solutrak/api/accounts/forgotPassword?email=" + email, requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                const data = JSON.parse(result);
+                const status = data.IsSuccess;
 
-        // setTimeout(() => {
-        //     setMessage('');
-        //     navigate('/');
-        // }, 4000);
-        setEmailSent(true);
-        setMessage('Password reset instructions sent to your email.');
+                if (status) {
+                    setEmailSent(true);
+                    console.log(data.Message);
         setError('');
+                } else {
+                    // window.alert("Status: " + data.IsSuccess + "\n" + data.Message );
+                    setError(true);
+                    setMessage(data.Message)
+
+                }
+            })
+            .catch(error => console.log('error', error));
     };
 
     return (
@@ -53,12 +78,7 @@ const Forgot = () => {
                         </div>
                     </div>
 
-                    {error && <Alert variant="danger">{error}</Alert>}
                     <Form className="forgot-form forgot-form-container">
-                        {message &&
-                            <Alert variant='info'>
-                                {message}
-                            </Alert>}
                             {emailSent ? (
                                  <>
                                  </>      
@@ -69,17 +89,23 @@ const Forgot = () => {
                                         placeholder="Email"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
-                                        className="forgot-input mb-3"
+                                        className={`forgot-input ${error ? 'border-danger mb-1' : 'mb-3'}`}
                                         style={{
                                             backgroundColor: 'rgba(58, 62, 82, 1)',
                                             color: 'rgba(153, 155, 170, 1)',
+                                            borderColor: error ? 'red' : '',
                                         }}
                                     />
+                                    {error && (
+                                        <div className=" fw-bold text-start mb-3" style={{color: '#a94442'}}>
+                                            {message}
+                                        </div>
+                                    )}
                                     <Button
                                         type="button"
                                         variant="primary"
                                         className='w-100 forgot-btn'
-                                        onClick={handlePasswordReset}
+                                        onClick={handleSubmit}
                                     >
                                         Reset Password
                                     </Button>
@@ -92,15 +118,23 @@ const Forgot = () => {
                                 type="button"
                                 variant="primary"
                                 className='w-100 forgot-btn'
+                                href='/'
                             >
                                 Go Back to Login
                             </Button>
                         </div>
                     )}
                 </Card.Body>
-                <Card.Footer className='text-primary w-100 ' style={{backgroundColor: '#3a3e52',}}>
-                    <a href="/" class="text-decoration-none login-link fs-5">Login</a>
-                </Card.Footer>
+                {!emailSent && (
+                    <Card.Footer className='text-primary w-100 ' style={{backgroundColor: '#3a3e52',}}>
+                        <a href="/" class="text-decoration-none login-link fs-5">Login</a>
+                    </Card.Footer>
+                )}
+                {emailSent && (
+                    <>
+                    <div className='py-3'></div>
+                    </>
+                )}
             </Card>
         </Container>
 
