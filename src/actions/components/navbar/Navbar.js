@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import "./Navbar.css";
-import { Nav, Navbar, NavDropdown, Modal, Dropdown } from 'react-bootstrap';
+import { Nav, Navbar, NavDropdown, Modal, Dropdown, Button} from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import Logo from '../../assets/solutrak-logo.png';
 import Photo from '../../assets/profile-icon.png'
@@ -74,7 +74,11 @@ function Navbars() {
 
                 <Nav className="ml-auto">
                     <Nav.Item className='me-4'>
-                    <ImpersonationDropDown/>
+                        {cookies.userType === 'Admin' ? (
+                            <ImpersonationDropDown />
+                        ) : (
+                            <Button className="btn btn-disabled fw-bold" style={{backgroundColor:'#ffc107'}} disabled>{cookies.company}</Button>
+                        )}
                     </Nav.Item>
 
                     <Nav.Item className='me-4'>
