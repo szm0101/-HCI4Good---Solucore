@@ -16,6 +16,7 @@ function Navbars() {
     const navigate = useNavigate();
     const [cookies, setCookie] = useCookies();
     const token = cookies.token;
+    const pPicture = cookies.profilePictureUrl;
     const [modalShow, setModalShow] = React.useState(false);
     const [successMsg, setSuccessMsg] = useState('');
 
@@ -77,8 +78,8 @@ function Navbars() {
 
                     <Nav.Item className='me-4'>
                         <Nav>
-                            <NavDropdown align='end' title={<img src={Photo} alt="profile photo" className='profile-photo' />} className='me-3' id="basic-nav-dropdown">
-                                <NavDropdown.Item href="#action/3.1" className='py-2 fs-6'>
+                            <NavDropdown align='end' title={<img src={pPicture} alt="profile photo" className='profile-photo' />} className='me-3' id="basic-nav-dropdown">
+                                <NavDropdown.Item href="/Profile" className='py-2 fs-6'>
                                     <img
                                         alt=""
                                         src={EditIcon}
