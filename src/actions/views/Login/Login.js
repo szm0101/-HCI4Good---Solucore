@@ -125,7 +125,7 @@ const Login = () => {
                     </Form>
                 </Card.Body>
                 <Card.Footer className='text-primary w-100 ' style={{backgroundColor: '#3a3e52',}}>
-                    <a href="/Forgot" class="text-reset">Forgot Password?</a>
+                    <a href="/Forgot" class="text-decoration-none forgot-link fs-5">Forgot Password?</a>
                 </Card.Footer>
             </Card>
         </Container>
