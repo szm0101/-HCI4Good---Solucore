@@ -65,7 +65,7 @@ const Forgot = () => {
                     </Form>
                 </Card.Body>
                 <Card.Footer className='text-primary w-100 ' style={{backgroundColor: '#3a3e52',}}>
-                    <a href="/" class="text-reset">Login</a>
+                    <a href="/" class="text-decoration-none login-link fs-5">Login</a>
                 </Card.Footer>
             </Card>
         </Container>

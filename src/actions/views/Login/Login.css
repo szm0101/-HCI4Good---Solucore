@@ -78,4 +78,16 @@
 
 .login-input::placeholder {
     color: rgba(153, 155, 170, 1); /* Change this color to your desired color */
-  }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px rgba(58, 62, 82, 1) inset !important;
+    -webkit-text-fill-color: rgba(153, 155, 170, 1) !important;
+}
+
+.forgot-link {
+    color: rgba(34, 149, 225, 1);
+}
