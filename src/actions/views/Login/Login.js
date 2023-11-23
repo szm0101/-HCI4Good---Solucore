@@ -67,7 +67,7 @@ const Login = () => {
                     <Image className="logo-big" src={Logo} alt="Logo" />
                 </div>
                 <Card.Body className='mx-5'>
-                    <h4 className="card-title text-center mb-5" style={{ color: 'white' }}>
+                    <h4 className="card-title text-center mb-5 fw-light fs-3" style={{ color: 'white' }}>
                         Login
                     </h4>
                     {error && <Alert variant="danger">{error}</Alert>}
