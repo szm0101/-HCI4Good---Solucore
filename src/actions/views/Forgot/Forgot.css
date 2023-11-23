@@ -62,3 +62,11 @@
     /* Take the full width of the card */
 
 }
+
+.forgot-input::placeholder {
+    color: rgba(153, 155, 170, 1); /* Change this color to your desired color */
+  }
+
+.forgot-btn {
+    background-color: rgba(34, 149, 225, 1);
+}

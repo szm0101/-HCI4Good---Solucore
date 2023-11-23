@@ -31,7 +31,7 @@ const Forgot = () => {
                             Forgot Password
                         </h4>
                         <div className='text-center w-50 '>
-                            <div className='py-0 text-center text-white text-wrap ' style={{wordWrap: 'break-word'}}><p>We can help you reset your password using email address associated with your account.</p></div>
+                            <div className='py-0 text-center text-white text-wrap fw-light text-white-50' style={{wordWrap: 'break-word'}}><p>We can help you reset your password using email address associated with your account.</p></div>
                         </div>
                     </div>
 
@@ -47,7 +47,7 @@ const Forgot = () => {
                                 placeholder="Email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                className="my-3"
+                                className="forgot-input my-3"
                                 style={{
                                     backgroundColor: 'rgba(58, 62, 82, 1)',
                                     color: 'rgba(153, 155, 170, 1)',
@@ -56,7 +56,7 @@ const Forgot = () => {
                             <Button
                             type="button"
                             variant="primary"
-                            className='w-100'
+                            className='w-100 forgot-btn'
                             onClick={handlePasswordReset}
                         >
                             Reset Password
