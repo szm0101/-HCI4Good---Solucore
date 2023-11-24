@@ -15,6 +15,7 @@ import Devices from "./Devices";
 function AlternateView() {
   const [isOpen, setIsOpen] = useState(Array(7).fill(false));
   const [buildingDevices, setBuildingDevices] = useState(null);
+  const [devicesNum, setDevicesNum] = useState(null);
   const [buildings, setBuildings] = useState([]);
 
   const toggle = (index) => {
