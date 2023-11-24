@@ -75,9 +75,9 @@ const Profile = () => {
         };
 
     return(
-        <div className=" container mt-4 ms-4">
-      <div className="row">
-        <div className="col-md-6">
+        <div className="container profile-container">
+      <div className="row profile-row">
+        <div className="col-md-7">
           <Card className='h-100 profile-card-dark-bg text-white'>
             <Card.Body >
               <Card.Title className='mt-2 mb-5 ms-3 fs-2 text-start'>Profile</Card.Title>
@@ -99,7 +99,7 @@ const Profile = () => {
             </Card.Body>
           </Card>
         </div>
-        <div className="col-md-4">
+        <div className="col-md-5">
           <Card className='h-100 profile-card-dark-bg text-white'>
             <Card.Body className="d-flex flex-column align-items-center justify-content-center mb-5">
               <Card.Title className='mt-2 mb-5 fs-2'>Profile Picture</Card.Title>

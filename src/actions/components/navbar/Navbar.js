@@ -129,7 +129,6 @@ function Navbars() {
             </div>
             <ChangePasswordModal show={modalShow} onHide={handleClose} />
         </Navbar>
-        
     );
 }
 

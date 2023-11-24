@@ -1,4 +1,6 @@
 .table tbody td {
+  justify-content: center;
+  align-items: center;
   background-color: #3B3E50;
 }
 
@@ -8,9 +10,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 100px;
   overflow-x: auto;
+  width: 100%;
   /* Add horizontal scrolling for smaller screens */
+}
+
+.buildings-table{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 th,
@@ -19,6 +27,8 @@ td {
   border: 1px solid #666;
   text-align: left;
   white-space: nowrap;
+  align-items: center;
+  justify-content: center;
   /* Prevent line breaks for table cells */
   overflow: hidden;
   /* Hide overflowing content */
@@ -41,25 +51,3 @@ tbody tr:hover {
 }
 
 /* Media queries for responsiveness */
-
-/* Adjust table font size for smaller screens */
-@media (max-width: 768px) {
-  table {
-    margin-left: 70px;
-    font-size: 12px;
-  }
-}
-
-@media (max-width: 600px) {
-  table {
-    margin-left: 150px;
-    font-size: 12px;
-  }
-}
-
-/* Further adjustments for even smaller screens if necessary */
-@media (max-width: 480px) {
-  table {
-    font-size: 12px;
-  }
-}
