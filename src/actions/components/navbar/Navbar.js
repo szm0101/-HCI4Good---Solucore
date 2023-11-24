@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import "./Navbar.css";
-import { Nav, Navbar, NavDropdown, Modal } from 'react-bootstrap';
+import { Nav, Navbar, NavDropdown, Modal, Dropdown, Button} from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import Logo from '../../assets/solutrak-logo.png';
 import Photo from '../../assets/profile-icon.png'
@@ -10,14 +10,18 @@ import EditIcon from '../../assets/edit-info-icon.png'
 import NotificationIcon from "../../assets/notification-icon.png";
 import { useCookies } from 'react-cookie'; 
 import ChangePasswordModal from '../ChangePasswordModal/Modal.js';
+import ImpersonationDropDown from '../ImpersonationDropdown/ImpersonationDropdown.js';
 
 function Navbars() {
 
     const navigate = useNavigate();
     const [cookies, setCookie] = useCookies();
     const token = cookies.token;
+    const pPicture = cookies.profilePictureUrl;
     const [modalShow, setModalShow] = React.useState(false);
     const [successMsg, setSuccessMsg] = useState('');
+
+    const items = ["Item 1", "Item 2", "Item 3", "Item 4"];
 
     const handleClose = () => {
         setModalShow(false);
@@ -70,6 +74,14 @@ function Navbars() {
 
                 <Nav className="ml-auto">
                     <Nav.Item className='me-4'>
+                        {cookies.userType === 'Admin' ? (
+                            <ImpersonationDropDown />
+                        ) : (
+                            <Button className="btn btn-disabled fw-bold" style={{backgroundColor:'#ffc107'}} disabled>{cookies.company}</Button>
+                        )}
+                    </Nav.Item>
+
+                    <Nav.Item className='me-4'>
                         <Nav.Link className="navbar-links" href="/Alerts">
                             <img src={NotificationIcon} alt='Notification icon' className='notif-icon' />
                         </Nav.Link>
@@ -77,8 +89,8 @@ function Navbars() {
 
                     <Nav.Item className='me-4'>
                         <Nav>
-                            <NavDropdown align='end' title={<img src={Photo} alt="profile photo" className='profile-photo' />} className='me-3' id="basic-nav-dropdown">
-                                <NavDropdown.Item href="#action/3.1" className='py-2 fs-6'>
+                            <NavDropdown align='end' title={<img src={pPicture} alt="profile photo" className='profile-photo' />} className='me-3' id="basic-nav-dropdown">
+                                <NavDropdown.Item href="/Profile" className='py-2 fs-6'>
                                     <img
                                         alt=""
                                         src={EditIcon}

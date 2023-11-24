@@ -1,0 +1,33 @@
+body {
+  background-color: #2a2c3b !important;
+  width: 100%;
+  height: 100%;
+}
+
+.photo {
+  width: 200px;
+  /* Adjust the logo size */
+  height: 200px;
+  /* Adjust the logo size */
+}
+
+.profile-card-dark-bg {
+  background-color: #3a3e52 !important;
+}
+
+.editProfile-btn {
+  background-color: #2295e1;
+}
+
+.profile-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100vw !important;
+  width: 100% !important;
+  max-width: auto !important;
+}
+
+.profile-row{
+  width: 100%;
+}

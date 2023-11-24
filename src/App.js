@@ -10,6 +10,7 @@ import Reporting from "./actions/views/Reporting/Reporting";
 import LoginPage from "./actions/views/Login/Login";
 import Forgot from "./actions/views/Forgot/Forgot";
 import RadialMenuTest from "./actions/views/RadialMenuTest/RadialMenuTest";
+import Profile from "./actions/views/Profile/Profile";
 import { Col } from "react-bootstrap";
 
 import { useCookies } from "react-cookie";
@@ -22,7 +23,10 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        {userIsLoggedIn && <Navbar />}
+      <div className="navbar-component">
+      {userIsLoggedIn && <Navbar />}
+      </div>
+        
 
         <div className="page-components">
           <Col xs={2} md={1} lg={1}>
@@ -37,7 +41,10 @@ function App() {
                 <>
                   <Route path="/" element={<LoginPage />} />
                   <Route path="/Forgot" element={<Forgot />} />
-                  {userIsLoggedIn && (
+                </>
+              </Routes>
+                {userIsLoggedIn && (
+                  <Routes>
                     <>
                       <Route path="/Home" element={<Dashboard />} />
                       <Route path="/Alerts" element={<Alerts />} />
@@ -48,10 +55,10 @@ function App() {
                         path="/RadialMenuTest"
                         element={<RadialMenuTest />}
                       />
+                      <Route path="/Profile" element={<Profile />} />
                     </>
-                  )}
-                </>
-              </Routes>
+                  </Routes>
+                )}
             </div>
           </Col>
         </div>
