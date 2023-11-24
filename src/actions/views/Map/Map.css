@@ -1,97 +1,14 @@
-/* Media query for tablets */
-@media only screen and (min-width: 400px) {
-    .map-container {
-        position: fixed;
-        top: 0px;
-        left: 100px;
-        bottom: 0px;
-        right: 0px;
-        z-index: -10;
-        /* Rules for radial menu */
-        display: flex;
-        flex-direction: row; /* align children in a row */
-        align-items: stretch; /* stretch children to fill the container */
-        height: 100%; /* adjust as needed */
-    }
-}
-/* Added for radial menu integration */
-.map-wrapper {
-    flex-grow: 1; /* take up remaining space */
-    /* additional styling as needed */
-  }
-
-.radial-menu-container {
-    /* Style as needed, for example: */
-    flex: 0 0 auto; /* don't grow, don't shrink, and base width on content */
-    padding: 10px; /* optional spacing */
-    padding-left: 120px;
-
-  }
-
-
-@media only screen and (min-width: 600px) {
-    .map-container {
-        position: fixed;
-        top: 0px;
-        left: 100px;
-        bottom: 0px;
-        right: 0px;
-        z-index: -10;
-    }
-}
-
-
-@media only screen and (min-width: 768px) {
-    .map-container {
-        position: fixed;
-        top: 75px;
-        left: 60px;
-        bottom: 0px;
-        right: 0px;
-        z-index: -10;
-    }
-}
-
-@media only screen and (max-width: 768px) {
-    .map-container {
-        position: fixed;
-        top: 80px;
-        left: 80px;
-        bottom: 0px;
-        right: 0px;
-        z-index: -10;
-    }
-}
-
-@media only screen and (min-width: 992px) {
-    .map-container {
-        position: fixed;
-        top: 70px;
-        left: 80px;
-        bottom: 0px;
-        right: 0px;
-        z-index: -10;
-    }
-}
-
-@media only screen and (min-width: 1200px) {
-    .map-container {
-        position: fixed;
-        top: 80px;
-        left: 100px;
-        bottom: 0px;
-        right: 0px;
-        z-index: -10;
-    }
-}
-
-@media only screen and (min-width: 1400px) {
-    .map-container {
-        position: fixed;
-        top: 90px;
-        left: 100px;
-        bottom: 0px;
-        right: 0px;
-        z-index: -10;
-    }
+.map-container {
+    position: relative;
+    width: 100%;
+    top: 0px;
+    left: 0;
+    bottom: 0px;
+    right: 0px;
+    z-index: 10;
+    /* Rules for radial menu */
+    display: flex;
+    flex-direction: row; /* align children in a row */
+    align-items: stretch; /* stretch children to fill the container */
+    height: 100%; /* adjust as needed */
 }
