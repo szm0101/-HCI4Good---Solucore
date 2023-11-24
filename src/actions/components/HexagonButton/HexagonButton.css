@@ -1,0 +1,38 @@
+.hexagon-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center; 
+}
+
+.hexagon-svg {
+  width: 100px;
+  height: auto;
+}
+
+.hexagon-label {
+  font-size: 20px;
+  color: white;
+}
+
+.image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.hexagon-image:first-child:not(:only-child) {
+  margin-bottom: 5%;  /* Adjust the gap between the two images if necessary */
+}
+
+.hexagon-image {
+  max-width: 90%;  /* Adjusted to 90% to fit well within the hexagon */
+  max-height: 45%; /* Half of the available height minus a little for potential margin */
+  height: auto;
+  width: auto;
+  margin: 0; /* Explicitly setting margin to 0 */
+  padding: 0; /* Ensure no padding is applied */
+  box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+}

@@ -1,0 +1,7 @@
+.impersonation-dropdown{
+    background-color: #ffc107;
+}
+
+.impersonation-dropdown.dropdown-toggle::after {
+    display: none;
+  }

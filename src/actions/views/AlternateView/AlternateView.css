@@ -1,6 +1,7 @@
 .wrapper{
     width: 100%;
     height: 100%;
+    color: white;
     background-color: #333333 !important;
     font-family: Calibri, sans-serif;
 }
@@ -14,6 +15,7 @@
     background-color: #364B68 !important;
     align-items: center;
     padding: 15px;
+    justify-content: space-between;
 }
 
 .solutrak-logo{
@@ -27,7 +29,11 @@
 
 }
 
-.main-table tr, table{
+.main-table{
+    width: 100%;
+}
+
+.main-table tr, .main-table table{
     border: 1px solid white !important;
     border-radius: 0;
     background-color: #333333;
@@ -49,16 +55,33 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+    width: 100%;
 }
 
 .general-op-data{
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+    width: 100%;
 }
 
 .building-select{
     display: flex;
     flex-wrap: wrap;
     height: fit-content;
+}
+
+.top-bar .dropdown-menu {
+    --bs-dropdown-color: #dee2e6;
+    --bs-dropdown-bg: #2a2c3b;
+    --bs-dropdown-border-color: var(--bs-border-color-translucent);
+    --bs-dropdown-box-shadow: ;
+    --bs-dropdown-link-color: #dee2e6;
+    --bs-dropdown-link-hover-color: #fff;
+    --bs-dropdown-divider-bg: var(--bs-border-color-translucent);
+    --bs-dropdown-link-hover-bg: rgba(255, 255, 255, 0.15);
+    --bs-dropdown-link-active-color: #fff;
+    --bs-dropdown-link-active-bg: #1E5CB5;
+    --bs-dropdown-link-disabled-color: #adb5bd;
+    --bs-dropdown-header-color: #adb5bd;
 }

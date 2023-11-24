@@ -1,90 +1,66 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useCookies } from 'react-cookie';
+import { Table } from 'react-bootstrap';
 import './Buildings.css';
 
-const sampleBuildings = [
-  {
-    id: 1,
-    name: 'Building A',
-    location: 'City X',
-    capacity: 100,
-    occupancy: 80,
-    floors: 5,
-  },
-  {
-    id: 2,
-    name: 'Building B',
-    location: 'City Y',
-    capacity: 150,
-    occupancy: 120,
-    floors: 7,
-  },
-  {
-    id: 3,
-    name: 'Building C',
-    location: 'City Z',
-    capacity: 200,
-    occupancy: 180,
-    floors: 10,
-  },
-  // Add more buildings as needed
-  // ...
-];
-
 const Buildings = () => {
+  const [data, setData] = useState([]);
+  const [cookies, setCookie] = useCookies();
+  const token = cookies.token;
+
+
+  useEffect(() => {
+    
+    const headers = new Headers({
+      'Valid-token': token,
+    });
+
+    // call getBuildingInfos API and store Data array
+    fetch('https://services.solucore.com/solutrak/api/buildings/getBuildingInfos', {"method": "GET",headers})
+      .then((response) => response.json())
+      .then((result) => {
+        setData(result.Data);
+      })
+      .catch((error) => {
+        console.error('API Error:', error);
+      });
+  }, []);
+  
+
   return (
     <div className="buildings-container">
-      <h1>Buildings</h1>
       <div className="buildings-table">
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Location</th>
-              <th>Capacity</th>
-              <th>Occupancy</th>
-              <th>Floors</th>
-            </tr>
-          </thead>
-          <tbody>
-            {sampleBuildings.map((building) => (
-              <tr key={building.id}>
-                <td>{building.id}</td>
-                <td>{building.name}</td>
-                <td>{building.location}</td>
-                <td>{building.capacity}</td>
-                <td>{building.occupancy}</td>
-                <td>{building.floors}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <div className="buildings-table">
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Location</th>
-              <th>Capacity</th>
-              <th>Occupancy</th>
-              <th>Floors</th>
-            </tr>
-          </thead>
-          <tbody>
-            {sampleBuildings.map((building) => (
-              <tr key={building.id}>
-                <td>{building.id}</td>
-                <td>{building.name}</td>
-                <td>{building.location}</td>
-                <td>{building.capacity}</td>
-                <td>{building.occupancy}</td>
-                <td>{building.floors}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+   
+        <Table className='table'>
+        <thead>
+        <div className='text-white p-4'>Buildings</div>
+          <tr>
+            <th>BUILDING NAME</th>
+            <th>LOCATION</th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody className='building-table-body'>
+              {data ? (
+                data.map((building) => (
+                  <tr key={building.buildingId}>
+                    <td className='text-white'>{building.buildingName}</td>
+                    <td className='text-white'>{building.city}</td>
+                    <td className='text-white'>View</td>
+                    <td className='text-white'>Edit</td>
+                    <td className='text-white'>Delete</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="6">Loading...</td>
+                </tr>
+              )}
+        </tbody>
+        </Table>
       </div>
     </div>
   );
