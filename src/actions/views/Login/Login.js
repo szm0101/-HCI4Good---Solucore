@@ -16,12 +16,6 @@ const Login = () => {
     const handleForgotPassword = () => {
         navigate('/Forgot');
     };
-
-    useEffect(() => {
-        if(cookies.isLoggedIn){
-            navigate('/Home');
-        }
-    }, [cookies.isLoggeIn])
     
 
     const handleLogin = (username, password) => {
