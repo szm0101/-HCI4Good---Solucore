@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Card, Container, Form, Alert, Image, } from 'react-bootstrap'; // Import Bootstrap components
 import Logo from '../../assets/solutrak-logo.png';
@@ -16,6 +16,12 @@ const Login = () => {
     const handleForgotPassword = () => {
         navigate('/Forgot');
     };
+
+    useEffect(() => {
+        if(cookies.isLoggedIn){
+            navigate('/Home');
+        }
+    }, [cookies.isLoggeIn])
     
 
     const handleLogin = (username, password) => {
