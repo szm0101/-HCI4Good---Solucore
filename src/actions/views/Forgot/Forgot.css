@@ -1,5 +1,4 @@
-/* Login.css */
-.login-container {
+.forgot-container {
     background-color: #2b2d3c;
     /* Dark background color */
     display: flex;
@@ -10,7 +9,7 @@
     margin: 0;
 }
 
-.login-card {
+.forgot-card {
     background-color: #2b2d3c;
     padding: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -31,13 +30,14 @@
 }
 
 /* Logo and title container styles */
-.logo-title-container {
+.forgot-title-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* margin-top: 20px;
+    margin-top: 20px;
+    padding: 0px;
 
-    margin-bottom: 20px; */
+    margin-bottom: 20px;
     /* Adjust spacing between logo/title and form */
 }
 
@@ -46,12 +46,12 @@
     /* Adjust the logo size */
     height: 50px;
     /* Adjust the logo size */
-    /* margin-bottom: 10px; */
+    margin-bottom: 10px;
     /* Adjust spacing between logo and title */
 }
 
 /* Adjust the form layout */
-.login-form-container {
+.forgot-form-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -60,34 +60,17 @@
     /* Center the form vertically */
     width: 100%;
     /* Take the full width of the card */
+
 }
 
-.login-btn {
-    width: 314px;
-    /* Take the full width of the form group */
-    height: 35px;
-    /* Adjust the input height */
-    font-size: 18px;
-    /* Adjust the input font size */
+.forgot-input::placeholder {
+    color: rgba(153, 155, 170, 1); /* Change this color to your desired color */
+  }
+
+.forgot-btn {
     background-color: rgba(34, 149, 225, 1);
 }
 
-.text-center {
-    text-align: center;
-}
-
-.login-input::placeholder {
-    color: rgba(153, 155, 170, 1); /* Change this color to your desired color */
-}
-
-input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
-input:-webkit-autofill:active{
-    -webkit-box-shadow: 0 0 0 30px rgba(58, 62, 82, 1) inset !important;
-    -webkit-text-fill-color: rgba(153, 155, 170, 1) !important;
-}
-
-.forgot-link {
+.login-link {
     color: rgba(34, 149, 225, 1);
 }

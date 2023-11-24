@@ -47,7 +47,13 @@ const Login = () => {
                 // Get user's default location (Latitude and longgitute)
                 setCookie('defaultLat', userInfo.defaultLocationLatitude, { path: '/', sameSite: 'None', secure: true });
                 setCookie('defaultLng', userInfo.defaultLocationLongitute, { path: '/', sameSite: 'None', secure: true });
-
+                //Get user's profile data
+                setCookie('firstName', userInfo.firstName, { path: '/', sameSite: 'None', secure: true });
+                setCookie('lastName', userInfo.lastName, { path: '/', sameSite: 'None', secure: true });
+                setCookie('phoneNumber', userInfo.phoneNumber, { path: '/', sameSite: 'None', secure: true });
+                setCookie('mobileNumber', userInfo.mobileNumber, { path: '/', sameSite: 'None', secure: true });
+                setCookie('profilePictureUrl', userInfo.profilePictureUrl, { path: '/', sameSite: 'None', secure: true });
+                setCookie('company', userInfo.company, { path: '/', sameSite: 'None', secure: true });
 
                 navigate('/Home');
             } else {
@@ -62,66 +68,71 @@ const Login = () => {
 
     return (
         <Container fluid className="login-container d-flex align-items-center justify-content-center">
-            <Card className="login-card">
-                <div className="logo-title-container text-center">
+            <Card className="login-card vw-25 vh-50 px-0 py-0">
+                <div className="logo-title-container text-center pt-5">
                     <Image className="logo-big" src={Logo} alt="Logo" />
                 </div>
-                <Card.Body>
-                    <h4 className="card-title text-center" style={{ color: 'white' }}>
+                <Card.Body className='mx-5'>
+                    <h4 className="card-title text-center mb-5 fw-light fs-3" style={{ color: 'white' }}>
                         Login
                     </h4>
                     {error && <Alert variant="danger">{error}</Alert>}
                     <Form className="login-form-container">
-                        <Form.Group>
+                        <Form.Group className='my-2 w-100'>
                             <Form.Control
                                 type="text"
                                 id="username"
                                 placeholder="Email"
+                                className='login-input'
                                 value={username}
                                 onChange={(e) => setUsername(e.target.value)}
                                 style={{
                                     backgroundColor: 'rgba(58, 62, 82, 1)',
                                     color: 'rgba(153, 155, 170, 1)',
-                                    margin: '10px 0',
+                                    // margin: '10px 0',
                                 }}
                             />
                         </Form.Group>
-                        <Form.Group>
+                        <Form.Group className='my-2 w-100'>
                             <Form.Control
                                 type="password"
                                 id="password"
                                 placeholder="Password"
+                                className='login-input'
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 style={{
                                     backgroundColor: 'rgba(58, 62, 82, 1)',
                                     color: 'rgba(153, 155, 170, 1)',
-                                    margin: '10px 0',
+                                    // margin: '10px 0',
                                 }}
                             />
+                        </Form.Group >
+                        <Form.Group className='my-2 w-100'>
+                            <Form.Check
+                                type="checkbox"
+                                label="Remember me next time"
+                                id="rememberMe"
+                                className='text-white text-start'
+                                // Add any additional props or styling as needed
+                            />
                         </Form.Group>
-                        <div className="text-center">
-                            <Button
-                                type="button"
-                                className="forgot-password-btn"
-                                variant="link"
-                                onClick={handleForgotPassword}
-                                style={{ margin: '10px 0' }}
-                            >
-                                Forgot Password ?
-                            </Button>
+                        <div className="text-center my-2">
                             <Button
                                 type="button"
                                 className="login-btn"
                                 variant="primary"
                                 onClick={() => handleLogin(username, password)}
-                                style={{ margin: '10px 0' }}
+                                // style={{ margin: '10px 0' }}
                             >
                                 Login
                             </Button>
                         </div>
                     </Form>
                 </Card.Body>
+                <Card.Footer className='text-primary w-100 ' style={{backgroundColor: '#3a3e52',}}>
+                    <a href="/Forgot" class="text-decoration-none forgot-link fs-5">Forgot Password?</a>
+                </Card.Footer>
             </Card>
         </Container>
     );
