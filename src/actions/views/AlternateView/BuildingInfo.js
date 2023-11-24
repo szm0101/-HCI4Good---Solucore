@@ -7,10 +7,7 @@ function BuildingInfo(props) {
   const [building, setBuilding] = useState(null);
   const [dropDownOpen, setDropDownOpen] = useState(false);
 
-  console.log(props.buildings);
-
   const handleBuildingSelect = (building) => {
-    console.log(building);
     setBuilding(building);
     props.setBuildingDevices(building.bankInfos[0].deviceInfos);
   };
@@ -51,6 +48,7 @@ function BuildingInfo(props) {
           onClick={() => setDropDownOpen(!dropDownOpen)}
           className="dropdown-button"
           drop="right"
+          menuVariant="dark"
         >
           {props.buildings.map((building, idx) => (
             <Dropdown.Item

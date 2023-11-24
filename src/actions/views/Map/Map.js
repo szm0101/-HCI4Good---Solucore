@@ -1,6 +1,11 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useCookies } from 'react-cookie';
 import "./Map.css";
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
+import RadialMenu from '../../components/RadialMenu/RadialMenu'; 
+import ElevatorIcon from "../../assets/elevator-central-image.png";
+
+
 
 const apiKey = process.env.REACT_APP_apiKey;
 /** ref:
@@ -123,27 +128,27 @@ const darkMapStyles = [
       }
     ]
   },
-  {
-    "featureType": "road",
-    "elementType": "labels.icon",
-    "stylers": [
-      {
-        "visibility": "simplified"
-      },
-      {
-        "weight": 8
-      },
-      {
-        "color": "#121212"
-      }
-    ]
-  },
+  // {
+  //   "featureType": "road",
+  //   "elementType": "labels.icon",
+  //   "stylers": [
+  //     {
+  //       "visibility": "simplified"
+  //     },
+  //     {
+  //       "weight": 8
+  //     },
+  //     {
+  //       "color": "#121212"
+  //     }
+  //   ]
+  // },
   {
     "featureType": "road",
     "elementType": "labels.text.fill",
     "stylers": [
       {
-        "color": "#bdbdbd" // "color": "#bdbdbd"
+        "color": "#bdbdbd"
       }
     ]
   },
@@ -190,7 +195,7 @@ const darkMapStyles = [
         "visibility": "on",
       },
       {
-        "color": "#171717" // Set the trsnsit color to black
+        "color": "#171717"
       }
     ]
   },
@@ -231,100 +236,161 @@ const darkMapStyles = [
   }
 ];
 
+const MapContainer = ({ google }) => {
 
-export class MapContainer extends Component {
-  state = {
-    showingInfoWindow: false,  // Hides or shows the InfoWindow
-    activeMarker: {},          // Shows the active marker upon click
-    selectedPlace: {}          // Shows the InfoWindow to the selected place upon a marker
-  };
-  onMarkerClick = (props, marker, e) =>
-    this.setState({
-      selectedPlace: props,
-      activeMarker: marker,
-      showingInfoWindow: true
+  const [showingInfoWindow, setShowingInfoWindow] = useState(false);  // Hides or shows the InfoWindow
+  const [activeMarker, setActiveMarker] = useState({});               // Shows the active marker upon click
+  const [selectedPlace, setSelectedPlace] = useState({});             // Shows the InfoWindow to the selected place upon a marker
+  const [data, setData] = useState([]);                               // Stores the data from the Device API call
+  const [cookies, setCookie] = useCookies();
+  // State variables for radial menu 
+  const [showRadialMenu, setShowRadialMenu] = useState(false);
+  const [radialMenuData, setRadialMenuData] = useState({ 
+    deviceName: '', 
+    deviceId: '', 
+    floorLocation: '', 
+    deviceTemp: '', 
+    cameraUrl: '', 
+    doorStatus: '', 
+    direction: ''
+  });
+
+  // Set up user's default location
+  const defaultLat = cookies.defaultLat;
+  const defaultLng = cookies.defaultLng;
+  const token = cookies.token;
+
+  // Zooms on click event
+  const [mapCenter, setMapCenter] = useState({ lat: defaultLat, lng: defaultLng });
+  const [mapZoom, setMapZoom] = useState(11); 
+
+  useEffect(() => {
+    const headers = new Headers({
+      'Valid-token': token,
     });
 
-  onClose = props => {
-    if (this.state.showingInfoWindow) {
-      this.setState({
-        showingInfoWindow: false,
-        activeMarker: null
+    // call getDeviceInfos API and store Data array
+    fetch('https://services.solucore.com/solutrak/api/buildings/getDeviceInfos', { "method": "GET", headers })
+      .then((response) => response.json())
+      .then((result) => {
+        setData(result.Data);
+      })
+      .catch((error) => {
+        console.error('API Error:', error);
       });
+  }, []);
+
+  const onMarkerClick = (props, marker, e) => {
+    setSelectedPlace(props);
+    setActiveMarker(marker);
+    setShowingInfoWindow(true);
+     // Change map center and zoom level
+     setMapCenter({ lat: marker.position.lat(), lng: marker.position.lng() });
+     setMapZoom(20); // Zoom level when a marker is clicked, adjust as needed
+    
+
+     // Delay the display of RadialMenu
+     setTimeout(() => {
+      setShowRadialMenu(true);
+      setRadialMenuData({ 
+        deviceName: props.name, 
+        deviceId: props.deviceId, 
+        floorLocation: props.floorLocation, 
+        deviceTemp: props.deviceTemp,
+        cameraUrl: props.cameraUrl,
+        doorStatus: props.doorStatus,
+        direction: props.direction
+      });
+    }, 1000); // Delay for zoom animation
+
+  };
+
+  // Function to close RadialMenu
+  const closeRadialMenu = () => {
+    setShowRadialMenu(false);
+  };
+
+  const onClose = () => {
+    if (showingInfoWindow) {
+      setShowingInfoWindow(false);
+      setActiveMarker(null);
     }
   };
-  render() {
-    return (
-      <div className="map-container">
-        <Map
-          google={this.props.google}
-          zoom={14}
-          styles={darkMapStyles}
-          initialCenter={
-            {
-              lat: 41.8690,
-              lng: -87.6270
-            }
+
+  
+
+  return (
+    <div className="map-container">
+      <Map
+        google={google}
+        zoom={mapZoom}
+        center={mapCenter}
+        styles={darkMapStyles}
+        initialCenter={
+          {
+            lat: defaultLat,
+            lng: defaultLng
           }
-          mapTypeControl={false} // disable Map and Satellite options
-          streetViewControl={false} // disable street view control
-          zoomControlOptions={{
-            position: this.props.google.maps.ControlPosition.BOTTOM_LEFT, // Set the zoom position
-          }}
+        }
+        mapTypeControl={false}
+        streetViewControl={false}
+        zoomControlOptions={{
+          position: google.maps.ControlPosition.BOTTOM_LEFT,
+        }}
+      >
+        {data ? (
+          data.map((device) => (
+            <Marker
+              key={device.deviceId}
+              position={{ lat: device.latitude, lng: device.longitute }}
+              icon={{
+                path: google.maps.SymbolPath.CIRCLE,
+                fillColor: '#2096f3',
+                fillOpacity: 1,
+                scale: 10,
+                strokeColor: '#161617',
+                strokeWeight: 8
+              }}
+              onClick={onMarkerClick}
+              name={device.deviceName}
+              deviceId={device.deviceId}
+              floorLocation={device.infoMessage.location}
+              deviceTemp={device.infoMessage.temperature}
+              cameraUrl={device.cameraUrl}
+              doorStatus={device.infoMessage.door}
+              direction={device.infoMessage.direction}
+            />
+          ))
+        ) : (
+          <p>Loading...</p>
+        )}
+        {/* <InfoWindow
+          marker={activeMarker}
+          visible={showingInfoWindow}
+          onClose={onClose}
         >
-          <Marker
-            position={{ lat: 41.8780, lng: -87.6298 }}
-            icon={{
-              path: this.props.google.maps.SymbolPath.CIRCLE,
-              fillColor: '#2096f3', // fill color to blue
-              fillOpacity: 1, // 1 means fully opaque
-              scale: 10, // the size
-              strokeColor: '#161617',
-              strokeWeight: 8
-            }}
-            onClick={this.onMarkerClick}
-            name={'Building 1'}
-          />
-          <Marker
-            position={{ lat: 41.8730, lng: -87.6200 }}
-            icon={{
-              path: this.props.google.maps.SymbolPath.CIRCLE,
-              fillColor: '#2096f3', // fill color to blue
-              fillOpacity: 1, // 1 means fully opaque
-              scale: 10, // the size
-              strokeColor: '#161617',
-              strokeWeight: 8
-            }}
-            // onClick={this.onMarkerClick}
-            name={'Building 2'}
-          />
-          <Marker
-            position={{ lat: 41.8670, lng: -87.6470 }}
-            icon={{
-              path: this.props.google.maps.SymbolPath.CIRCLE,
-              fillColor: '#2096f3', // fill color to blue
-              fillOpacity: 1, // 1 means fully opaque
-              scale: 10, // the size
-              strokeColor: '#161617',
-              strokeWeight: 8
-            }}
-            // onClick={this.onMarkerClick}
-            name={'Building 3'}
-          />
-          <InfoWindow
-            marker={this.state.activeMarker}
-            visible={this.state.showingInfoWindow}
-            onClose={this.onClose}
-          >
-            <div>
-              <h4>{this.state.selectedPlace.name}</h4>
-            </div>
-          </InfoWindow>
-        </Map>
-      </div>
-    );
-  }
-}
+          <div>
+            <h4>{selectedPlace.name}</h4>
+          </div>
+        </InfoWindow> */}
+      </Map>
+      {/* Conditional rendering of RadialMenu */}
+      {showRadialMenu && (
+        <RadialMenu
+          imageSrc= {ElevatorIcon}
+          deviceName={radialMenuData.deviceName}
+          deviceId={radialMenuData.deviceId}
+          deviceFloor={radialMenuData.floorLocation}
+          deviceTemp={radialMenuData.deviceTemp}
+          cameraUrl={radialMenuData.cameraUrl}
+          doorStatus={radialMenuData.doorStatus}
+          direction={radialMenuData.direction}
+          onClose={closeRadialMenu}
+        />
+      )}
+    </div>
+  );
+};
 
 export default GoogleApiWrapper({
   apiKey

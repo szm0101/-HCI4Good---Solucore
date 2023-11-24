@@ -11,6 +11,7 @@ import FaultInfo from "./FaultInfo";
 import { useState, useEffect } from "react";
 import TrafficInfo from "./TrafficInfo";
 import Devices from "./Devices";
+import ImpersonationDropDown from "../../components/ImpersonationDropdown/ImpersonationDropdown";
 
 function AlternateView() {
   const [isOpen, setIsOpen] = useState(Array(7).fill(false));
@@ -29,6 +30,7 @@ function AlternateView() {
   useEffect(() => {
     var header = new Headers();
     header.append("Valid-token", cookies.token);
+    console.log(cookies);
 
     var requestOptions = {
       method: "get",
@@ -43,6 +45,7 @@ function AlternateView() {
       )
         .then((response) => response.json())
         .then((json) => {
+          console.log(json);
           json.Data.map((buildingInfo, idx) => (buildings[idx] = buildingInfo));
         })
         .catch((error) => console.log("API Error" + error));
@@ -58,6 +61,9 @@ function AlternateView() {
         <a href="/Home">
           <img src={Logo} alt="Solutrak logo" className="solutrak-logo"></img>
         </a>
+        {cookies.userType === 'Admin' ? 
+        <ImpersonationDropDown/> : null
+        }
       </div>
       <div className="content">
         <table className="main-table">
