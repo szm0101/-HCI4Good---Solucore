@@ -7,7 +7,6 @@ import DeviceInfo from '../../components/DeviceInfo/DeviceInfo';
 import ElevatorIcon from "../../assets/elevator-central-image.png";
 
 
-
 const apiKey = process.env.REACT_APP_apiKey;
 /** ref:
  * Styling wizard: Google maps apis. 
@@ -221,9 +220,7 @@ const darkMapStyles = [
     ]
   }
 ];
-
 const MapContainer = ({ google }) => {
-
   const [showingInfoWindow, setShowingInfoWindow] = useState(false);  // Hides or shows the InfoWindow
   const [activeMarker, setActiveMarker] = useState({});               // Shows the active marker upon click
   const [selectedPlace, setSelectedPlace] = useState({});             // Shows the InfoWindow to the selected place upon a marker
@@ -238,25 +235,21 @@ const MapContainer = ({ google }) => {
     deviceTemp: '',
     cameraUrl: '',
     doorStatus: '',
-    direction: ''
+    direction: '',
+    buildingId: ''
   });
-
   const [showDeviceInfo, setDeviceInfo] = useState(false);
-
   // Set up user's default location
   const defaultLat = cookies.defaultLat;
   const defaultLng = cookies.defaultLng;
   const token = cookies.token;
-
   // Zooms on click event
   const [mapCenter, setMapCenter] = useState({ lat: defaultLat, lng: defaultLng });
   const [mapZoom, setMapZoom] = useState(11);
-
   useEffect(() => {
     const headers = new Headers({
       'Valid-token': token,
     });
-
     // call getDeviceInfos API and store Data array
     fetch('https://services.solucore.com/solutrak/api/buildings/getDeviceInfos', { "method": "GET", headers })
       .then((response) => response.json())
@@ -267,7 +260,6 @@ const MapContainer = ({ google }) => {
         console.error('API Error:', error);
       });
   }, []);
-
   const onMarkerClick = (props, marker, e) => {
     setSelectedPlace(props);
     setActiveMarker(marker);
@@ -275,8 +267,6 @@ const MapContainer = ({ google }) => {
     // Change map center and zoom level
     setMapCenter({ lat: marker.position.lat(), lng: marker.position.lng() });
     setMapZoom(20); // Zoom level when a marker is clicked, adjust as needed
-
-
     // Delay the display of RadialMenu
     setTimeout(() => {
       setShowRadialMenu(true);
@@ -287,25 +277,22 @@ const MapContainer = ({ google }) => {
         deviceTemp: props.deviceTemp,
         cameraUrl: props.cameraUrl,
         doorStatus: props.doorStatus,
-        direction: props.direction
+        direction: props.direction,
+        buildingId: props.buildingId
       });
       setDeviceInfo(true);
     }, 1000); // Delay for zoom animation
-
   };
-
   // Function to close RadialMenu
   const closeRadialMenu = () => {
     setShowRadialMenu(false);
   };
-
   const onClose = () => {
     if (showingInfoWindow) {
       setShowingInfoWindow(false);
       setActiveMarker(null);
     }
   };
-
 
 
   return (
@@ -348,6 +335,7 @@ const MapContainer = ({ google }) => {
               cameraUrl={device.cameraUrl}
               doorStatus={device.infoMessage.door}
               direction={device.infoMessage.direction}
+              buildingId={device.buildingId}
             />
           ))
         ) : (
@@ -378,11 +366,10 @@ const MapContainer = ({ google }) => {
         />
       )}
       {/* Conditional rendering of DeviceInfo */}
-      {showDeviceInfo && (<DeviceInfo />)}
+      {showDeviceInfo && (<DeviceInfo buildingId={radialMenuData.buildingId} deviceId={radialMenuData.deviceId}/>)}
     </div>
   );
 };
-
 export default GoogleApiWrapper({
   apiKey
 })(MapContainer);

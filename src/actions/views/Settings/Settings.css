@@ -242,8 +242,8 @@ body {
   color: #D7DADE !important;
   height: 60px !important;
   border: none;
-  text-align: center !important;
-  line-height: 60px !important;
+  text-align: center;
+  line-height: 60px;
 }
 
 .mytabs .tr {

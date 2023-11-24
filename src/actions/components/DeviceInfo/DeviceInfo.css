@@ -91,3 +91,8 @@
 .runningCheck-image {
     height: 30px;
 }
+
+.card-3 {
+  max-height: 200px;
+  overflow-y: auto;
+}
