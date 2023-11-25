@@ -76,7 +76,7 @@ function AlternateView() {
             <tr className="data-tables" onClick={() => toggle(6)}>
               <td>Devices</td>
             </tr>
-            {isOpen[6] ? (
+            {isOpen[6] && buildingDevices ? (
               <tr>
                 <table className="general-op-data">
                   <tbody>{<Devices buildingDevices={buildingDevices}/>}</tbody>
