@@ -80,7 +80,7 @@ function AlternateView() {
             {isOpen[6] ? (
               <tr>
                 <table className="general-op-data">
-                  <tbody>{<Devices />}</tbody>
+                  <tbody>{<Devices buildingDevices={buildingDevices}/>}</tbody>
                 </table>
               </tr>
             ) : null}
