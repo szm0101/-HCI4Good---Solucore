@@ -8,6 +8,7 @@ const ImpersonationDropDown = () => {
     const [cookies, setCookie] = useCookies(); // Initialize the isLoggedIn cookie
     const token = cookies.token;
     const currCompany = cookies.impersonatedCompany || 'Select a company';
+    console.log(cookies);
     
     
     // const items = impersonationList;

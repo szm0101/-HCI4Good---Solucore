@@ -51,7 +51,7 @@ const Buildings = () => {
           </tr>
         </thead>
 
-        <tbody >
+        <tbody className='building-table-body'>
               {data ? (
                 data.map((building) => (
                   <tr key={building.buildingId}>
