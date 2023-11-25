@@ -58,3 +58,8 @@ tbody tr:hover {
     margin-left: 30%;
   }
 }
+
+.banks-card{
+    background-color: #3a3e52 !important;
+    width: 90%;
+}
