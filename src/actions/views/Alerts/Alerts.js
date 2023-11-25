@@ -33,8 +33,9 @@ const Alerts = () => {
 
   return (
     <div className="alerts-container">
-      <h1>Alerts</h1>
+      
       <div className="alerts-list">
+      <h1>Alerts</h1>
         {sampleNotifications.map((notification) => (
           <div
             key={notification.id}

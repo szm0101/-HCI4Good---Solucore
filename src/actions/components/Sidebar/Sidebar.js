@@ -23,9 +23,7 @@ function Sidebar() {
   };
 
   return (
-    <Container fluid>
-      <Row>
-        <Col xs={2} md={1} lg={1} className="sidebar">
+        <Col className="sidebar">
           <Navbar expand="lg" className="flex-column align-items-center">
             <Nav className="flex-column">
               <div className="nav-icon-container">
@@ -83,8 +81,6 @@ function Sidebar() {
             </Nav>
           </Navbar>
         </Col>
-      </Row>
-    </Container>
   );
 }
 

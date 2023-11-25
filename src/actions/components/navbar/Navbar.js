@@ -77,7 +77,7 @@ function Navbars() {
                         {cookies.userType === 'Admin' ? (
                             <ImpersonationDropDown />
                         ) : (
-                            <Button className="btn btn-disabled fw-bold" style={{backgroundColor:'#ffc107'}} disabled>{cookies.company}</Button>
+                            <Button variant="warning" className="btn btn-disabled fw-bold" style={{backgroundColor:'#ffc107'}} disabled>{cookies.company}</Button>
                         )}
                     </Nav.Item>
 
@@ -129,7 +129,6 @@ function Navbars() {
             </div>
             <ChangePasswordModal show={modalShow} onHide={handleClose} />
         </Navbar>
-        
     );
 }
 
