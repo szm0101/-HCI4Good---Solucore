@@ -6,6 +6,7 @@ import Dashboard from "./actions/views/Dashboard/Dashboard";
 import Alerts from "./actions/views/Alerts/Alerts";
 import Buildings from "./actions/views/Buildings/Buildings";
 import Banks from "./actions/views/Buildings/Banks"
+import Devices from "./actions/views/Buildings/Devices"
 import Page from "./actions/views/Buildings/Page";
 import Settings from "./actions/views/Settings/Settings";
 import Reporting from "./actions/views/Reporting/Reporting";
@@ -51,6 +52,7 @@ function App() {
                     <Route path="/Buildings" element={<Page />}>
                       <Route index element={<Buildings />} />
                       <Route path=":buildingId/Banks" element={<Banks />} />
+                      <Route path=":buildingId/Banks/:bankId/Devices" element={<Devices />} />
                     </Route>
                     <Route path="/Settings" element={<Settings />} />
                     <Route path="/Report" element={<Reporting />} />

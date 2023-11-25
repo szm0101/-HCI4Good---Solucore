@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import './Buildings.css';
 
 const Buildings = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [cookies, setCookie] = useCookies();
   const token = cookies.token;
@@ -63,7 +63,7 @@ const Buildings = () => {
               onClick={() => {
                 const buildingId = building.buildingId;
                 if (buildingId) {
-                  navigate(`/Buildings/${buildingId}/Banks`, { state: { bankInfos: building.bankInfos } });
+                  navigate(`/Buildings/${buildingId}/Banks`, { state: { bankInfos: building.bankInfos, buildingName: building.buildingName } });
                 }
               }}
             >
