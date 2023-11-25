@@ -11,8 +11,8 @@ import LoginPage from "./actions/views/Login/Login";
 import Forgot from "./actions/views/Forgot/Forgot";
 import Profile from "./actions/views/Profile/Profile";
 import { Col } from "react-bootstrap";
-
 import { useCookies } from "react-cookie";
+import AlternateView from "./actions/views/AlternateView/AlternateView";
 
 function App() {
   const [cookies] = useCookies(); // Access the 'isLoggedIn' cookie
@@ -22,39 +22,51 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <div className="navbar-component">{userIsLoggedIn && <Navbar />}</div>
+        <div className="navbar-component">
+          {userIsLoggedIn &&
+            !window.location.pathname.includes("/AlternateView") && <Navbar />}
+        </div>
 
         <div className="page-components">
-          {userIsLoggedIn ? (
+          {userIsLoggedIn &&
+          !window.location.pathname.includes("/AlternateView") ? (
             <Col xs={2} md={1} lg={1}>
-              <div className="sidebar-component">
-                {userIsLoggedIn && <Sidebar />}
-              </div>
+              <div className="sidebar-component">{<Sidebar />}</div>
             </Col>
           ) : null}
 
-          <Col xs={userIsLoggedIn ? 10 : 12} md={userIsLoggedIn ? 11 : 12} lg={userIsLoggedIn ? 11 : 12}>
-            <div className="main-component">
-              <Routes>
-                <>
-                  <Route path="/" element={<LoginPage />} />
-                  <Route path="/Forgot" element={<Forgot />} />
-                </>
-              </Routes>
-              {userIsLoggedIn && (
+          {!window.location.pathname.includes("/AlternateView") ? (
+            <Col
+              xs={userIsLoggedIn ? 10 : 12}
+              md={userIsLoggedIn ? 11 : 12}
+              lg={userIsLoggedIn ? 11 : 12}
+            >
+              <div className="main-component">
                 <Routes>
                   <>
-                    <Route path="/Home" element={<Dashboard />} />
-                    <Route path="/Alerts" element={<Alerts />} />
-                    <Route path="/Buildings" element={<Buildings />} />
-                    <Route path="/Settings" element={<Settings />} />
-                    <Route path="/Report" element={<Reporting />} />
-                    <Route path="/Profile" element={<Profile />} />
+                    <Route path="/" element={<LoginPage />} />
+                    <Route path="/Forgot" element={<Forgot />} />
                   </>
                 </Routes>
-              )}
-            </div>
-          </Col>
+                {userIsLoggedIn && (
+                  <Routes>
+                    <>
+                      <Route path="/Home" element={<Dashboard />} />
+                      <Route path="/Alerts" element={<Alerts />} />
+                      <Route path="/Buildings" element={<Buildings />} />
+                      <Route path="/Settings" element={<Settings />} />
+                      <Route path="/Report" element={<Reporting />} />
+                      <Route path="/Profile" element={<Profile />} />
+                    </>
+                  </Routes>
+                )}
+              </div>
+            </Col>
+          ) : (
+            <Routes>
+              <Route path="/AlternateView" element={<AlternateView />} />
+            </Routes>
+          )}
         </div>
       </BrowserRouter>
     </div>

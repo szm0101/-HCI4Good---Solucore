@@ -80,11 +80,11 @@
     font-weight: bolder;
 }
 
-.btn-primary {
+.card-3 .btn-primary {
     background-color: #2196f3 !important;
 }
 
-.btn-primary:hover {
+.card-3 .btn-primary:hover {
     background-color: #1b72b9 !important;
 }
 

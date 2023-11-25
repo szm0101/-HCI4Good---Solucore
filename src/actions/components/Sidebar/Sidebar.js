@@ -4,12 +4,14 @@ import { Navbar, Nav, Container, Row, Col } from "react-bootstrap";
 import HomeIcon from "../../assets/home-icon.png";
 import BuildingIcon from "../../assets/building-icon.png";
 import SettingIcon from "../../assets/settings-icon.png";
+import BuildingInfoIcon from '../../assets/building-info-icon.png';
 
 function Sidebar() {
   const activePagePaths = {
     "/Home": "Home",
     "/buildings": "Buildings",
     "/settings": "Settings",
+    "/AlternateView": "AlternateView"
   };
 
   const [activeIcon, setActiveIcon] = useState(
@@ -60,6 +62,19 @@ function Sidebar() {
                     src={SettingIcon}
                     alt="Settings Icon"
                     className={activeIcon === "Settings" ? "active" : null}
+                  />
+                </Nav.Link>
+              </div>
+              <div className="nav-icon-container">
+                <Nav.Link
+                  href="/AlternateView"
+                  className="nav-link"
+                  onClick={() => toggleOpacity("AlternateView")}
+                >
+                  <img
+                    src={BuildingInfoIcon}
+                    alt="Settings Icon"
+                    className={activeIcon === "AlternateView" ? "active" : null}
                   />
                 </Nav.Link>
               </div>
