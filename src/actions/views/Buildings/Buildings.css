@@ -52,7 +52,7 @@ tbody tr:hover {
 
 /* Media queries for responsiveness */
 
-/* smaller screens */
+/* for smaller screens */
 @media (max-width: 768px) {
   table {
     margin-left: 30%;
