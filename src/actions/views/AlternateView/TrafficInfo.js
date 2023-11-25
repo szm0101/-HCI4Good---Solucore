@@ -2,6 +2,8 @@ import React from "react";
 import "./Data.css";
 
 function TrafficInfo() {
+  //Data is not available through Postman 
+  //Table remains empty
   return (
     <>
       <tr>

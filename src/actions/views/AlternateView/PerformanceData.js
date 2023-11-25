@@ -4,6 +4,8 @@ import './Data.css';
 
 
 function PerformanceData(props) {
+  //Data is not available through Postman 
+  //Table remains empty
   const [cookies] = useCookies();
   const [data, setData] = useState(null);
 
