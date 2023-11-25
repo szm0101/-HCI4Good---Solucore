@@ -16,7 +16,6 @@ import ImpersonationDropDown from "../../components/ImpersonationDropdown/Impers
 function AlternateView() {
   const [isOpen, setIsOpen] = useState(Array(7).fill(false));
   const [buildingDevices, setBuildingDevices] = useState(null);
-  const [devicesNum, setDevicesNum] = useState(null);
   const [buildings, setBuildings] = useState([]);
 
   const toggle = (index) => {
@@ -80,7 +79,7 @@ function AlternateView() {
             {isOpen[6] ? (
               <tr>
                 <table className="general-op-data">
-                  <tbody>{<Devices />}</tbody>
+                  <tbody>{<Devices buildingDevices={buildingDevices}/>}</tbody>
                 </table>
               </tr>
             ) : null}
