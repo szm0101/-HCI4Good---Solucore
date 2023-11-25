@@ -293,10 +293,8 @@ const MapContainer = ({ google }) => {
       setActiveMarker(null);
     }
   };
-
-
-  return (
-    <div className="map-container">
+  const mapOutput1 = (
+  <div className="map-container">
       <Map
         google={google}
         zoom={mapZoom}
@@ -353,6 +351,7 @@ const MapContainer = ({ google }) => {
       </Map>
       {/* Conditional rendering of RadialMenu */}
       {showRadialMenu && (
+        
         <RadialMenu
           imageSrc={ElevatorIcon}
           deviceName={radialMenuData.deviceName}
@@ -368,6 +367,10 @@ const MapContainer = ({ google }) => {
       {/* Conditional rendering of DeviceInfo */}
       {showDeviceInfo && (<DeviceInfo buildingId={radialMenuData.buildingId} deviceId={radialMenuData.deviceId}/>)}
     </div>
+  );
+
+  return (
+    mapOutput1
   );
 };
 export default GoogleApiWrapper({
