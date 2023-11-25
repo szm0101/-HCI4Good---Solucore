@@ -1,14 +1,13 @@
 import React from "react";
 import { Table } from "react-bootstrap";
+import { useLocation } from "react-router-dom";
 
 const Banks = () => {
   // Sample data for the table
-  const banksData = [
-    { id: 1, name: "Bank A", location: "City A" },
-    { id: 2, name: "Bank B", location: "City B" },
-    { id: 3, name: "Bank C", location: "City C" },
-    // Add more sample data as needed
-  ];
+  
+    const location = useLocation();
+    const banksData = location.state?.bankInfos || [];
+    console.log(banksData);
 
   return (
     <div className="buildings-container">
@@ -31,8 +30,8 @@ const Banks = () => {
             {banksData ? (
               banksData.map((bank) => (
                 <tr key={bank.id}>
-                  <td className='text-white'>{bank.id}</td>
-                 <td className='text-white'>{bank.name}</td>
+                  <td className='text-white'>{bank.bankId}</td>
+                 <td className='text-white'>{bank.bankName}</td>
                  <td className='text-white'>{bank.location}</td>
                   <td className='text-white'>View</td>
                   <td className='text-white'>Edit</td>

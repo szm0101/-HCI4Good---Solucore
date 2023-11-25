@@ -50,7 +50,7 @@ function App() {
                     <Route path="/Alerts" element={<Alerts />} />
                     <Route path="/Buildings" element={<Page />}>
                       <Route index element={<Buildings />} />
-                      <Route path="Banks" element={<Banks />} />
+                      <Route path=":buildingId/Banks" element={<Banks />} />
                     </Route>
                     <Route path="/Settings" element={<Settings />} />
                     <Route path="/Report" element={<Reporting />} />
