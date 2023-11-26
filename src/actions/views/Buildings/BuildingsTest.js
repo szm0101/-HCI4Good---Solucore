@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './BuildingsTest.css';
 const BuildingsTest = () => {
     const location = useLocation();
-    const devicesData = location.state?.deviceInfos || [];;
+    const buildingsData = location.state?.buildingsData || [];;
     const buildingName = location.state?.buildingName;
   const [data, setData] = useState([]);
   const [cookies, setCookie] = useCookies();
@@ -35,6 +35,7 @@ const BuildingsTest = () => {
         console.error('API Error:', error);
       });
   }, []);
+  
   
   const outputDiv = (
     <div className="buildings-container">
@@ -65,11 +66,11 @@ const BuildingsTest = () => {
             </tr>
           </thead>
           <tbody>
-            {devicesData ? (
-              devicesData.map((device) => (
-                <tr key={device.id}>
-                    <td className="text-white-50 fw-bold fs-5 ps-5">{device.deviceName}</td>
-                  <td className="text-white-50 fw-bold fs-5 ps-5">{device.deviceId}</td>
+            {buildingsData ? (
+              buildingsData.map((building) => (
+                <tr key={building.id}>
+                    <td className="text-white-50 fw-bold fs-5 ps-5">{building.buildingName}</td>
+                  <td className="text-white-50 fw-bold fs-5 ps-5">{building.location}</td>
                   <td className="text-white">View</td>
                   <td className="text-white">Edit</td>
                   <td className="text-white">Delete</td>
