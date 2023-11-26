@@ -5,6 +5,9 @@ import { useLocation, Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './BuildingsTest.css';
 const BuildingsTest = () => {
+    const location = useLocation();
+    const devicesData = location.state?.deviceInfos || [];;
+    const buildingName = location.state?.buildingName;
   const [data, setData] = useState([]);
   const [cookies, setCookie] = useCookies();
   const token = cookies.token;
@@ -48,7 +51,7 @@ const BuildingsTest = () => {
       </Button>
     </div>
     <div className="ms-3">
-      <h5 className="mb-0 text-white fw-bold fs-3">Banks: {buildingName} &gt; {bankName}</h5>
+      <h5 className="mb-0 text-white fw-bold fs-3">Building: {buildingName}</h5>
     </div>
   </div>
       </Card.Header>
@@ -56,8 +59,8 @@ const BuildingsTest = () => {
         <Table className="table-dark">
           <thead>
             <tr >
-              <th className="text-start text-white-50 fw-bold fs-5 ps-5">DEVICE NAME</th>
-              <th className="text-start text-white-50 fw-bold fs-5 ps-5">DEVICE ID</th>
+              <th className="text-start text-white-50 fw-bold fs-5 ps-5">BUILDING NAME</th>
+              <th className="text-start text-white-50 fw-bold fs-5 ps-5">BUILDING ID</th>
               <th></th>
               <th></th>
               <th></th>
