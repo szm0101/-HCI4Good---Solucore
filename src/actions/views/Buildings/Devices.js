@@ -25,7 +25,7 @@ const Devices = () => {
               </Button>
             </div>
             <div className="ms-3">
-              <h5 className="mb-0 text-white fw-bold fs-3">Banks: {buildingName} &gt; {bankName}</h5>
+              <h5 className="mb-0 text-white fw-bold fs-3">Devices: {buildingName} &gt; {bankName}</h5>
             </div>
           </div>
       </Card.Header>
