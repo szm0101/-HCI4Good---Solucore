@@ -66,8 +66,8 @@ const BuildingsTest = () => {
             </tr>
           </thead>
           <tbody>
-            {buildingsData ? (
-              buildingsData.map((building) => (
+            {data ? (
+              data.map((building) => (
                 <tr key={building.id}>
                     <td className="text-white-50 fw-bold fs-5 ps-5">{building.buildingName}</td>
                   <td className="text-white-50 fw-bold fs-5 ps-5">{building.location}</td>
