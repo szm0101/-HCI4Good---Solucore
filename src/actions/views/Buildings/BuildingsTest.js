@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 import { Table, Card, Button } from "react-bootstrap";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './BuildingsTest.css';
+import './Buildings.css';
+
 const BuildingsTest = () => {
     const location = useLocation();
-    const buildingsData = location.state?.buildingsData || [];;
+    const navigate = useNavigate();
     const buildingName = location.state?.buildingName;
   const [data, setData] = useState([]);
   const [cookies, setCookie] = useCookies();
@@ -71,8 +72,20 @@ const BuildingsTest = () => {
                 <tr key={building.id}>
                     <td className="text-white-50 fw-bold fs-5 ps-5">{building.buildingName}</td>
                   <td className="text-white-50 fw-bold fs-5 ps-5">{building.location}</td>
-                  <td className="text-white">View</td>
-                  <td className="text-white">Edit</td>
+                  <td className='text-white'>
+                    <div>
+                      <button
+                        onClick={() => {
+                          const buildingId = building.buildingId;
+                          if (buildingId) {
+                            navigate(`/Buildings/${buildingId}/Banks`, { state: { bankInfos: building.bankInfos, buildingName: building.buildingName } });
+                          }
+                        }}
+                      >
+                        View
+                      </button>
+                    </div>
+                  </td>                  <td className="text-white">Edit</td>
                   <td className="text-white">Delete</td>
                 </tr>
               ))
