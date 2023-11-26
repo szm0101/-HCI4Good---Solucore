@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 import { Table } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './Buildings.css';
 
 const Buildings = () => {
@@ -38,11 +39,17 @@ const Buildings = () => {
   return (
     <div className="buildings-container">
       <div className="buildings-table">
-   
-        <Table className='table'>
+        <table className='table'>
         <thead>
-        <div className='text-white p-4'>Buildings</div>
-          <tr>
+          <tr className='text-white p-4'>
+            <th>Buildings</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+
+          <tr className="top-row">
             <th>BUILDING NAME</th>
             <th>LOCATION</th>
             <th></th>
@@ -81,7 +88,7 @@ const Buildings = () => {
                 </tr>
               )}
         </tbody>
-        </Table>
+        </table>
       </div>
     </div>
   );
