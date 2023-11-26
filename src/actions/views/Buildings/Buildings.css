@@ -1,3 +1,10 @@
+.table{
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
 .table tbody td {
   justify-content: center;
   align-items: center;
@@ -12,19 +19,34 @@
   align-items: center;
   overflow-x: auto;
   width: 100%;
+ 
+}
+
+.table-container{
+/* Common styles for all screen sizes */
+.buildings-container {
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: auto;
+  width: 100%;
   /* Add horizontal scrolling for smaller screens */
 }
 
-.buildings-table {
+}
+
+/* .buildings-table {
   display: flex;
   align-items: center;
   justify-content: center;
-}
+  border-radius: 100px !important;
+} */
 
 th,
 td {
   padding: 10px 16px;
-  border: 1px solid #666;
+  /* border: 1px solid #666; */
   text-align: left;
   white-space: nowrap;
   align-items: center;
@@ -40,10 +62,6 @@ th {
   font-weight: bold;
 }
 
-.building-table-body {
-  background-color: #2f3242;
-}
-
 tbody tr:hover {
   background-color: #2f3242;
   cursor: pointer;
@@ -57,4 +75,9 @@ tbody tr:hover {
   table {
     margin-left: 30%;
   }
+}
+
+.banks-card{
+    background-color: #3a3e52 !important;
+    width: 90%;
 }

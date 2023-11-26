@@ -1,10 +1,14 @@
 import "./App.css";
 import Navbar from "./actions/components/navbar/Navbar";
 import Sidebar from "./actions/components/Sidebar/Sidebar";
-import { BrowserRouter, Routes, Route, redirect } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Dashboard from "./actions/views/Dashboard/Dashboard";
 import Alerts from "./actions/views/Alerts/Alerts";
 import Buildings from "./actions/views/Buildings/Buildings";
+import BuildingsTest from "./actions/views/Buildings/BuildingsTest";
+import Banks from "./actions/views/Buildings/Banks"
+import Devices from "./actions/views/Buildings/Devices"
+import Page from "./actions/views/Buildings/Page";
 import Settings from "./actions/views/Settings/Settings";
 import Reporting from "./actions/views/Reporting/Reporting";
 import LoginPage from "./actions/views/Login/Login";
@@ -53,7 +57,17 @@ function App() {
                     <>
                       <Route path="/Home" element={<Dashboard />} />
                       <Route path="/Alerts" element={<Alerts />} />
-                      <Route path="/Buildings" element={<Buildings />} />
+                      <Route path="/Buildings" element={<Page />} >
+                        <Route index element={<Buildings />} />
+                        <Route path=":buildingId/Banks" element={<Banks />} />
+                        <Route path=":buildingId/Banks/:bankId/Devices" element={<Devices />} />
+                      </Route>
+                      {/* FOR TESTING */}
+                      <Route path="/BuildingsTest" element={<Page />} >
+                        <Route index element={<BuildingsTest />} />
+                        <Route path=":buildingId/Banks" element={<Banks />} />
+                        <Route path=":buildingId/Banks/:bankId/Devices" element={<Devices />} />
+                      </Route>
                       <Route path="/Settings" element={<Settings />} />
                       <Route path="/Report" element={<Reporting />} />
                       <Route path="/Profile" element={<Profile />} />
