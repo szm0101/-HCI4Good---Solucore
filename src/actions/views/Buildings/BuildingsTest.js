@@ -38,8 +38,6 @@ const BuildingsTest = () => {
   
   const outputDiv = (
     <div className="buildings-container">
-
-    
     <Card className="banks-card mt-5" >
       <Card.Header>
       <div className="d-flex justify-content-start align-items-center">
