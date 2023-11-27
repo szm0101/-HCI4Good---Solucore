@@ -8,15 +8,22 @@
 
 .device-info-small-container {
     border: 2px solid #2196f3;
-    border-bottom: transparent;
     border-radius: 5px;
 }
 
 .device-info-small-container,
 .card-2 {
-    background-color: #354a68;
+    position: relative;
+    background-color: #2D5478;
     margin: 30px;
     padding: 5px 0px 0.5px 0px;
+}
+
+.btn-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 2%;
 }
 
 .card-1 {
@@ -28,10 +35,17 @@
     height: 150px;
 }
 
+.transparent-device {
+    opacity: 0.5;
+}
+
 .guarded-type {
     background-color: #2196f3;
     border: 2px solid #2196f3;
     border-radius: 2px;
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 .guarded-1,

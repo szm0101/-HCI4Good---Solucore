@@ -4,11 +4,27 @@ import './DeviceInfo.css';
 import { useCookies } from 'react-cookie';
 import DoorIcon from "../../assets/doorIcon.png";
 import RunningCheck from "../../assets/runningCheck.png";
+import CloseEventsButton from "../../assets/close_events.png";
 const DeviceInfo = ({ buildingId, deviceId, onClose }) => {
     const [deviceInfo, setDeviceInfo] = useState([]);
     const [cookies] = useCookies();
     const token = cookies.token;
     const [buildingName, setBuildingName] = useState('');
+    const [showCard2And3, setShowCard2And3] = useState(true);
+    const [selectedDeviceId, setSelectedDeviceId] = useState(deviceId);
+    const [applyTransparentStyle, setApplyTransparentStyle] = useState(true);
+
+    const handleHideCards = () => {
+        setShowCard2And3(false);
+        setApplyTransparentStyle(false);
+    };
+
+    const handleGuardedTypeClick = (deviceId) => {
+        // When guarded-type is clicked, update selectedDeviceId
+        setSelectedDeviceId(deviceId);
+        setShowCard2And3(true); // Display card-2 and card-3
+        setApplyTransparentStyle(true); // Show transparency on unselected devices
+    };
 
     useEffect(() => {
         const headers = new Headers({
@@ -23,7 +39,7 @@ const DeviceInfo = ({ buildingId, deviceId, onClose }) => {
             .then((response) => response.json())
             .then((result) => {
                 // Find the corresponding building name
-                const selectedDevice = result.Data.find(device => device.deviceId === deviceId);
+                const selectedDevice = result.Data.find(device => device.deviceId === selectedDeviceId);
                 setBuildingName(selectedDevice.buildingName);
                 // Filter the devices that are only for this building
                 const thisBuildingDevices = result.Data.filter(device => device.buildingId === buildingId);
@@ -32,8 +48,10 @@ const DeviceInfo = ({ buildingId, deviceId, onClose }) => {
             .catch((error) => {
                 console.error('API Error:', error);
             });
-    }, []);
+    }, [selectedDeviceId]);
+
     const numOfDevices = deviceInfo.length;
+
     // Format time stamp
     const formatTimestamp = (timestamp) => {
         const date = new Date(timestamp);
@@ -57,52 +75,69 @@ const DeviceInfo = ({ buildingId, deviceId, onClose }) => {
                 <p className='fs-5'>{numOfDevices} Devices</p>
                 <div className='card-1'>
                     {deviceInfo.map(device => (
-                        <div key={device.deviceId}>
+                        <div 
+                            key={device.deviceId}
+                            className={`${
+                                device.deviceId === selectedDeviceId ? 'current-device' : applyTransparentStyle ? 'transparent-device' : ''
+                            }`}
+                        >
                             {device.deviceName}<br />
                             {device.contractor}
-                            <div className='guarded-type'>
+                            <div className='guarded-type' onClick={() => handleGuardedTypeClick(device.deviceId)}>
                                 <div className='guarded-1'>
-                                    {deviceInfo.find(device => device.deviceId === deviceId)?.status === 30 ? (
+                                    {deviceInfo.find(device => device.deviceId === selectedDeviceId)?.status === 30 ? (
                                         <>
                                             <h5>Guarded</h5>
                                         </>
-                                    ) : deviceInfo.find(device => device.deviceId === deviceId)?.status === 10 ? (
+                                    ) : deviceInfo.find(device => device.deviceId === selectedDeviceId)?.status === 10 ? (
                                         <>
                                             <h5>Running</h5>
                                         </>
                                     ) : (
-                                        <h5>{deviceInfo.find(device => device.deviceId === deviceId)?.status}</h5>
+                                        <h5>{deviceInfo.find(device => device.deviceId === selectedDeviceId)?.status}</h5>
                                     )}
                                 </div>
                             </div>
                         </div>
                     ))}
                 </div>
-                <div className='card-2'>
+
+                {showCard2And3 && (<div className='card-2'>
                     <img src={DoorIcon} alt="Door Icon" className="door-image" />
                     <div className='device-name'>
-                        {deviceInfo.find(device => device.deviceId === deviceId)?.deviceName}
+                        {deviceInfo.find(device => device.deviceId === selectedDeviceId)?.deviceName}
                         <div id='elevator'>
-                            <h5>{deviceInfo.find(device => device.deviceId === deviceId)?.deviceType}</h5>
+                            <h5>{deviceInfo.find(device => device.deviceId === selectedDeviceId)?.deviceType}</h5>
                         </div>
                     </div>
+
                     <div className='guarded-3'>
-                        {deviceInfo.find(device => device.deviceId === deviceId)?.status === 30 ? (
+                        {deviceInfo.find(device => device.deviceId === selectedDeviceId)?.status === 30 ? (
                             <>
                                 <h3>Guarded</h3>
                                 <h5 className='status'>STATUS</h5>
                             </>
-                        ) : deviceInfo.find(device => device.deviceId === deviceId)?.status === 10 ? (
+                        ) : deviceInfo.find(device => device.deviceId === selectedDeviceId)?.status === 10 ? (
                             <>
                                 <h3>Running</h3>
                                 <h5 className='status'>STATUS</h5>
                             </>
                         ) : (
-                            <h3>{deviceInfo.find(device => device.deviceId === deviceId)?.status}</h3>
+                            <h3>{deviceInfo.find(device => device.deviceId === selectedDeviceId)?.status}</h3>
+                        )}
+                    </div>
+
+                    <div>
+                        {showCard2And3 && (
+                            <Button variant="" className="btn-right"  onClick={handleHideCards}>
+                                <img src={CloseEventsButton} alt="close events" />
+                            </Button>
                         )}
                     </div>
                 </div>
-                <div className='card-3'>
+                )}
+
+                {showCard2And3 && (<div className='card-3'>
                     {/* Currently, this table uses information from deviceInfo -> deviceEvents.
                     This is because there is no other APIs available to do this job.
                     This should be further clarified by the client. */}
@@ -132,13 +167,13 @@ const DeviceInfo = ({ buildingId, deviceId, onClose }) => {
                                     <img src={RunningCheck} alt='running-check' className="runningCheck-image" />
                                 </th>
                                 <th style={{ width: '35%', textAlign: 'left', verticalAlign: 'middle', lineHeight: '1' }} className='text-wrap'>
-                                    <span>{deviceInfo.find(device => device.deviceId === deviceId)?.deviceEvents[0].description}</span>
+                                    <span>{deviceInfo.find(device => device.deviceId === selectedDeviceId)?.deviceEvents[0].description}</span>
                                 </th>
                                 <th style={{ width: '15%', textAlign: 'left', verticalAlign: 'middle', lineHeight: '1.5' }} className='text-wrap'>
-                                    <span >{formatTimestamp(deviceInfo.find(device => device.deviceId === deviceId)?.deviceEvents[0].date)}</span>
+                                    <span >{formatTimestamp(deviceInfo.find(device => device.deviceId === selectedDeviceId)?.deviceEvents[0].date)}</span>
                                 </th>
                                 <th style={{ width: '15%', verticalAlign: 'middle' }} className='text-wrap'>
-                                    <span>{deviceInfo.find(device => device.deviceId === deviceId)?.deviceEvents[0].code}</span>
+                                    <span>{deviceInfo.find(device => device.deviceId === selectedDeviceId)?.deviceEvents[0].code}</span>
                                 </th>
                                 <th style={{ verticalAlign: 'middle' }}>
                                     <span>View</span>
@@ -147,6 +182,7 @@ const DeviceInfo = ({ buildingId, deviceId, onClose }) => {
                         </tbody>
                     </Table>
                 </div>
+                )}
             </div>
         </div>
     );
