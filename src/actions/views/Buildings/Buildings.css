@@ -15,7 +15,7 @@ body{
 
 .buildings-container {
   margin:auto;
-  padding-top: 20px;
+  padding-top: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -77,6 +77,10 @@ body{
   border-bottom-right-radius: 15px !important; /* Rounds bottom right corner of the last cell in the last row */
 }
 
+th {
+  font-weight: bold;
+  padding: 0px !important;
+}
 
 /* Adjustments for smaller screens */
 @media (max-width: 768px) {
@@ -101,10 +105,40 @@ td {
   /* Show ellipsis (...) for truncated content */
 }
 
-th {
-  font-weight: bold;
-  padding: 0px !important;
+.buildings-table td button {
+  background: none !important; /* Remove background */
+  border: none !important; /* Remove border */
+  padding: 0 !important; /* Remove padding */
+  color: inherit; /* Inherit text color from parent */
+  font: inherit; /* Inherit font from parent */
+  cursor: pointer; /* Keep the cursor as pointer to indicate it's clickable */
+  outline: inherit; /* Inherit outline style (for focus state) */
 }
 
 
+/* Animations */
 
+/* Target the table row within the table */
+.buildings-table tbody tr:hover {
+  background-color: white !important; /* Replace #yourColorHere with the color you want */
+  cursor: pointer; /* Optional: Changes the cursor to indicate the row is interactive */
+}
+
+/* If you want to change the text color as well, add this */
+.buildings-table tbody tr:hover td {
+  color: white !important; /* Replace #yourTextColorHere with the color you want */
+}
+
+/* Target the table row within the table with increased specificity */
+.buildings-table tbody > tr:hover {
+  background-color: white !important; /* Replace #yourColorHere with your desired color */
+}
+
+/* To change the text color on hover, if needed */
+.buildings-table tbody > tr:hover > td {
+  color: white !important; /* Replace #yourTextColorHere with your desired text color */
+}
+
+tr:hover {
+  background-color: white !important; /* Replace with your desired color */
+}
