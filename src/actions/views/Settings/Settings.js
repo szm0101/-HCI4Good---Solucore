@@ -7,6 +7,7 @@ import CreateActivityForm from './CreateActivityForm';
 import Select, { NonceProvider } from 'react-select';
 import './Settings.css';
 
+
 //Create the filter use for choose Buildings and Devices
 const buildings = [
     { value: '1', label: 'Building 1' },
@@ -17,6 +18,7 @@ const buildings = [
     { value: '6', label: 'Building 6' },
 ];
 
+
 const devices = [
     { value: '1', label: 'Device 1' },
     { value: '2', label: 'Device 2' },
@@ -26,10 +28,13 @@ const devices = [
     { value: '6', label: 'Device 6' },
 ];
 
+
 function showSecondSelect() {
+
 
     var firstSelect = document.getElementById("firstSelect");
     var secondSelectDiv = document.getElementById("secondSelectDiv");
+
 
     if (firstSelect.value != "0") {
         secondSelectDiv.style.display = "block";
@@ -39,13 +44,16 @@ function showSecondSelect() {
 }
 function showThirdSelect() {
 
+
     var secondSelect = document.getElementById("secondSelect");
     var thirdSelectDiv = document.getElementById("thirdSelectDiv");
     var formGroupDiv = document.getElementById("form-group");
 
+
     if (secondSelect.value != "0") {
         thirdSelectDiv.style.display = "block";
         formGroupDiv.style.height = "128px";
+
 
     } else {
         thirdSelectDiv.style.display = "none";
@@ -53,15 +61,16 @@ function showThirdSelect() {
     }
 }
 
+
 function showTable1() {
+    var createActivityDiv = document.getElementById("createActivityDiv");
+    createActivityDiv.style.display = "flex";
     var detailsDiv = document.getElementById("mytabs");
     detailsDiv.style.display = "flex";
     var formGroupDiv = document.getElementById("form-group");
-    formGroupDiv.style.height = "450px";
-    // var createActivityDiv = document.getElementById("createActivityDiv");
-    // createActivityDiv.style.display = "block";
-
+    formGroupDiv.style.height = "550px";
 }
+
 
 function hideSecondSelect() {
     var secondSelectDiv = document.getElementById("secondSelectDiv");
@@ -82,6 +91,8 @@ function Settings() {
     const [showDatePicker, setShowDatePicker] = useState(false);
     // State to manage the visibility of the Create Activity form
     const [showCreateActivityForm, setShowCreateActivityForm] = useState(false);
+
+
 
 
     // Update the time value(Opening/Closing time) when click the edited button
@@ -106,6 +117,7 @@ function Settings() {
         setShowModel(true);
     }
 
+
     // Date and Time event handlers
     function showDatePickerInput() {
         setShowDatePicker(true);
@@ -117,13 +129,16 @@ function Settings() {
         setToDateTime(event.target.value);
     }
 
+
     function showCreateActivity() {
         setShowCreateActivityForm(true);
     }
 
+
     function closeCreateActivity() {
         setShowCreateActivityForm(false);
     }
+
 
     // reference: Learned about pad here -> https://stackoverflow.com/questions/3605214/javascript-add-leading-zeroes-to-date
     // useEffect hook to set initial values for calendar
@@ -132,16 +147,20 @@ function Settings() {
         const startOfDay = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 0, 0);
         const endOfDay = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 23, 59);
 
+
         const formatTime = (date) => {
             // padStart() ensures that single-digit numbers are formatted with a leading zero.
             const pad = (num) => num.toString().padStart(2, '0');
             return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(date.getMinutes())}`;
         };
 
+
         // Set the initial values for the input fields
         setFromDateTime(formatTime(startOfDay));
         setToDateTime(formatTime(endOfDay));
     }, []);
+
+
 
 
     return (
@@ -162,31 +181,51 @@ function Settings() {
                         onChange={handleToDateTimeChange}
                     />
                 </div>
-                <h2 className="header">    </h2>
+
 
                 <div className="form-group" class="form-group" id="form-group">
-                    <label id="selectLabel" for="firstSelect" >BUILDING:</label>
-                    <select id="firstSelect" onChange={showSecondSelect} >
-                        <option value="0" selected> </option>
-                        <option value="1">Building 1</option>
-                        <option value="2">Building 2</option>
-                        <option value="3">Building 3</option>
-                        <option value="4">Building 4</option>
-                    </select>
+                    <label id="selectLabel" for="firstSelect" >BUILDING:
+                        <select id="firstSelect" onChange={showSecondSelect} >
+                            <option value="0" selected> </option>
+                            <option value="1">Building 1</option>
+                            <option value="2">Building 2</option>
+                            <option value="3">Building 3</option>
+                            <option value="4">Building 4</option>
+                        </select>
+                    </label>
+
 
                     <div class="secondSelectDiv" id="secondSelectDiv" >
-                        <label for="secondSelect" id="selectLabel" > BANK ID and LOCATION:</label>
-                        <select id="secondSelect" onChange={showThirdSelect}>
-                            <option value="0" selected> </option>
-                            <option value="1">Passenger</option>
-                        </select>
+                        <label for="secondSelect" id="selectLabel" > BANK ID and LOCATION:
+                            <select id="secondSelect" onChange={showThirdSelect}>
+                                <option value="0" selected> </option>
+                                <option value="1">Passenger</option>
+                            </select>
+                        </label>
                     </div>
                     <div class="thirdSelectDiv" id="thirdSelectDiv" >
-                        <label for="thirdSelect" id="thirdLabel"> DEVICE:</label>
-                        <select id="thirdSelect" onChange={showTable1}>
-                            <option value="0" selected> </option>
-                            <option value="1">Elevator 1</option>
-                        </select>
+                        <label for="thirdSelect" id="selectLabel"> DEVICE:
+                            <select id="thirdSelect" onChange={showTable1}>
+                                <option value="0" selected> </option>
+                                <option value="1">Elevator 1</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="createActivityDiv" id="createActivityDiv">
+                        {/* Learned Modal from (ref) - https://react-bootstrap.netlify.app/docs/components/modal */}
+                        <Button id='createActivity' onClick={showCreateActivity}>
+                            CREATE ACTIVITY
+                        </Button>
+                        <Modal show={showCreateActivityForm} size="xl" onHide={closeCreateActivity} >
+                            <Modal.Header closeButton className='modal-header'>
+                                <Modal.Title id="contained-modal-title-vcenter">
+                                    CREATE ACTIVITY
+                                </Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body className='modal-body'>
+                                <CreateActivityForm />
+                            </Modal.Body>
+                        </Modal>
                     </div>
                     <div class="mytabs" id="mytabs">
                         <input type="radio" id="deviceServices" name="mytabs" checked="checked" />
@@ -206,6 +245,7 @@ function Settings() {
                             </table>
                         </div>
 
+
                         <input type="radio" id="operatingHours" name="mytabs" />
                         <label for="operatingHours">OPERATING HOURS</label>
                         <div class="tab">
@@ -220,24 +260,10 @@ function Settings() {
                             </table>
                         </div>
 
+
                         <input type="radio" id="criticalHours" name="mytabs" />
                         <label for="criticalHours">CRITICAL HOURS</label>
-                        <div>
-                            {/* Learned Modal from (ref) - https://react-bootstrap.netlify.app/docs/components/modal */}
-                            <Button id='createActivity' onClick={showCreateActivity}>
-                                CREATE ACTIVITY
-                            </Button>
-                            <Modal show={showCreateActivityForm} size="xl" onHide={closeCreateActivity} >
-                                <Modal.Header closeButton className='modal-header'>
-                                    <Modal.Title id="contained-modal-title-vcenter">
-                                        CREATE ACTIVITY
-                                    </Modal.Title>
-                                </Modal.Header>
-                                <Modal.Body className='modal-body'>
-                                    <CreateActivityForm />
-                                </Modal.Body>
-                            </Modal>
-                        </div>
+
                         <div class="tab">
                             <table class="table">
                                 <thead>
@@ -253,11 +279,15 @@ function Settings() {
                     </div>
                 </div>
 
+
             </div>
+
 
         </body>
 
+
     );
 }
+
 
 export default Settings;
