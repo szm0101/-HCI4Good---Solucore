@@ -4,7 +4,11 @@ body{
   font-family: 'Montserrat', sans-serif;
 }
 
-.table-card-record{
+.table-card-record td{
+  background-color: #3A3E52 !important;
+  color: white !important;
+  padding: 10px !important;
+
 }
 
 .table-card-record td{
@@ -16,12 +20,14 @@ body{
 
 
 
+
 .table tr {
 
 }
 
 .table tbody td {
-  padding: 30px !important;
+  padding-top: 30px !important;
+  padding-bottom: 30px !important;
   justify-content: center;
   align-items: center;
   background-color: #3A3E52;
@@ -34,7 +40,8 @@ body{
 
 /* Common styles for all screen sizes */
 .buildings-container {
-  padding: 20px;
+  margin:auto;
+  padding-top: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -42,10 +49,18 @@ body{
   width: 100%;
   font-family: 'Montserrat', sans-serif;
   font-weight: 100;
+  width: 95%;
+}
+
+.buildings-table{
+  align-items: center;
+  padding: 0px !important;
 }
 
 .buildings-table-container {
   border: none; /* Or adjust as needed */
+  width: 100%; /* Ensure table width is responsive */
+  table-layout: auto !important; /* Allows table cells to adjust their width */
   /* Other styling as needed */
 }
 .rounded-table-wrapper {
@@ -53,6 +68,9 @@ body{
   overflow: hidden;
   width: 100%; /* Ensure full width */
   box-sizing: border-box; /* To include padding and border in the element's total width and height */
+  min-width: 300px; /* Example min-width */
+  max-width: 100%; /* Ensures it doesn't overflow the screen width */
+  align-content: center;
 }
 
 /* Adjustments for smaller screens */
@@ -66,11 +84,10 @@ body{
 
 th,
 td {
-  padding: 10px 16px;
+  
   /* border: 1px solid #666; */
   text-align: left;
   white-space: nowrap;
-  align-items: center;
   justify-content: center;
   /* Prevent line breaks for table cells */
   overflow: hidden;
@@ -81,6 +98,7 @@ td {
 
 th {
   font-weight: bold;
+  padding: 0px !important;
 }
 
 /* Media queries for responsiveness */

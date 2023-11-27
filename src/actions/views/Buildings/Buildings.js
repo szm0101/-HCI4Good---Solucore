@@ -59,7 +59,7 @@ const Buildings = () => {
                 data.map((building) => (
                   <tr key={building.id}>
                     <td className="text-white ps-5">{building.buildingName}</td>
-                    <td className="text-white ps-5">{building.buildingLocation}</td>
+                    <td className="text-white ps-5">{building.city}</td>
                     <td className='text-white'>
                       <div>
                         <button
