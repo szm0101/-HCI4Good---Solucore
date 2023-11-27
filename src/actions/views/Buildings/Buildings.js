@@ -34,11 +34,12 @@ const Buildings = () => {
   // Output div for buildings list
   const outputDiv = (
     <div className="buildings-container d-flex align-items-center">
-          <Table className="buildings-table-container table-responsive">
+      <div className="rounded-table-wrapper">
+          <Table className="buildings-table table-responsive">
             <thead>
               <tr className='table-card-record'> 
                 <td className='text-start ps-4'>
-                  <h4 className='fw-bold'>Buildings</h4>
+                  <h4 className='ps-5 fw-bold'>Buildings</h4>
                 </td>
                 <td></td>
                 <td></td>
@@ -83,6 +84,7 @@ const Buildings = () => {
               )}
             </tbody>
           </Table>
+          </div>
       
         
     </div>

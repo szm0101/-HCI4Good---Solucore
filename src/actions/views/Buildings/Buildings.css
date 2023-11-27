@@ -28,6 +28,10 @@ body{
   border-color: #45495D!important;
 }
 
+.table thead td{
+  border-color: #45495D!important;
+}
+
 /* Common styles for all screen sizes */
 .buildings-container {
   padding: 20px;
@@ -40,11 +44,24 @@ body{
   font-weight: 100;
 }
 
-.buildings-table {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 100px !important;
+.buildings-table-container {
+  border: none; /* Or adjust as needed */
+  /* Other styling as needed */
+}
+.rounded-table-wrapper {
+  border-radius: 15px; /* Consistent rounded corners */
+  overflow: hidden;
+  width: 100%; /* Ensure full width */
+  box-sizing: border-box; /* To include padding and border in the element's total width and height */
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+  .rounded-table-wrapper {
+      border-radius: 10px; /* Smaller radius for smaller screens */
+      overflow: auto; /* Allows scrolling on smaller screens */
+      /* Other adjustments as needed */
+  }
 }
 
 th,
