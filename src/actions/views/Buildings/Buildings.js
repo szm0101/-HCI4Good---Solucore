@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
-import { Table, Card, Button } from "react-bootstrap";
+import { Table, Card } from "react-bootstrap";
 import { useLocation, Link, useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './BuildingsTest.css';
+import './Buildings.css';
 
 const Buildings = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const buildingName = location.state?.buildingName;
+  const buildingLocation = location.state?.location;
   const [data, setData] = useState([]);
   const [cookies, setCookie] = useCookies();
   const token = cookies.token;
@@ -29,23 +30,24 @@ const Buildings = () => {
         console.error('API Error:', error);
       });
   }, []);
-
+  
+  // Output div for buildings list
   const outputDiv = (
-    <div className="buildings-container">
-      <Card className="banks-card mt-5" >
-        <Card.Header>
-          <div className="d-flex justify-content-start align-items-center">
-            <div className="ms-3">
-              <h5 className="mb-0 text-white fw-bold fs-3">Building: {buildingName}</h5>
-            </div>
-          </div>
-        </Card.Header>
-        <Card.Body className="buildings-table px-0 py-0">
-          <Table className="table-dark">
+    <div className="buildings-container d-flex align-items-center">
+          <Table className="buildings-table-container table-responsive">
             <thead>
+              <tr className='table-card-record'> 
+                <td className='text-start ps-4'>
+                  <h4 className='fw-bold'>Buildings</h4>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td> 
+              </tr>
               <tr >
-                <th className="text-start text-white-50 fw-bold fs-5 ps-5">BUILDING NAME</th>
-                <th className="text-start text-white-50 fw-bold fs-5 ps-5">BUILDING ID</th>
+                <th className="text-start text-white-50 fs-5 ps-5">BUILDING NAME</th>
+                <th className="text-start text-white-50 fs-5 ps-5">LOCATION</th>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -55,8 +57,8 @@ const Buildings = () => {
               {data ? (
                 data.map((building) => (
                   <tr key={building.id}>
-                      <td className="text-white-50 fw-bold fs-5 ps-5">{building.buildingName}</td>
-                    <td className="text-white-50 fw-bold fs-5 ps-5">{building.location}</td>
+                    <td className="text-white ps-5">{building.buildingName}</td>
+                    <td className="text-white ps-5">{building.buildingLocation}</td>
                     <td className='text-white'>
                       <div>
                         <button
@@ -81,12 +83,11 @@ const Buildings = () => {
               )}
             </tbody>
           </Table>
-        </Card.Body>
-      </Card>
+      
+        
     </div>
 );
   
-
   return (
     outputDiv
   );

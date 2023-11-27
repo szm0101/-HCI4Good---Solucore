@@ -1,14 +1,31 @@
-.table{
-  border-collapse: separate;
-  border-spacing: 0;
-  border-radius: 10px;
-  overflow: hidden;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
+
+body{
+  font-family: 'Montserrat', sans-serif;
+}
+
+.table-card-record{
+}
+
+.table-card-record td{
+  background-color: #3A3E52 !important;
+  color: white !important;
+  padding: 20px !important;
+
+}
+
+
+
+.table tr {
+
 }
 
 .table tbody td {
+  padding: 30px !important;
   justify-content: center;
   align-items: center;
-  background-color: #3B3E50;
+  background-color: #3A3E52;
+  border-color: #45495D!important;
 }
 
 /* Common styles for all screen sizes */
@@ -19,29 +36,16 @@
   align-items: center;
   overflow-x: auto;
   width: 100%;
- 
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 100;
 }
 
-.table-container{
-/* Common styles for all screen sizes */
-.buildings-container {
-  padding: 0px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow-x: auto;
-  width: 100%;
-  /* Add horizontal scrolling for smaller screens */
-}
-
-}
-
-/* .buildings-table {
+.buildings-table {
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 100px !important;
-} */
+}
 
 th,
 td {
@@ -62,12 +66,6 @@ th {
   font-weight: bold;
 }
 
-tbody tr:hover {
-  background-color: #2f3242;
-  cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
-}
-
 /* Media queries for responsiveness */
 
 /* for smaller screens */
@@ -77,7 +75,5 @@ tbody tr:hover {
   }
 }
 
-.banks-card{
-    background-color: #3a3e52 !important;
-    width: 90%;
-}
+
+
