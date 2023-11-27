@@ -211,22 +211,6 @@ function Settings() {
                             </select>
                         </label>
                     </div>
-                    <div class="createActivityDiv" id="createActivityDiv">
-                        {/* Learned Modal from (ref) - https://react-bootstrap.netlify.app/docs/components/modal */}
-                        <Button id='createActivity' onClick={showCreateActivity}>
-                            CREATE ACTIVITY
-                        </Button>
-                        <Modal show={showCreateActivityForm} size="xl" onHide={closeCreateActivity} >
-                            <Modal.Header closeButton className='modal-header'>
-                                <Modal.Title id="contained-modal-title-vcenter">
-                                    CREATE ACTIVITY
-                                </Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body className='modal-body'>
-                                <CreateActivityForm />
-                            </Modal.Body>
-                        </Modal>
-                    </div>
                     <div class="mytabs" id="mytabs">
                         <input type="radio" id="deviceServices" name="mytabs" checked="checked" />
                         <label for="deviceServices">DEVICE SERVICES</label>
@@ -276,6 +260,22 @@ function Settings() {
                                 </thead>
                             </table>
                         </div>
+                    </div>
+                    <div class="createActivityDiv" id="createActivityDiv">
+                        {/* Learned Modal from (ref) - https://react-bootstrap.netlify.app/docs/components/modal */}
+                        <Button id='createActivity' onClick={showCreateActivity}>
+                            CREATE ACTIVITY
+                        </Button>
+                        <Modal show={showCreateActivityForm} size="xl" onHide={closeCreateActivity} >
+                            <Modal.Header closeButton className='modal-header'>
+                                <Modal.Title id="contained-modal-title-vcenter">
+                                    CREATE ACTIVITY
+                                </Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body className='modal-body'>
+                                <CreateActivityForm />
+                            </Modal.Body>
+                        </Modal>
                     </div>
                 </div>
 

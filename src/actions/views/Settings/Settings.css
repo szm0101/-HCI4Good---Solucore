@@ -1,48 +1,17 @@
-/* Settings.css */
+/* Media query for large screens */
+@media (min-width: 1200px) {
 
-
-/* body {
- background-color: #2A2C3B !important;
- width: 100%;
- height: 100%;
-} */
-
-
-
-
-/* .secondSelectDiv option:not(:checked) {
- background-color: rgb(207, 9, 9);
-} */
-
-
-/* .table-header-cell {
- color: black;
-} */
-
-
-/* .header {
- margin-bottom: 20px;
- font-size: 24px;
- font-weight: bold;
-} */
-
-
-
-
-@media (max-width: 1199px) {
   .container {
     margin: 0 !important;
     padding: 20px;
     width: 100%;
   }
 
-
   .dateTimePicker {
     text-align: left;
     padding-left: 50px;
     margin: 10px;
   }
-
 
   .labelTo {
     font-family: Montserrat, sans-serif;
@@ -53,7 +22,6 @@
     font-size: 16px;
   }
 
-
   .dateTime1 {
     padding: 5px;
     background-color: #354a68;
@@ -62,7 +30,6 @@
     color: white;
     width: 190px;
   }
-
 
   .dateTime2 {
     padding: 5px;
@@ -73,6 +40,168 @@
     width: 190px;
   }
 
+  .form-group {
+    background-color: rgb(58, 62, 82);
+    margin-left: 5%;
+    color: rgb(215, 218, 222);
+    min-height: 150px;
+    font-weight: bold;
+  }
+
+  #selectLabel {
+    float: left;
+    padding-left: 30px;
+    padding-top: 25px;
+  }
+
+  #firstSelect,
+  #secondSelect,
+  #thirdSelect {
+    background-color: rgb(58, 62, 82);
+    color: rgb(215, 218, 222);
+    font-family: Montserrat, sans-serif;
+    font-size: 16px;
+    min-width: 250px;
+    height: 34px;
+    font-weight: bold;
+    border: 1px solid #4F546F;
+  }
+
+  .secondSelectDiv {
+    display: none;
+  }
+
+  .thirdSelectDiv {
+    display: none;
+    float: left;
+  }
+
+  .mytabs {
+    display: none;
+    padding-top: 11%;
+  }
+
+  #mytabs {
+    display: none;
+    float: left;
+  }
+
+  .mytabs {
+    flex-wrap: wrap;
+    padding-left: 30px;
+  }
+
+  .createActivityDiv {
+    display: none;
+    padding-top: 5%;
+    padding-left: 40%;
+  }
+
+  #createActivityDiv {
+    display: none;
+    float: left;
+  }
+
+  .mytabs input[type="radio"] {
+    display: none;
+  }
+
+  .mytabs label {
+    border: solid;
+    border-color: rgb(54, 75, 104);
+    padding: 25px;
+    background: rgb(58, 62, 82);
+    font-weight: bold;
+    color: rgb(215, 218, 222);
+  }
+
+  .mytabs .tab {
+    width: 100%;
+    background-color: rgb(58, 62, 82);
+    order: 1;
+    display: none;
+  }
+
+  .mytabs input[type="radio"]:checked+label+.tab {
+    display: block;
+  }
+
+  .mytabs input[type="radio"]:checked+label {
+    background: rgb(54, 75, 104);
+  }
+
+  #createActivity {
+    background-color: #2295e1;
+    color: white;
+    padding: 10px;
+    width: 200px;
+    font-family: Montserrat, sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    border: 1px solid transparent;
+    border-radius: 2px;
+  }
+
+  .modal-header {
+    background-color: #2295e1;
+    color: white;
+  }
+
+  .modal-body {
+    background-color: #2295e1;
+    color: white;
+  }
+
+  .table th {
+    background-color: #364B68 !important;
+    color: #D7DADE !important;
+    height: 60px !important;
+    border: none;
+    text-align: center;
+    line-height: 60px;
+  }
+}
+
+/* Media query for small screens */
+@media (max-width: 1199px) {
+  .container {
+    margin: 0 !important;
+    padding: 20px;
+    width: 100%;
+  }
+
+  .dateTimePicker {
+    text-align: left;
+    padding-left: 50px;
+    margin: 10px;
+  }
+
+  .labelTo {
+    font-family: Montserrat, sans-serif;
+    font-weight: bold;
+    background-color: #5677a5;
+    color: white;
+    padding: 6px 10px 6px 10px;
+    font-size: 16px;
+  }
+
+  .dateTime1 {
+    padding: 5px;
+    background-color: #354a68;
+    font-size: 15px;
+    border-color: #5677a5;
+    color: white;
+    width: 190px;
+  }
+
+  .dateTime2 {
+    padding: 5px;
+    background-color: #354a68;
+    font-size: 15px;
+    border-color: #5677a5;
+    color: white;
+    width: 190px;
+  }
 
   .form-group {
     background-color: rgb(58, 62, 82);
@@ -83,13 +212,11 @@
     font-weight: bold;
   }
 
-
   #selectLabel {
     float: left;
     margin-top: 30px;
     padding-left: 5px;
   }
-
 
   #firstSelect,
   #secondSelect,
@@ -104,16 +231,13 @@
     border: 1px solid #4F546F;
   }
 
-
   .secondSelectDiv {
     display: none;
   }
 
-
   .thirdSelectDiv {
     display: none;
   }
-
 
   .mytabs {
     display: none;
@@ -122,33 +246,24 @@
     padding-left: 5px;
   }
 
-
   #mytabs {
-    /* display: none; */
     float: left;
   }
 
   .createActivityDiv {
     display: none;
-    padding-top: 10%;
-    padding-right: 10%;
+    padding-top: 5%;
+    padding-left: 25%;
   }
 
   #createActivityDiv {
     display: none;
-    float: right;
+    float: left;
   }
-
-  /* .mytabs {
-    flex-wrap: wrap;
-    padding-left: 5px;
-  } */
-
 
   .mytabs input[type="radio"] {
     display: none;
   }
-
 
   .mytabs label {
     border: solid;
@@ -166,208 +281,18 @@
     display: none;
   }
 
-
   .mytabs input[type="radio"]:checked+label+.tab {
     display: block;
   }
 
-
   .mytabs input[type="radio"]:checked+label {
     background: rgb(54, 75, 104);
   }
-
 
   #createActivity {
     background-color: #2295e1;
     color: white;
     margin-left: 100px;
-    padding: 10px;
-    width: 150px;
-    font-family: Montserrat, sans-serif;
-    font-weight: bold;
-    font-size: 16px;
-    border: 1px solid transparent;
-    border-radius: 2px;
-  }
-
-
-  .modal-header {
-    background-color: #2295e1;
-    color: white;
-  }
-
-
-  .modal-body {
-    background-color: #292c3b;
-    color: white;
-  }
-
-
-  .table th {
-    background-color: #364B68 !important;
-    color: #D7DADE !important;
-    height: 60px !important;
-    border: none;
-    /* text-align: center; */
-    /* line-height: 60px; */
-  }
-}
-
-
-@media (min-width: 1200px) {
-
-
-  .container {
-    margin: 0 !important;
-    padding: 20px;
-    width: 100%;
-  }
-
-
-  .dateTimePicker {
-    text-align: left;
-    padding-left: 50px;
-    margin: 10px;
-  }
-
-
-  .labelTo {
-    font-family: Montserrat, sans-serif;
-    font-weight: bold;
-    background-color: #5677a5;
-    color: white;
-    padding: 6px 10px 6px 10px;
-    font-size: 16px;
-  }
-
-
-  .dateTime1 {
-    padding: 5px;
-    background-color: #354a68;
-    font-size: 15px;
-    border-color: #5677a5;
-    color: white;
-    width: 190px;
-  }
-
-
-  .dateTime2 {
-    padding: 5px;
-    background-color: #354a68;
-    font-size: 15px;
-    border-color: #5677a5;
-    color: white;
-    width: 190px;
-  }
-
-
-  .form-group {
-    background-color: rgb(58, 62, 82);
-    margin-left: 5%;
-    color: rgb(215, 218, 222);
-    min-height: 150px;
-    font-weight: bold;
-  }
-
-
-  #selectLabel {
-    float: left;
-    padding-left: 30px;
-    padding-top: 25px;
-  }
-
-
-  #firstSelect,
-  #secondSelect,
-  #thirdSelect {
-    background-color: rgb(58, 62, 82);
-    color: rgb(215, 218, 222);
-    font-family: Montserrat, sans-serif;
-    font-size: 16px;
-    min-width: 250px;
-    height: 34px;
-    font-weight: bold;
-    border: 1px solid #4F546F;
-  }
-
-
-  .secondSelectDiv {
-    display: none;
-  }
-
-
-  .thirdSelectDiv {
-    display: none;
-    float: left;
-  }
-
-
-  .mytabs {
-    display: none;
-    padding-top: 11%;
-  }
-
-
-  #mytabs {
-    display: none;
-    float: left;
-  }
-
-
-  .mytabs {
-    flex-wrap: wrap;
-    padding-left: 30px;
-  }
-
-  .createActivityDiv {
-    display: none;
-    padding-top: 10%;
-    padding-right: 10%;
-  }
-
-  #createActivityDiv {
-    display: none;
-    float: right;
-  }
-
-
-  .mytabs input[type="radio"] {
-    display: none;
-  }
-
-
-  .mytabs label {
-    border: solid;
-    border-color: rgb(54, 75, 104);
-    padding: 25px;
-    background: rgb(58, 62, 82);
-    font-weight: bold;
-    color: rgb(215, 218, 222);
-  }
-
-
-  .mytabs .tab {
-    width: 100%;
-    background-color: rgb(58, 62, 82);
-    order: 1;
-    display: none;
-  }
-
-
-  .mytabs input[type="radio"]:checked+label+.tab {
-    display: block;
-  }
-
-
-  .mytabs input[type="radio"]:checked+label {
-    background: rgb(54, 75, 104);
-  }
-
-
-  #createActivity {
-    background-color: #2295e1;
-    color: white;
-    /* margin-left: 100px; */
     padding: 10px;
     width: 200px;
     font-family: Montserrat, sans-serif;
@@ -377,29 +302,25 @@
     border-radius: 2px;
   }
 
-
   .modal-header {
     background-color: #2295e1;
     color: white;
   }
 
-
   .modal-body {
-    background-color: #2295e1;
+    background-color: #292c3b;
     color: white;
   }
-
 
   .table th {
     background-color: #364B68 !important;
     color: #D7DADE !important;
     height: 60px !important;
     border: none;
-    text-align: center;
-    line-height: 60px;
   }
 }
 
+/* Media query for much smaller screen */
 @media (max-width: 768px) {
   .mytabs .tab {
     width: 2.5%;
@@ -408,58 +329,3 @@
     display: none;
   }
 }
-
-
-
-
-
-/* .mytabs .tr {
-  background-color: #4F546F;
- } */
-
-
-
-
-/* .table-container {
-  width: 100%;
-  margin-bottom: 20px;
-  padding-left: 200px;
-  padding-right: 50px;
- } */
-
-
-
-
-
-
-/* .model-container {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #fff;
-  padding: 50px;
-  z-index: 1000;
- } */
-
-
-/* .overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, .7);
-  z-index: 1000;
- } */
-
-
-/* .select-selected {
-  background-color: rgba(58, 62, 82, 1.000);
- } */
-
-
-/* .select-items div:hover,
- .same-as-selected {
-  background-color: rgba(58, 62, 82, 1.000);
- } */
