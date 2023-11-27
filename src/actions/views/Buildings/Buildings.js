@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 import { Table, Card } from "react-bootstrap";
-import { useLocation, Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Buildings.css';
 
 const Buildings = () => {
-  const location = useLocation();
   const navigate = useNavigate();
-  const buildingName = location.state?.buildingName;
-  const buildingLocation = location.state?.location;
   const [data, setData] = useState([]);
   const [cookies, setCookie] = useCookies();
   const token = cookies.token;

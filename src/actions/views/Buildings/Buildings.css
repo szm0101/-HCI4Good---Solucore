@@ -92,14 +92,5 @@ th {
   padding: 0px !important;
 }
 
-/* Media queries for responsiveness */
-
-/* for smaller screens */
-@media (max-width: 768px) {
-  table {
-    margin-left: 30%;
-  }
-}
-
 
 
