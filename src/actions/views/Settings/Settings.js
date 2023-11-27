@@ -1,5 +1,5 @@
 //need install react-select --force for the import the "Select" component from the 'react-select' library.
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react';
 import Modal from "react-bootstrap/Modal";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from 'react-bootstrap/Button';
@@ -125,8 +125,24 @@ function Settings() {
         setShowCreateActivityForm(false);
     }
 
-    function handleDeviceChange(selectedOption, buildingValue) {
-    }
+    // reference: Learned about pad here -> https://stackoverflow.com/questions/3605214/javascript-add-leading-zeroes-to-date
+    // useEffect hook to set initial values for calendar
+    useEffect(() => {
+        const today = new Date();
+        const startOfDay = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 0, 0);
+        const endOfDay = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 23, 59);
+
+        const formatTime = (date) => {
+            // padStart() ensures that single-digit numbers are formatted with a leading zero.
+            const pad = (num) => num.toString().padStart(2, '0');
+            return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(date.getMinutes())}`;
+        };
+
+        // Set the initial values for the input fields
+        setFromDateTime(formatTime(startOfDay));
+        setToDateTime(formatTime(endOfDay));
+    }, []);
+
 
     return (
         <body>
