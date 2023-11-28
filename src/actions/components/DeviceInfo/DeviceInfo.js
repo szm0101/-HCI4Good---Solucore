@@ -5,6 +5,8 @@ import { useCookies } from 'react-cookie';
 import DoorIcon from "../../assets/doorIcon.png";
 import RunningCheck from "../../assets/runningCheck.png";
 import CloseEventsButton from "../../assets/close_events.png";
+import ViewEventModal from './ViewEventModal.js';
+
 const DeviceInfo = ({ buildingId, deviceId, onClose }) => {
     const [deviceInfo, setDeviceInfo] = useState([]);
     const [cookies] = useCookies();
@@ -13,6 +15,8 @@ const DeviceInfo = ({ buildingId, deviceId, onClose }) => {
     const [showCard2And3, setShowCard2And3] = useState(true);
     const [selectedDeviceId, setSelectedDeviceId] = useState(deviceId);
     const [applyTransparentStyle, setApplyTransparentStyle] = useState(true);
+    const [viewModalShow, setViewModalShow] = React.useState(false);
+
 
     const handleHideCards = () => {
         setShowCard2And3(false);
@@ -24,6 +28,10 @@ const DeviceInfo = ({ buildingId, deviceId, onClose }) => {
         setSelectedDeviceId(deviceId);
         setShowCard2And3(true); // Display card-2 and card-3
         setApplyTransparentStyle(true); // Show transparency on unselected devices
+    };
+
+    const handleViewClose = () => {
+        setViewModalShow(false);
     };
 
     useEffect(() => {
@@ -51,6 +59,7 @@ const DeviceInfo = ({ buildingId, deviceId, onClose }) => {
     }, [selectedDeviceId]);
 
     const numOfDevices = deviceInfo.length;
+    const selectedDeviceEvents = deviceInfo.find(device => device.deviceId === selectedDeviceId)?.deviceEvents[0];
 
     // Format time stamp
     const formatTimestamp = (timestamp) => {
@@ -176,7 +185,7 @@ const DeviceInfo = ({ buildingId, deviceId, onClose }) => {
                                     <span>{deviceInfo.find(device => device.deviceId === selectedDeviceId)?.deviceEvents[0].code}</span>
                                 </th>
                                 <th style={{ verticalAlign: 'middle' }}>
-                                    <span>View</span>
+                                    <span onClick={() => setViewModalShow(true)}><u>View</u></span>
                                 </th>
                             </tr>
                         </tbody>
@@ -184,6 +193,11 @@ const DeviceInfo = ({ buildingId, deviceId, onClose }) => {
                 </div>
                 )}
             </div>
+            <ViewEventModal 
+                show={viewModalShow} 
+                onHide={handleViewClose}
+                {...selectedDeviceEvents}
+            />
         </div>
     );
 };
