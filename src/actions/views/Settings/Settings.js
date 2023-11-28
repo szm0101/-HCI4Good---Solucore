@@ -44,7 +44,6 @@ function showSecondSelect() {
 }
 function showThirdSelect() {
 
-
     var secondSelect = document.getElementById("secondSelect");
     var thirdSelectDiv = document.getElementById("thirdSelectDiv");
     var formGroupDiv = document.getElementById("form-group");
@@ -61,7 +60,6 @@ function showThirdSelect() {
     }
 }
 
-
 function showTable1() {
     var createActivityDiv = document.getElementById("createActivityDiv");
     createActivityDiv.style.display = "flex";
@@ -70,7 +68,6 @@ function showTable1() {
     var formGroupDiv = document.getElementById("form-group");
     formGroupDiv.style.height = "550px";
 }
-
 
 function hideSecondSelect() {
     var secondSelectDiv = document.getElementById("secondSelectDiv");
@@ -91,8 +88,6 @@ function Settings() {
     const [showDatePicker, setShowDatePicker] = useState(false);
     // State to manage the visibility of the Create Activity form
     const [showCreateActivityForm, setShowCreateActivityForm] = useState(false);
-
-
 
 
     // Update the time value(Opening/Closing time) when click the edited button
@@ -117,7 +112,6 @@ function Settings() {
         setShowModel(true);
     }
 
-
     // Date and Time event handlers
     function showDatePickerInput() {
         setShowDatePicker(true);
@@ -129,7 +123,6 @@ function Settings() {
         setToDateTime(event.target.value);
     }
 
-
     function showCreateActivity() {
         setShowCreateActivityForm(true);
     }
@@ -138,7 +131,6 @@ function Settings() {
     function closeCreateActivity() {
         setShowCreateActivityForm(false);
     }
-
 
     // reference: Learned about pad here -> https://stackoverflow.com/questions/3605214/javascript-add-leading-zeroes-to-date
     // useEffect hook to set initial values for calendar
@@ -159,9 +151,6 @@ function Settings() {
         setFromDateTime(formatTime(startOfDay));
         setToDateTime(formatTime(endOfDay));
     }, []);
-
-
-
 
     return (
         <body>
