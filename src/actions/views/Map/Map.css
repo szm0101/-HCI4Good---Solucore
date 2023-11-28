@@ -1,3 +1,8 @@
+.parent-container {
+    display: flex;
+    height: 100vh;
+  }
+
 .map-container {
     position: relative;
     width: 100%;
@@ -11,4 +16,9 @@
     flex-direction: row; /* align children in a row */
     align-items: stretch; /* stretch children to fill the container */
     height: 100%; /* adjust as needed */
+    transition: width 0.5s;
 }
+
+.map-clicked {
+    width: 50%; /* shrink map */
+  }
