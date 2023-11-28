@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
+
+body{
+  font-family: 'Montserrat', sans-serif;
+}
+
+.rounded-table-wrapper {
+  border-radius: 15px; /* Consistent rounded corners */
+  overflow: hidden;
+  width: 100%; /* Ensure full width */
+  min-width: 300px; /* Example min-width */
+  max-width: 100%; /* Ensures it doesn't overflow the screen width */
+  align-content: center;
+}
+
+.buildings-container {
+  margin:auto;
+  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: auto;
+  width: 100%;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 100;
+  width: 95%;
+}
+
+.buildings-table{
+  align-items: center;
+  padding: 0px !important;
+}
+
+.buildings-table-container {
+  border: none; 
+  width: 100%; 
+  table-layout: auto !important; /* Allows table cells to adjust their width */
+}
+
+.table-card-record td{
+  background-color: #3A3E52 !important;
+  color: white !important;
+  padding: 10px !important;
+}
+
+.table-card-record td{
+  background-color: #3A3E52 !important;
+  color: white !important;
+  padding-top: 20px !important;
+  padding-bottom: 20px !important;
+  padding-left: 0px !important;
+}
+
+.table tbody td {
+  padding-top: 30px !important;
+  padding-bottom: 30px !important;
+  justify-content: center;
+  align-items: center;
+  background-color: #3A3E52;
+  border-color: #45495D!important;
+}
+
+.table thead td{
+  border-color: #45495D!important;
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.table tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 15px !important; /* Rounds bottom left corner of the first cell in the last row */
+}
+
+.table tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 15px !important; /* Rounds bottom right corner of the last cell in the last row */
+}
+
+th {
+  font-weight: bold;
+  padding: 0px !important;
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+  .rounded-table-wrapper {
+      border-radius: 10px; /* Smaller radius for smaller screens */
+      overflow: auto; /* Allows scrolling on smaller screens */
+      /* Other adjustments as needed */
+  }
+}
+
+th,
+td {
+  
+  /* border: 1px solid #666; */
+  text-align: left;
+  white-space: nowrap;
+  justify-content: center;
+  /* Prevent line breaks for table cells */
+  overflow: hidden;
+  /* Hide overflowing content */
+  text-overflow: ellipsis;
+  /* Show ellipsis (...) for truncated content */
+}
+
+.buildings-table td button {
+  background: none !important; /* Remove background */
+  border: none !important; /* Remove border */
+  padding: 0 !important; /* Remove padding */
+  color: inherit; /* Inherit text color from parent */
+  font: inherit; /* Inherit font from parent */
+  cursor: pointer; /* Keep the cursor as pointer to indicate it's clickable */
+  outline: inherit; /* Inherit outline style (for focus state) */
+}
+
+
+/* Animations */
+
+/* Target the table row within the table */
+.buildings-table tbody tr:hover {
+  background-color: white !important; /* Replace #yourColorHere with the color you want */
+  cursor: pointer; /* Optional: Changes the cursor to indicate the row is interactive */
+}
+
+/* If you want to change the text color as well, add this */
+.buildings-table tbody tr:hover td {
+  color: white !important; /* Replace #yourTextColorHere with the color you want */
+}
+
+/* Target the table row within the table with increased specificity */
+.buildings-table tbody > tr:hover {
+  background-color: white !important; /* Replace #yourColorHere with your desired color */
+}
+
+/* To change the text color on hover, if needed */
+.buildings-table tbody > tr:hover > td {
+  color: white !important; /* Replace #yourTextColorHere with your desired text color */
+}
+
+tr:hover {
+  background-color: white !important; /* Replace with your desired color */
+}
