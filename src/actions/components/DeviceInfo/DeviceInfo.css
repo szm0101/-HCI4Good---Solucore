@@ -2,8 +2,9 @@
     background-color: #292c3b;
     color: aliceblue;
     z-index: 10;
-    width: 800px;
+    width: 100%;
     padding-top: 10px;
+    transition: width 0.5s;
 }
 
 .device-info-small-container {

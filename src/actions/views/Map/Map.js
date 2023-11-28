@@ -238,7 +238,7 @@ const MapContainer = ({ google }) => {
     direction: '',
     buildingId: ''
   });
-  const [showDeviceInfo, setDeviceInfo] = useState(false);
+
   // Set up user's default location
   const defaultLat = cookies.defaultLat;
   const defaultLng = cookies.defaultLng;
@@ -246,6 +246,10 @@ const MapContainer = ({ google }) => {
   // Zooms on click event
   const [mapCenter, setMapCenter] = useState({ lat: defaultLat, lng: defaultLng });
   const [mapZoom, setMapZoom] = useState(11);
+  // Shrink map size when marker clicked and show device info
+  const [mapClicked, setMapClicked] = useState(false);
+  const [showDeviceInfo, setDeviceInfo] = useState(false);
+
   useEffect(() => {
     const headers = new Headers({
       'Valid-token': token,
@@ -280,6 +284,7 @@ const MapContainer = ({ google }) => {
         direction: props.direction,
         buildingId: props.buildingId
       });
+      setMapClicked(true);
       setDeviceInfo(true);
     }, 1000); // Delay for zoom animation
   };
@@ -294,7 +299,7 @@ const MapContainer = ({ google }) => {
     }
   };
   const mapOutput1 = (
-  <div className="map-container">
+  <div className={`map-container ${mapClicked ? 'map-clicked' : ''}`}>
       <Map
         google={google}
         zoom={mapZoom}
