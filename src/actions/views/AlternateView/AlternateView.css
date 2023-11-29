@@ -1,4 +1,4 @@
-.wrapper{
+.avWrapper{
     width: 100%;
     height: 100%;
     color: white;
@@ -29,11 +29,11 @@
 
 }
 
-.main-table{
+.avMain-table{
     width: 100%;
 }
 
-.main-table tr, .main-table table{
+.avMain-table tr, .avMain-table table{
     border: 1px solid white !important;
     border-radius: 0;
     background-color: #333333;
@@ -42,13 +42,20 @@
     line-height: normal;
     font-weight: normal;
 }
-.main-table tr:hover{
-    background-color: #333333;
+
+.avMain-table tr:hover{
+    background-color: #1E5CB5;
+
+}
+.avData-tables td{
+    padding: 6px;
 }
 
-.data-tables, .data-tables tr{
+.avData-tables, .avData-tables tr{
     width: 100% !important;
     background-color: #1E5CB5 !important;
+    cursor: pointer;
+
 }
 
 .fault-info-table{
@@ -64,8 +71,11 @@
     flex-direction: row;
     width: 100%;
 }
+.avData-tables:hover {
+    background-color: #1E5CB5 !important;
+  }
 
-.building-select{
+.avBuilding-select{
     display: flex;
     flex-wrap: wrap;
     height: fit-content;
