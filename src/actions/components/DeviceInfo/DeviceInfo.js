@@ -7,7 +7,7 @@ import RunningCheck from "../../assets/runningCheck.png";
 import CloseEventsButton from "../../assets/close_events.png";
 import ViewEventModal from './ViewEventModal.js';
 
-const DeviceInfo = ({ buildingId, deviceId, onClose }) => {
+const DeviceInfo = ({ buildingId, deviceId, onClose, handleDeviceClick }) => {
     const [deviceInfo, setDeviceInfo] = useState([]);
     const [cookies] = useCookies();
     const token = cookies.token;
@@ -16,7 +16,6 @@ const DeviceInfo = ({ buildingId, deviceId, onClose }) => {
     const [selectedDeviceId, setSelectedDeviceId] = useState(deviceId);
     const [applyTransparentStyle, setApplyTransparentStyle] = useState(true);
     const [viewModalShow, setViewModalShow] = React.useState(false);
-
 
     const handleHideCards = () => {
         setShowCard2And3(false);
@@ -28,6 +27,19 @@ const DeviceInfo = ({ buildingId, deviceId, onClose }) => {
         setSelectedDeviceId(deviceId);
         setShowCard2And3(true); // Display card-2 and card-3
         setApplyTransparentStyle(true); // Show transparency on unselected devices
+
+        // Send device info to MapContainer
+        const device = deviceInfo.find(device => device.deviceId === deviceId);
+        handleDeviceClick({
+            name: device?.deviceName,
+            deviceId: device?.deviceId,
+            floorLocation: device?.floorLocation,
+            deviceTemp: device?.deviceTemp,
+            cameraUrl: device?.cameraUrl,
+            doorStatus: device?.doorStatus,
+            direction: device?.direction,
+            buildingId: device?.buildingId
+        });
     };
 
     const handleViewClose = () => {
@@ -84,11 +96,10 @@ const DeviceInfo = ({ buildingId, deviceId, onClose }) => {
                 <p className='fs-5'>{numOfDevices} Devices</p>
                 <div className='card-1'>
                     {deviceInfo.map(device => (
-                        <div 
+                        <div
                             key={device.deviceId}
-                            className={`${
-                                device.deviceId === selectedDeviceId ? 'current-device' : applyTransparentStyle ? 'transparent-device' : ''
-                            }`}
+                            className={`${device.deviceId === selectedDeviceId ? 'current-device' : applyTransparentStyle ? 'transparent-device' : ''
+                                }`}
                         >
                             {device.deviceName}<br />
                             {device.contractor}
@@ -138,7 +149,7 @@ const DeviceInfo = ({ buildingId, deviceId, onClose }) => {
 
                     <div>
                         {showCard2And3 && (
-                            <Button variant="" className="btn-right"  onClick={handleHideCards}>
+                            <Button variant="" className="btn-right" onClick={handleHideCards}>
                                 <img src={CloseEventsButton} alt="close events" />
                             </Button>
                         )}
@@ -193,8 +204,8 @@ const DeviceInfo = ({ buildingId, deviceId, onClose }) => {
                 </div>
                 )}
             </div>
-            <ViewEventModal 
-                show={viewModalShow} 
+            <ViewEventModal
+                show={viewModalShow}
                 onHide={handleViewClose}
                 {...selectedDeviceEvents}
             />
