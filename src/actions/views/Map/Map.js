@@ -238,7 +238,9 @@ const MapContainer = ({ google }) => {
     direction: '',
     buildingId: ''
   });
-  const [showDeviceInfo, setDeviceInfo] = useState(false);
+
+  const [selectedDeviceId, setSelectedDeviceId] = useState(null);
+
   // Set up user's default location
   const defaultLat = cookies.defaultLat;
   const defaultLng = cookies.defaultLng;
@@ -246,6 +248,10 @@ const MapContainer = ({ google }) => {
   // Zooms on click event
   const [mapCenter, setMapCenter] = useState({ lat: defaultLat, lng: defaultLng });
   const [mapZoom, setMapZoom] = useState(11);
+  // Shrink map size when marker clicked and show device info
+  const [mapClicked, setMapClicked] = useState(false);
+  const [showDeviceInfo, setDeviceInfo] = useState(false);
+
   useEffect(() => {
     const headers = new Headers({
       'Valid-token': token,
@@ -261,6 +267,7 @@ const MapContainer = ({ google }) => {
       });
   }, []);
   const onMarkerClick = (props, marker, e) => {
+    setDeviceInfo(false);
     setSelectedPlace(props);
     setActiveMarker(marker);
     setShowingInfoWindow(true);
@@ -269,20 +276,27 @@ const MapContainer = ({ google }) => {
     setMapZoom(20); // Zoom level when a marker is clicked, adjust as needed
     // Delay the display of RadialMenu
     setTimeout(() => {
-      setShowRadialMenu(true);
-      setRadialMenuData({
-        deviceName: props.name,
-        deviceId: props.deviceId,
-        floorLocation: props.floorLocation,
-        deviceTemp: props.deviceTemp,
-        cameraUrl: props.cameraUrl,
-        doorStatus: props.doorStatus,
-        direction: props.direction,
-        buildingId: props.buildingId
-      });
+      handleDeviceClick(props);
+      setMapClicked(true);
       setDeviceInfo(true);
     }, 1000); // Delay for zoom animation
   };
+
+  const handleDeviceClick = (deviceInfo) => {
+    
+    setShowRadialMenu(true);
+    setRadialMenuData({
+        deviceName: deviceInfo.name,
+        deviceId: deviceInfo.deviceId,
+        floorLocation: deviceInfo.floorLocation,
+        deviceTemp: deviceInfo.deviceTemp,
+        cameraUrl: deviceInfo.cameraUrl,
+        doorStatus: deviceInfo.doorStatus,
+        direction: deviceInfo.direction,
+        buildingId: deviceInfo.buildingId
+    });
+};
+
   // Function to close RadialMenu
   const closeRadialMenu = () => {
     setShowRadialMenu(false);
@@ -293,10 +307,8 @@ const MapContainer = ({ google }) => {
       setActiveMarker(null);
     }
   };
-
-
-  return (
-    <div className="map-container">
+  const mapOutput1 = (
+  <div className={`map-container ${mapClicked ? 'map-clicked' : ''}`}>
       <Map
         google={google}
         zoom={mapZoom}
@@ -353,6 +365,7 @@ const MapContainer = ({ google }) => {
       </Map>
       {/* Conditional rendering of RadialMenu */}
       {showRadialMenu && (
+        
         <RadialMenu
           imageSrc={ElevatorIcon}
           deviceName={radialMenuData.deviceName}
@@ -366,8 +379,18 @@ const MapContainer = ({ google }) => {
         />
       )}
       {/* Conditional rendering of DeviceInfo */}
-      {showDeviceInfo && (<DeviceInfo buildingId={radialMenuData.buildingId} deviceId={radialMenuData.deviceId}/>)}
+      {showDeviceInfo && (
+        <DeviceInfo 
+          buildingId={radialMenuData.buildingId} 
+          deviceId={radialMenuData.deviceId}
+          onClose={closeRadialMenu}
+          handleDeviceClick={handleDeviceClick}
+        />)}
     </div>
+  );
+
+  return (
+    mapOutput1
   );
 };
 export default GoogleApiWrapper({

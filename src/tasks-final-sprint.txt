@@ -1,0 +1,49 @@
+Epic – Make Buildings Page and Sub-Menus:
+
+When a user selects the buildings icon, there is a building menu that pops up which displays rows of each building that user is assigned to. There is an option to view or edit the building 
+
+    Task 1 – Make buildings page load the rows associated with the current user and add functionality
+        
+        Subtask 1 – create buildings page 
+
+        Subtask 2 - Add Functionality to edit button
+
+        Subtask 3 – Add functionality to view button
+
+        Subtask 4 - Add functionality to the delete button
+
+    Task 2 – Create Banks subpage of buildings page and add functionality
+        
+        Subtask 1 – Create Banks page
+
+        Subtask 2 – Add functionality to edit button
+
+        Subtask 3 – Add functionality to the view button
+
+        Subtask 4 - Add functionality to the delete button
+
+    Task 3 - Create Devices subpage of buildings page and add functionality
+
+        Subtask 1 - Create Devices Page
+
+        Subtask 2 – Add functionality to edit button
+
+        Subtask 3 – Add functionality to the view button
+
+        Subtask 4 - Add functionality to the delete button
+
+    Task 4 - Create Device Details Page and add functionality to each section/component
+
+        Subtask 1 - Add Address/Map Panel to page
+
+        Subtask 2 - Add Uptime Performance Panel
+
+        Substask 3 - Add Number of Up and Down Direction Panel
+
+        Subtask 4 - Add Hours of Up, Idle, and Down Direction Panel
+
+        Subtask 5 - Add Number of Car Calls Panel
+
+        Subtask 6 - Add event log panel
+
+
