@@ -42,13 +42,17 @@
     line-height: normal;
     font-weight: normal;
 }
+
 .avMain-table tr:hover{
-    background-color: #333333;
+    background-color: #1E5CB5;
+
 }
 
 .avData-tables, .avData-tables tr{
     width: 100% !important;
     background-color: #1E5CB5 !important;
+    cursor: pointer;
+
 }
 
 .fault-info-table{
@@ -64,6 +68,9 @@
     flex-direction: row;
     width: 100%;
 }
+.avData-tables:hover {
+    background-color: #1E5CB5 !important;
+  }
 
 .avBuilding-select{
     display: flex;
