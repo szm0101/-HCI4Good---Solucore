@@ -55,7 +55,7 @@ function AlternateView() {
   }, [cookies.token]);
 
   return (
-    <div className="wrapper">
+    <div className="avWrapper">
       <div className="top-bar">
         <a href="/Home">
           <img src={Logo} alt="Solutrak logo" className="solutrak-logo"></img>
@@ -65,15 +65,15 @@ function AlternateView() {
         }
       </div>
       <div className="content">
-        <table className="main-table">
+        <table className="avMain-table">
           <tbody>
-            <tr className="building-select">
+            <tr className="avBuilding-select">
               <table>
                 <tbody>{<BuildingInfo buildings={buildings} setBuildingDevices={setBuildingDevices}/>}</tbody>
               </table>
             </tr>
 
-            <tr className="data-tables" onClick={() => toggle(6)}>
+            <tr className="avData-tables" onClick={() => toggle(6)}>
               <td>Devices</td>
             </tr>
             {isOpen[6] && buildingDevices ? (
@@ -83,7 +83,7 @@ function AlternateView() {
                 </table>
               </tr>
             ) : null}
-            <tr className="data-tables" onClick={() => toggle(0)}>
+            <tr className="avData-tables" onClick={() => toggle(0)}>
               <td>General Operating Data</td>
             </tr>
             {isOpen[0] && buildingDevices ? (
@@ -96,7 +96,7 @@ function AlternateView() {
               </tr>
             ) : null}
 
-            <tr className="data-tables" onClick={() => toggle(1)}>
+            <tr className="avData-tables" onClick={() => toggle(1)}>
               <td>Performance Data</td>
             </tr>
             {isOpen[1] && buildingDevices ? (
@@ -106,7 +106,7 @@ function AlternateView() {
                 </table>
               </tr>
             ) : null}
-            <tr className="data-tables" onClick={() => toggle(2)}>
+            <tr className="avData-tables" onClick={() => toggle(2)}>
               <td>Maintenance information</td>
             </tr>
             {isOpen[2] && buildingDevices ? (
@@ -116,7 +116,7 @@ function AlternateView() {
                 </table>
               </tr>
             ) : null}
-            <tr className="data-tables" onClick={() => toggle(3)}>
+            <tr className="avData-tables" onClick={() => toggle(3)}>
               <td>Fault information</td>
             </tr>
             {isOpen[3] && buildingDevices ? (
@@ -131,7 +131,7 @@ function AlternateView() {
                 </table>
               </tr>
             ) : null}
-            <tr className="data-tables" onClick={() => toggle(4)}>
+            <tr className="avData-tables" onClick={() => toggle(4)}>
               <td>Traffic information</td>
             </tr>
             {isOpen[4] && buildingDevices ? (
