@@ -1,10 +1,8 @@
 /* RadialMenu.css */
 .radial-menu-container {
   display: flex;
-  justify-content: center;
   align-items: center;
-  height: 100%;
-  margin-left: 50px;
+  margin-left: 10%;
 }
 
 .outer-ring {
@@ -233,10 +231,4 @@
   justify-content: center;
   font-size: 14px;
   color: white;
-}
-
-
-/* For Testing Only (DELETE LATER)*/
-body {
-  background-color: #4b535a;
 }
