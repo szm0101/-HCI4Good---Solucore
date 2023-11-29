@@ -37,7 +37,6 @@ body{
   table-layout: auto !important; /* Allows table cells to adjust their width */
 }
 
-
 .table-card-record td{
   background-color: #3A3E52 !important;
   color: white !important;
