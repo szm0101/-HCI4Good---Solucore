@@ -1,78 +1,24 @@
-/* Media query for tablets */
-@media only screen and (min-width: 400px) {
-    .map-container {
-        position: fixed;
-        top: 0px;
-        left: 100px;
-        bottom: 0px;
-        right: 0px;
-        z-index: -10;
-    }
+.parent-container {
+    display: flex;
+    height: 100vh;
+  }
+
+.map-container {
+    position: relative;
+    width: 100%;
+    top: 0px;
+    left: 0;
+    bottom: 0px;
+    right: 0px;
+    z-index: 10;
+    /* Rules for radial menu */
+    display: flex;
+    flex-direction: row; /* align children in a row */
+    align-items: stretch; /* stretch children to fill the container */
+    height: 100%; /* adjust as needed */
+    transition: width 0.5s;
 }
 
-@media only screen and (min-width: 600px) {
-    .map-container {
-        position: fixed;
-        top: 0px;
-        left: 100px;
-        bottom: 0px;
-        right: 0px;
-        z-index: -10;
-    }
-}
-
-
-@media only screen and (min-width: 768px) {
-    .map-container {
-        position: fixed;
-        top: 75px;
-        left: 60px;
-        bottom: 0px;
-        right: 0px;
-        z-index: -10;
-    }
-}
-
-@media only screen and (max-width: 768px) {
-    .map-container {
-        position: fixed;
-        top: 80px;
-        left: 80px;
-        bottom: 0px;
-        right: 0px;
-        z-index: -10;
-    }
-}
-
-@media only screen and (min-width: 992px) {
-    .map-container {
-        position: fixed;
-        top: 70px;
-        left: 80px;
-        bottom: 0px;
-        right: 0px;
-        z-index: -10;
-    }
-}
-
-@media only screen and (min-width: 1200px) {
-    .map-container {
-        position: fixed;
-        top: 80px;
-        left: 100px;
-        bottom: 0px;
-        right: 0px;
-        z-index: -10;
-    }
-}
-
-@media only screen and (min-width: 1400px) {
-    .map-container {
-        position: fixed;
-        top: 90px;
-        left: 100px;
-        bottom: 0px;
-        right: 0px;
-        z-index: -10;
-    }
-}
+.map-clicked {
+    width: 50%; /* shrink map */
+  }

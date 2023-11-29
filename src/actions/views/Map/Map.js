@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 import "./Map.css";
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
+import RadialMenu from '../../components/RadialMenu/RadialMenu';
+import DeviceInfo from '../../components/DeviceInfo/DeviceInfo';
+import ElevatorIcon from "../../assets/elevator-central-image.png";
+
 
 const apiKey = process.env.REACT_APP_apiKey;
 /** ref:
@@ -124,21 +128,6 @@ const darkMapStyles = [
       }
     ]
   },
-  // {
-  //   "featureType": "road",
-  //   "elementType": "labels.icon",
-  //   "stylers": [
-  //     {
-  //       "visibility": "simplified"
-  //     },
-  //     {
-  //       "weight": 8
-  //     },
-  //     {
-  //       "color": "#121212"
-  //     }
-  //   ]
-  // },
   {
     "featureType": "road",
     "elementType": "labels.text.fill",
@@ -231,26 +220,44 @@ const darkMapStyles = [
     ]
   }
 ];
-
 const MapContainer = ({ google }) => {
-
   const [showingInfoWindow, setShowingInfoWindow] = useState(false);  // Hides or shows the InfoWindow
   const [activeMarker, setActiveMarker] = useState({});               // Shows the active marker upon click
   const [selectedPlace, setSelectedPlace] = useState({});             // Shows the InfoWindow to the selected place upon a marker
-  const [data, setData] = useState([]);                               // Stores the data from the Building API call
+  const [data, setData] = useState([]);                               // Stores the data from the Device API call
   const [cookies, setCookie] = useCookies();
+  // State variables for radial menu 
+  const [showRadialMenu, setShowRadialMenu] = useState(false);
+  const [radialMenuData, setRadialMenuData] = useState({
+    deviceName: '',
+    deviceId: '',
+    floorLocation: '',
+    deviceTemp: '',
+    cameraUrl: '',
+    doorStatus: '',
+    direction: '',
+    buildingId: ''
+  });
 
+  const [selectedDeviceId, setSelectedDeviceId] = useState(null);
+
+  // Set up user's default location
   const defaultLat = cookies.defaultLat;
   const defaultLng = cookies.defaultLng;
   const token = cookies.token;
+  // Zooms on click event
+  const [mapCenter, setMapCenter] = useState({ lat: defaultLat, lng: defaultLng });
+  const [mapZoom, setMapZoom] = useState(11);
+  // Shrink map size when marker clicked and show device info
+  const [mapClicked, setMapClicked] = useState(false);
+  const [showDeviceInfo, setDeviceInfo] = useState(false);
 
   useEffect(() => {
     const headers = new Headers({
       'Valid-token': token,
     });
-
-    // call getBuildingInfos API and store Data array
-    fetch('https://services.solucore.com/solutrak/api/buildings/getBuildingInfos', { "method": "GET", headers })
+    // call getDeviceInfos API and store Data array
+    fetch('https://services.solucore.com/solutrak/api/buildings/getDeviceInfos', { "method": "GET", headers })
       .then((response) => response.json())
       .then((result) => {
         setData(result.Data);
@@ -259,25 +266,53 @@ const MapContainer = ({ google }) => {
         console.error('API Error:', error);
       });
   }, []);
-
   const onMarkerClick = (props, marker, e) => {
+    setDeviceInfo(false);
     setSelectedPlace(props);
     setActiveMarker(marker);
     setShowingInfoWindow(true);
+    // Change map center and zoom level
+    setMapCenter({ lat: marker.position.lat(), lng: marker.position.lng() });
+    setMapZoom(20); // Zoom level when a marker is clicked, adjust as needed
+    // Delay the display of RadialMenu
+    setTimeout(() => {
+      handleDeviceClick(props);
+      setMapClicked(true);
+      setDeviceInfo(true);
+    }, 1000); // Delay for zoom animation
   };
 
+  const handleDeviceClick = (deviceInfo) => {
+    
+    setShowRadialMenu(true);
+    setRadialMenuData({
+        deviceName: deviceInfo.name,
+        deviceId: deviceInfo.deviceId,
+        floorLocation: deviceInfo.floorLocation,
+        deviceTemp: deviceInfo.deviceTemp,
+        cameraUrl: deviceInfo.cameraUrl,
+        doorStatus: deviceInfo.doorStatus,
+        direction: deviceInfo.direction,
+        buildingId: deviceInfo.buildingId
+    });
+};
+
+  // Function to close RadialMenu
+  const closeRadialMenu = () => {
+    setShowRadialMenu(false);
+  };
   const onClose = () => {
     if (showingInfoWindow) {
       setShowingInfoWindow(false);
       setActiveMarker(null);
     }
   };
-
-  return (
-    <div className="map-container">
+  const mapOutput1 = (
+  <div className={`map-container ${mapClicked ? 'map-clicked' : ''}`}>
       <Map
         google={google}
-        zoom={11}
+        zoom={mapZoom}
+        center={mapCenter}
         styles={darkMapStyles}
         initialCenter={
           {
@@ -292,10 +327,10 @@ const MapContainer = ({ google }) => {
         }}
       >
         {data ? (
-          data.map((building) => (
+          data.map((device) => (
             <Marker
-              key={building.buildingId}
-              position={{ lat: building.latitude, lng: building.longitute }}
+              key={device.deviceId}
+              position={{ lat: device.latitude, lng: device.longitute }}
               icon={{
                 path: google.maps.SymbolPath.CIRCLE,
                 fillColor: '#2096f3',
@@ -305,13 +340,20 @@ const MapContainer = ({ google }) => {
                 strokeWeight: 8
               }}
               onClick={onMarkerClick}
-              name={building.buildingName}
+              name={device.deviceName}
+              deviceId={device.deviceId}
+              floorLocation={device.infoMessage.location}
+              deviceTemp={device.infoMessage.temperature}
+              cameraUrl={device.cameraUrl}
+              doorStatus={device.infoMessage.door}
+              direction={device.infoMessage.direction}
+              buildingId={device.buildingId}
             />
           ))
         ) : (
           <p>Loading...</p>
         )}
-        <InfoWindow
+        {/* <InfoWindow
           marker={activeMarker}
           visible={showingInfoWindow}
           onClose={onClose}
@@ -319,12 +361,38 @@ const MapContainer = ({ google }) => {
           <div>
             <h4>{selectedPlace.name}</h4>
           </div>
-        </InfoWindow>
+        </InfoWindow> */}
       </Map>
+      {/* Conditional rendering of RadialMenu */}
+      {showRadialMenu && (
+        
+        <RadialMenu
+          imageSrc={ElevatorIcon}
+          deviceName={radialMenuData.deviceName}
+          deviceId={radialMenuData.deviceId}
+          deviceFloor={radialMenuData.floorLocation}
+          deviceTemp={radialMenuData.deviceTemp}
+          cameraUrl={radialMenuData.cameraUrl}
+          doorStatus={radialMenuData.doorStatus}
+          direction={radialMenuData.direction}
+          onClose={closeRadialMenu}
+        />
+      )}
+      {/* Conditional rendering of DeviceInfo */}
+      {showDeviceInfo && (
+        <DeviceInfo 
+          buildingId={radialMenuData.buildingId} 
+          deviceId={radialMenuData.deviceId}
+          onClose={closeRadialMenu}
+          handleDeviceClick={handleDeviceClick}
+        />)}
     </div>
   );
-};
 
+  return (
+    mapOutput1
+  );
+};
 export default GoogleApiWrapper({
   apiKey
 })(MapContainer);
