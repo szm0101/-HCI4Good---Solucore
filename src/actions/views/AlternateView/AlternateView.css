@@ -47,6 +47,9 @@
     background-color: #1E5CB5;
 
 }
+.avData-tables td{
+    padding: 6px;
+}
 
 .avData-tables, .avData-tables tr{
     width: 100% !important;
