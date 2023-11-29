@@ -1,6 +1,5 @@
 /* Media query for large screens */
 @media (min-width: 1200px) {
-
   .container {
     margin: 0 !important;
     padding: 20px;
@@ -270,12 +269,11 @@
     border-color: rgb(54, 75, 104);
     padding: 10px;
     background: rgb(58, 62, 82);
-    /* font-weight: bold; */
     color: rgb(215, 218, 222);
   }
 
   .mytabs .tab {
-    width: 90%;
+    width: 100%;
     background-color: rgb(58, 62, 82);
     order: 1;
     display: none;
@@ -322,10 +320,31 @@
 
 /* Media query for much smaller screen */
 @media (max-width: 768px) {
-  .mytabs .tab {
-    width: 2.5%;
+  .form-group {
     background-color: rgb(58, 62, 82);
-    order: 1;
+    margin-left: 5%;
+    color: rgb(215, 218, 222);
+    min-height: 220px;
+    width: 100%;
+    font-weight: bold;
+  }
+
+  .mytabs label {
+    border: solid;
+    border-color: rgb(54, 75, 104);
+    padding: 5px;
+    background: rgb(58, 62, 82);
+    color: rgb(215, 218, 222);
+  }
+
+  .createActivityDiv {
     display: none;
+    padding-top: 5%;
+    padding-left: 10%;
+  }
+
+  #createActivityDiv {
+    display: none;
+    float: left;
   }
 }
