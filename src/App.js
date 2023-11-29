@@ -60,7 +60,10 @@ function App() {
                         <Route index element={<Buildings />} />
                         <Route path=":buildingId/Banks" element={<Banks />} />
                         <Route path=":buildingId/Banks/:bankId/Devices" element={<Devices />} />
-                      </Route>                  
+                      </Route>    
+                      <Route path="/Settings" element={<Settings />} />
+                      <Route path="/Report" element={<Reporting />} />
+                      <Route path="/Profile" element={<Profile />} />              
                     </>
                   </Routes>
                 )}
