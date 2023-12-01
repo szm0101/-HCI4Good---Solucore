@@ -1,0 +1,119 @@
+.device-info-main-container {
+    
+    color: aliceblue;
+    width: 100%;
+    height: 100%;
+    margin-left: 45vw;
+    transition: width 0.5s;
+    position: absolute;
+    overflow-y: auto;
+}
+
+.device-info-small-container {
+    border: 2px solid #2196f3;
+    border-radius: 5px;
+    position: absolute;
+    background-color: #2D5478;
+    margin: 5vh;
+    padding: 5px 0px 0px 0px;
+    width: 80vh;
+}
+
+.card-2 {
+    position: relative;
+    background-color: #2D5478;
+    margin: 3%;
+}
+
+.btn-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 2%;
+}
+
+.card-1 {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    background-color: #292c3b;
+    padding-top: 30px;
+    height: 150px;
+}
+
+.transparent-device {
+    opacity: 0.5;
+}
+
+.guarded-type {
+    background-color: #2196f3;
+    border: 2px solid #2196f3;
+    border-radius: 2px;
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.guarded-1,
+.guarded-2 {
+    width: 128px;
+    background-color: #3A3E52;
+    height: 27px;
+}
+
+.door-image {
+    width: 70px;
+    float: left;
+}
+
+.device-name {
+    padding-left: 1em;
+    float: left;
+    font-size: 2vw;
+    font-weight: bolder;
+}
+
+#elevator {
+    font-size: 1.5vw;
+}
+
+.guarded-3 {
+    display: inline-block;
+    border-left: 7px solid #2196f3;
+    padding-left: 20px;
+}
+
+
+
+.status {
+    float: left;
+}
+
+.card-3 {
+    background-color: #292c3b;
+    padding: 20px;
+    justify-content: center;
+}
+
+.date,
+.code {
+    color: white;
+    font-weight: bolder;
+}
+
+.card-3 .btn-primary {
+    background-color: #2196f3 !important;
+}
+
+.card-3 .btn-primary:hover {
+    background-color: #1b72b9 !important;
+}
+
+.runningCheck-image {
+    height: 30px;
+}
+
+.card-3 {
+  max-height: 200px;
+  overflow-y: auto;
+}

@@ -7,7 +7,6 @@
 .hexagon-svg {
   width: 100px;
   height: auto;
-  cursor: pointer;
 }
 
 .hexagon-label {
@@ -36,4 +35,35 @@
   margin: 0; /* Explicitly setting margin to 0 */
   padding: 0; /* Ensure no padding is applied */
   box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+}
+
+/* Add animation to Hexagon buttons */
+@keyframes scaleIn {
+  from {
+    transform: scale(0.5); 
+  }
+  to {
+    transform: scale(1); 
+  }
+}
+
+.hexagon-svg {
+  animation: scaleIn 0.8s ease-in-out; 
+}
+
+/* Late display for the labels */
+@keyframes displayDelayed {
+  from {
+    opacity: 0; 
+  }
+  to {
+    opacity: 1; 
+  }
+}
+
+.hexagon-label {
+  animation: displayDelayed; 
+  animation-delay: 2s;
+  opacity: 0;
+  animation-fill-mode: forwards;
 }
